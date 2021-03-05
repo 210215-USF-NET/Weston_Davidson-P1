@@ -1,0 +1,60 @@
+2021-03-02 10:00:05.643 -05:00 [VRB] Verbose log message
+2021-03-02 10:00:05.649 -05:00 [DBG] Debug log message
+2021-03-02 10:00:05.650 -05:00 [INF] Information log message
+2021-03-02 10:00:05.650 -05:00 [WRN] Warning log message
+2021-03-02 10:00:05.650 -05:00 [ERR] Error log message
+2021-03-02 10:00:05.650 -05:00 [FTL] Fatal log message
+2021-03-02 10:15:25.370 -05:00 [VRB] Verbose log message
+2021-03-02 10:15:25.376 -05:00 [DBG] Debug log message
+2021-03-02 10:15:25.376 -05:00 [INF] Information log message
+2021-03-02 10:15:25.376 -05:00 [WRN] Warning log message
+2021-03-02 10:15:25.376 -05:00 [ERR] Error log message
+2021-03-02 10:15:25.376 -05:00 [FTL] Fatal log message
+2021-03-02 10:15:27.176 -05:00 [INF] Manager menu accessed
+2021-03-02 10:17:05.854 -05:00 [INF] Order placed successfully
+2021-03-02 14:20:30.393 -05:00 [VRB] Verbose log message
+2021-03-02 14:20:30.400 -05:00 [DBG] Debug log message
+2021-03-02 14:20:30.400 -05:00 [INF] Information log message
+2021-03-02 14:20:30.400 -05:00 [WRN] Warning log message
+2021-03-02 14:20:30.400 -05:00 [ERR] Error log message
+2021-03-02 14:20:30.400 -05:00 [FTL] Fatal log message
+2021-03-02 14:20:33.675 -05:00 [INF] Manager menu accessed
+2021-03-02 16:02:14.815 -05:00 [INF] Manager menu accessed
+2021-03-02 16:05:54.609 -05:00 [INF] Manager menu accessed
+2021-03-02 16:06:37.137 -05:00 [INF] New customer added to database
+2021-03-02 16:10:37.832 -05:00 [INF] Order placed successfully
+2021-03-02 16:11:49.417 -05:00 [INF] Manager menu accessed
+2021-03-02 16:12:03.266 -05:00 [INF] Manager menu accessed
+2021-03-02 16:17:39.856 -05:00 [INF] Manager menu accessed
+2021-03-02 16:18:23.909 -05:00 [INF] Order placed successfully
+2021-03-02 16:22:05.979 -05:00 [INF] Manager menu accessed
+2021-03-02 16:41:39.827 -05:00 [INF] Manager menu accessed
+2021-03-02 16:42:20.035 -05:00 [INF] Order placed successfully
+2021-03-02 22:21:46.820 -05:00 [INF] Manager menu accessed
+2021-03-02 22:23:58.334 -05:00 [INF] product added to cart 10002
+2021-03-02 22:24:39.092 -05:00 [INF] product added to cart 10001
+2021-03-02 22:25:24.246 -05:00 [INF] Manager menu accessed
+2021-03-02 22:26:11.360 -05:00 [INF] Order placed successfully
+2021-03-02 22:28:49.393 -05:00 [INF] Manager menu accessed
+2021-03-02 22:31:28.404 -05:00 [INF] Manager menu accessed
+2021-03-02 22:32:57.846 -05:00 [INF] Manager menu accessed
+2021-03-02 22:40:59.869 -05:00 [INF] Manager menu accessed
+2021-03-02 22:42:49.264 -05:00 [INF] product added to cart 10002
+2021-03-02 22:43:44.315 -05:00 [INF] product added to cart 10003
+2021-03-02 22:44:11.998 -05:00 [INF] Manager menu accessed
+2021-03-02 22:44:54.773 -05:00 [INF] Order placed successfully
+2021-03-02 22:52:51.455 -05:00 [INF] Manager menu accessed
+2021-03-02 22:59:23.268 -05:00 [INF] Manager menu accessed
+2021-03-02 23:01:00.488 -05:00 [INF] Manager menu accessed
+2021-03-02 23:01:19.195 -05:00 [INF] product added to cart 10003
+2021-03-02 23:01:24.760 -05:00 [INF] product added to cart 10003
+2021-03-02 23:01:49.204 -05:00 [INF] Order placed successfully
+2021-03-03 09:58:57.064 -05:00 [INF] Manager menu accessed
+2021-03-03 10:10:13.897 -05:00 [INF] Manager menu accessed
+2021-03-03 10:24:57.975 -05:00 [INF] Manager menu accessed
+2021-03-03 10:26:47.997 -05:00 [INF] product added to cart 10002
+2021-03-03 10:27:38.561 -05:00 [INF] product added to cart 10003
+2021-03-03 10:28:01.985 -05:00 [INF] Manager menu accessed
+2021-03-03 10:28:33.945 -05:00 [INF] Order placed successfully
+2021-03-03 19:18:28.687 -05:00 [INF] product added to cart 10002
+2021-03-03 19:18:40.292 -05:00 [INF] Order placed successfully
