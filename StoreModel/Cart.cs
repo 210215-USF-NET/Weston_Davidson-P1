@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace StoreModel
 {
     /// <summary>
@@ -6,11 +8,17 @@ namespace StoreModel
     public class Cart
     {
 
-        public int CartID {get; set;}
-        
-        public int customerID {get; set;}
+        public int ID { get; set; }
 
-        
+        public int CustomerID { get; set; }
+
+        public Customer Customer { get; set; }
+        public ICollection<CartProducts> CartProducts { get; set; }
+
+        public int LocationID { get; set; }
+
+        public Location Location { get; set; }
+
 
     }
 }

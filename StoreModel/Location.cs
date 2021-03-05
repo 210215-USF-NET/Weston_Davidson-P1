@@ -1,22 +1,27 @@
+using System.Collections.Generic;
+
 namespace StoreModel
 {
-    
+
     /// <summary>
     /// Models our location object in our database
     /// </summary>
     public class Location
     {
 
-        public string LocationName {get; set;}
+        public int ID { get; set; }
 
-        public int LocationID {get; set;}
+        public string LocationName { get; set; }
 
-        public string Address {get; set;}
+        public ICollection<Order> Orders { get; set; }
+
+        public ICollection<Cart> Cart { get; set; }
+
+        public ICollection<LocationProduct> LocationProducts { get; set; }
 
 
-        public override string ToString()
-        {
-            return $"| Location ID: {LocationID} | Name: {LocationName} | Address: {Address} |";
-        }
+        public string Address { get; set; }
+
+
     }
 }

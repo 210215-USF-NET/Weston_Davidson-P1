@@ -4,13 +4,13 @@ using System;
 
 namespace StoreModel
 {
-    
+
     /// <summary>
     /// Models our order object in our database
     /// </summary>
     public class Order
     {
-        public int OrderID { get; set; }
+        public int ID { get; set; }
 
         public DateTime OrderDate { get; set; }
 
@@ -20,26 +20,15 @@ namespace StoreModel
 
         public int CustomerID { get; set; }
 
+        public Customer Customer { get; set; }
+
         public int LocationID { get; set; }
+        public Location Location { get; set; }
 
-        public int CartID { get; set; }
+        public ICollection<OrderProducts> OrderProducts { get; set; }
 
-        public Customer Customer {get; set;}
 
-        public Decimal TotalCost {get; set;}
+        public Decimal TotalCost { get; set; }
 
-        public string OrdersWithCustomers(){
-            return $"| Order ID: {OrderID} | Order Date: {OrderDate} | Customer Name: {Customer.FName} {Customer.LName} | Location ID: {LocationID}";
-        }
-
-        public string OrderWithDateFirst(){
-            return $"| Order Date: {OrderDate} | Order ID: {OrderID} | Customer ID: {CustomerID} | Location ID: {LocationID} |";
-
-        }
-        public override string ToString()
-        {
-            
-            return $"| Order ID: {OrderID} | Order Date: {OrderDate} | Customer ID: {CustomerID} | Location ID: {LocationID}";
-        }
     }
 }
