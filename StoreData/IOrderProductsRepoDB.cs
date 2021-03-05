@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Model = StoreModel;
-using Entity = StoreData.Entities;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using StoreModel;
@@ -8,10 +7,10 @@ using System;
 
 namespace StoreData
 {
-    public interface IOrderItemRepoDB
+    public interface IOrderProductsRepoDB
     {
-        void AddOrderItem(OrderItem newOrderItem);
+        void AddOrderItem(OrderProducts newOrderItem);
 
-        List<OrderItem> GetOrderItems(int orderID);
+        List<OrderProducts> GetOrderProducts(int orderID);
     }
 }

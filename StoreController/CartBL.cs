@@ -22,18 +22,8 @@ namespace StoreController
         public Cart FindCart(int customerID)
         {
             //cart found is the db findcart method return
-            Cart cartFound = _repo.FindCart(customerID);
+            return _repo.FindCart(customerID);
 
-            //if no cart is found with that customer ID,
-            //add a new cart to the database with the customer ID
-            if (cartFound.CartID == 0){
-                Cart cartToGenerate = new Cart();
-                cartToGenerate.customerID = customerID;
-                Cart generatedCart = _repo.AddCart(cartToGenerate);
-                return generatedCart;
-            }
-            //otherwise, return the found cart
-            else return cartFound;
 
 
 
@@ -44,6 +34,6 @@ namespace StoreController
             return _repo.GetCarts();
         }
 
-        
+
     }
 }
