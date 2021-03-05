@@ -9,28 +9,38 @@ namespace StoreController
     {
         //private Random rand = new Random();
 
-        private ICustomerRepository _repo;
+        private ICustomerRepoDB _repo;
 
-        public CustomerBL(ICustomerRepository repo){
+        public CustomerBL(ICustomerRepoDB repo)
+        {
             _repo = repo;
         }
 
-        
 
 
-
-
-        public void AddCustomer(Customer newCustomer){
-            _repo.AddCustomer(newCustomer);
+        public Customer AddCustomer(Customer newCustomer)
+        {
+            return _repo.AddCustomer(newCustomer);
 
         }
 
-        public List<Customer> GetCustomers(){
+        public Customer DeleteCustomer(Customer customer2BDeleted)
+        {
+            return _repo.DeleteCustomer(customer2BDeleted);
+        }
+
+        public Customer GetCustomerByFirstName(string name)
+        {
+            return _repo.GetCustomerByFirstName(name);
+        }
+
+        public List<Customer> GetCustomers()
+        {
             return _repo.GetCustomers();
 
         }
 
 
-        
+
     }
 }

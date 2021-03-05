@@ -1,22 +1,13 @@
-using System;
-using StoreModel;
+﻿using StoreModel;
 using System.Collections.Generic;
-using StoreData;
 
-namespace StoreController
+namespace StoreData
 {
-    public interface ICustomerBL
+    public interface ICustomerRepoDB
     {
-
-
-
         Customer AddCustomer(Customer newCustomer);
-
-        List<Customer> GetCustomers();
-
         Customer DeleteCustomer(Customer customer2BDeleted);
-
         Customer GetCustomerByFirstName(string name);
-
+        List<Customer> GetCustomers();
     }
 }
