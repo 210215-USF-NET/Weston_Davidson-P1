@@ -5,10 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using StoreModel;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace StoreData
 {
-    public class StoreDBContext : DbContext
+    public class StoreDBContext : IdentityDbContext<ApplicationUser>
     {
 
         public StoreDBContext(DbContextOptions options) : base(options)
@@ -21,6 +23,9 @@ namespace StoreData
 
         }
 
+
+        public DbSet<ApplicationUser> AppUsers { get; set; }
+        public DbSet<AppRole> AppRoles { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CartProducts> CartProducts { get; set; }
         public DbSet<Customer> Customers { get; set; }
@@ -33,6 +38,10 @@ namespace StoreData
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            base.OnModelCreating(modelBuilder);
+
+
             //THIS WILL LET US HAVE A SELF INCREMENTING PRIMARY KEY WHEN OUR DB IS BUILT
             //cart PK auto gen
             modelBuilder.Entity<Cart>()

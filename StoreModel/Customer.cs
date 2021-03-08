@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace StoreModel
 {
@@ -22,8 +23,10 @@ namespace StoreModel
 
         public string PasswordHash { get; set; }
 
+        [ForeignKey("AppUserFK")]
+        public ApplicationUser AppUser { get; set; }
 
-
+        public string AppUserFK { get; set; }
 
 
         public ICollection<Cart> Carts { get; set; }

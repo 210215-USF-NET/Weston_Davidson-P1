@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using StoreData;
@@ -9,9 +10,10 @@ using StoreData;
 namespace StoreData.Migrations
 {
     [DbContext(typeof(StoreDBContext))]
-    partial class StoreDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210308010513_WithIdentity2")]
+    partial class WithIdentity2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,10 +28,6 @@ namespace StoreData.Migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
@@ -47,8 +45,6 @@ namespace StoreData.Migrations
                         .HasDatabaseName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityRole");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -159,7 +155,7 @@ namespace StoreData.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("StoreModel.ApplicationUser", b =>
+            modelBuilder.Entity("StoreModel.AppUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text");
@@ -170,6 +166,9 @@ namespace StoreData.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("text");
+
+                    b.Property<int?>("CustomerID")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -212,6 +211,8 @@ namespace StoreData.Migrations
                         .HasColumnType("character varying(256)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CustomerID");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -275,9 +276,6 @@ namespace StoreData.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("AppUserFK")
-                        .HasColumnType("text");
-
                     b.Property<string>("FName")
                         .HasColumnType("text");
 
@@ -291,9 +289,6 @@ namespace StoreData.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("AppUserFK")
-                        .IsUnique();
 
                     b.ToTable("Customers");
                 });
@@ -417,13 +412,6 @@ namespace StoreData.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("StoreModel.AppRole", b =>
-                {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityRole");
-
-                    b.HasDiscriminator().HasValue("AppRole");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -435,7 +423,7 @@ namespace StoreData.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("StoreModel.ApplicationUser", null)
+                    b.HasOne("StoreModel.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -444,7 +432,7 @@ namespace StoreData.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("StoreModel.ApplicationUser", null)
+                    b.HasOne("StoreModel.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -459,7 +447,7 @@ namespace StoreData.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StoreModel.ApplicationUser", null)
+                    b.HasOne("StoreModel.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -468,11 +456,20 @@ namespace StoreData.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("StoreModel.ApplicationUser", null)
+                    b.HasOne("StoreModel.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("StoreModel.AppUser", b =>
+                {
+                    b.HasOne("StoreModel.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerID");
+
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("StoreModel.Cart", b =>
@@ -511,15 +508,6 @@ namespace StoreData.Migrations
                     b.Navigation("Cart");
 
                     b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("StoreModel.Customer", b =>
-                {
-                    b.HasOne("StoreModel.ApplicationUser", "AppUser")
-                        .WithOne("Customer")
-                        .HasForeignKey("StoreModel.Customer", "AppUserFK");
-
-                    b.Navigation("AppUser");
                 });
 
             modelBuilder.Entity("StoreModel.LocationProduct", b =>
@@ -577,11 +565,6 @@ namespace StoreData.Migrations
                     b.Navigation("Order");
 
                     b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("StoreModel.ApplicationUser", b =>
-                {
-                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("StoreModel.Cart", b =>

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using StoreData;
@@ -9,9 +10,10 @@ using StoreData;
 namespace StoreData.Migrations
 {
     [DbContext(typeof(StoreDBContext))]
-    partial class StoreDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210308014822_WithIdentity6")]
+    partial class WithIdentity6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -159,7 +161,7 @@ namespace StoreData.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("StoreModel.ApplicationUser", b =>
+            modelBuilder.Entity("StoreModel.AppUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text");
@@ -435,7 +437,7 @@ namespace StoreData.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("StoreModel.ApplicationUser", null)
+                    b.HasOne("StoreModel.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -444,7 +446,7 @@ namespace StoreData.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("StoreModel.ApplicationUser", null)
+                    b.HasOne("StoreModel.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -459,7 +461,7 @@ namespace StoreData.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StoreModel.ApplicationUser", null)
+                    b.HasOne("StoreModel.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -468,7 +470,7 @@ namespace StoreData.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("StoreModel.ApplicationUser", null)
+                    b.HasOne("StoreModel.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -515,7 +517,7 @@ namespace StoreData.Migrations
 
             modelBuilder.Entity("StoreModel.Customer", b =>
                 {
-                    b.HasOne("StoreModel.ApplicationUser", "AppUser")
+                    b.HasOne("StoreModel.AppUser", "AppUser")
                         .WithOne("Customer")
                         .HasForeignKey("StoreModel.Customer", "AppUserFK");
 
@@ -579,7 +581,7 @@ namespace StoreData.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("StoreModel.ApplicationUser", b =>
+            modelBuilder.Entity("StoreModel.AppUser", b =>
                 {
                     b.Navigation("Customer");
                 });

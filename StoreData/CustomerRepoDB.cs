@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StoreData
 {
-    class CustomerRepoDB : ICustomerRepoDB
+    public class CustomerRepoDB : ICustomerRepoDB
     {
         private readonly StoreDBContext _context;
 
