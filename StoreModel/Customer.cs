@@ -21,10 +21,7 @@ namespace StoreModel
 
 
 
-        public string PasswordHash { get; set; }
-
-        [ForeignKey("AppUserFK")]
-        public ApplicationUser AppUser { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
 
         public string AppUserFK { get; set; }
 

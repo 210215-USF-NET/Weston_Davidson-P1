@@ -163,6 +163,10 @@ namespace StoreData
                 .WithMany(p => p.OrderProducts)
                 .HasForeignKey(op => op.ProductID);
 
+            modelBuilder.Entity<Customer>()
+                .HasOne(c => c.ApplicationUser)
+                .WithOne(a => a.Customer)
+                .HasForeignKey<Customer>(c => c.AppUserFK);
 
 
             /*
@@ -182,7 +186,7 @@ namespace StoreData
                 .HasOne(a => a.Biography)
                 .WithOne(b => b.Author)
                 .HasForeignKey<AuthorBiography>(b => b.AuthorRef);
-
+            
 
             //a book can belong in many categories, and a category can have many books
             //many to many example

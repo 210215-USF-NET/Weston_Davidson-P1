@@ -13,5 +13,9 @@ namespace StoreModel
     {
         public virtual Customer Customer { get; set; }
 
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
     }
 }
