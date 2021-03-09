@@ -92,12 +92,24 @@ namespace StoreMVC.Models
 
         public Product CastProduct(ProductVM productToCast)
         {
-            throw new NotImplementedException();
+            return new Product
+            {
+                ProductName = productToCast.ProductName,
+                ProductDescription = productToCast.ProductDescription,
+                ProductPrice = productToCast.ProductPrice,
+                Manufacturer = productToCast.Manufacturer
+            };
         }
 
         public ProductVM CastProductVM(Product productToCast)
         {
-            throw new NotImplementedException();
+            return new ProductVM
+            {
+                ProductName = productToCast.ProductName,
+                ProductDescription = productToCast.ProductDescription,
+                ProductPrice = productToCast.ProductPrice,
+                Manufacturer = productToCast.Manufacturer
+            };
         }
     }
 }

@@ -22,10 +22,10 @@ namespace StoreModel
 
 
         public ApplicationUser ApplicationUser { get; set; }
+#nullable enable
+        public string? AppUserFK { get; set; }
 
-        public string AppUserFK { get; set; }
-
-
+#nullable disable
         public ICollection<Cart> Carts { get; set; }
 
         public ICollection<Order> Orders { get; set; }

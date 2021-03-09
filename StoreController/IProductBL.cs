@@ -7,9 +7,9 @@ namespace StoreController
 {
     public interface IProductBL
     {
-         
+
         //int GenerateID();
-        
+
 
         void AddProduct(Product newProduct);
 
@@ -18,6 +18,8 @@ namespace StoreController
         Product GetFilteredProduct(string productName);
 
         Product GetProductByID(int ID);
+
+        Product GetProductByName(string name);
 
 
     }

@@ -64,6 +64,18 @@ namespace StoreMVC
             services.AddScoped<ICustomerRepoDB, CustomerRepoDB>();
 
             services.AddScoped<ICustomerBL, CustomerBL>();
+
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IProductBL, ProductBL>();
+            /*
+            services.AddScoped<ILocationBL, LocationBL>();
+            services.AddScoped<ILocationProductBL, LocationProductBL>();
+            services.AddScoped<IOrderBL, OrderBL>();
+            services.AddScoped<IOrderProductsBL, OrderProductsBL>();
+
+            services.AddScoped<ICartBL, CartBL>();
+            services.AddScoped<ICartProductsBL, CartProductsBL>();
+            */
             services.AddScoped<IMapper, Mapper>();
 
 
@@ -95,6 +107,14 @@ namespace StoreMVC
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                    name: "Products",
+                    pattern: "{area:exists}/{controller=Product}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+                    name: "Products",
+                    pattern: "{area:exists}/{controller=Product}/{action=Details}/{id?}");
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

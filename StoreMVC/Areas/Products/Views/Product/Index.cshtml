@@ -1,0 +1,55 @@
+﻿@model IEnumerable<StoreMVC.Models.ProductVM>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Product Catalog</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Manufacturer)
+            </th>
+            <th>
+                Add to Cart
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td style="width: 30%">
+                    @Html.DisplayFor(modelItem => item.ProductDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Manufacturer)
+                </td>
+                <td>
+                    <a href='@Url.Action("Details", "Product", new { name = item.ProductName })' class="btn btn-info">Details</a>
+                </td>
+                <td>
+                    <a type="button" asp-action="AddToCart" asp-route-id="@item.ID" class="btn btn-primary">Add to Cart</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

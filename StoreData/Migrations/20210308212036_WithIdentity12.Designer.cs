@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using StoreData;
@@ -9,9 +10,10 @@ using StoreData;
 namespace StoreData.Migrations
 {
     [DbContext(typeof(StoreDBContext))]
-    partial class StoreDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210308212036_WithIdentity12")]
+    partial class WithIdentity12
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -520,8 +522,7 @@ namespace StoreData.Migrations
                 {
                     b.HasOne("StoreModel.ApplicationUser", "ApplicationUser")
                         .WithOne("Customer")
-                        .HasForeignKey("StoreModel.Customer", "AppUserFK")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .HasForeignKey("StoreModel.Customer", "AppUserFK");
 
                     b.Navigation("ApplicationUser");
                 });
@@ -531,7 +532,7 @@ namespace StoreData.Migrations
                     b.HasOne("StoreModel.Location", "Location")
                         .WithMany("LocationProducts")
                         .HasForeignKey("LocationID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.SetNull)
                         .IsRequired();
 
                     b.HasOne("StoreModel.Product", "Product")

@@ -9,10 +9,11 @@ namespace StoreController
     public class ProductBL : IProductBL
     {
 
-        
+
         private IProductRepository _repo;
 
-        public ProductBL(IProductRepository repo){
+        public ProductBL(IProductRepository repo)
+        {
             _repo = repo;
         }
         /*
@@ -24,19 +25,24 @@ namespace StoreController
         }
         */
 
-        public void AddProduct(Product newProduct){
+        public void AddProduct(Product newProduct)
+        {
             _repo.AddProduct(newProduct);
         }
 
-        public List<Product> GetProduct(){
+        public List<Product> GetProduct()
+        {
             return _repo.GetProducts();
         }
 
-        public Product GetFilteredProduct(string productName){
+        public Product GetFilteredProduct(string productName)
+        {
             List<Product> products = _repo.GetProducts();
             Product newProduct = new Product();
-            foreach(Product x in products){
-                if (x.ProductName == productName){
+            foreach (Product x in products)
+            {
+                if (x.ProductName == productName)
+                {
                     newProduct = x;
                 }
 
@@ -49,6 +55,11 @@ namespace StoreController
         public Product GetProductByID(int ID)
         {
             return _repo.GetProductByID(ID);
+        }
+
+        public Product GetProductByName(string name)
+        {
+            return _repo.GetProductByName(name);
         }
     }
 }

@@ -166,7 +166,8 @@ namespace StoreData
             modelBuilder.Entity<Customer>()
                 .HasOne(c => c.ApplicationUser)
                 .WithOne(a => a.Customer)
-                .HasForeignKey<Customer>(c => c.AppUserFK);
+                .HasForeignKey<Customer>(c => c.AppUserFK)
+                .OnDelete(DeleteBehavior.SetNull);
 
 
             /*
