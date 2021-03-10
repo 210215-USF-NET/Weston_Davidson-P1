@@ -40,6 +40,11 @@ namespace StoreController
 
         }
 
+        public Customer GetCustomerByFK(string fk)
+        {
+            return _repo.GetCustomerByFK(fk);
+        }
+
 
 
     }

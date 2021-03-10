@@ -1,13 +1,26 @@
-﻿@using Microsoft.AspNetCore.Identity
+﻿@using StoreController;
+
+
+@using Microsoft.AspNetCore.Identity
 @using StoreModel
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
+@inject CustomerBL customerBL
 
+@using System.Security.Claims
+
+@{
+    var userid = SignInManager.UserManager.GetUserId(User);
+}
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
+        Customer cloggedin = customerBL.GetCustomerByFK(UserManager.GetUserId(User));
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
+            <a class="nav-link text-dark" asp-area="Cart" asp-controller="Cart" asp-action="Index" asp-route-id="@cloggedin.AppUserFK" title="Manage">Hello @cloggedin.FName!</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@User.Identity.Name</a>
         </li>
         <li class="nav-item">
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">

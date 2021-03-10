@@ -26,13 +26,17 @@ namespace StoreMVC.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
         private readonly ICustomerBL _customerBL;
+        private readonly ICartBL _cartBL;
+        private readonly ILocationBL _locationBL;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
-            ICustomerBL customerBL
+            ICustomerBL customerBL,
+            ICartBL cartBL,
+            ILocationBL locationBL
             )
         {
             _userManager = userManager;
@@ -40,6 +44,8 @@ namespace StoreMVC.Areas.Identity.Pages.Account
             _logger = logger;
             _emailSender = emailSender;
             _customerBL = customerBL;
+            _cartBL = cartBL;
+            _locationBL = locationBL;
         }
 
         [BindProperty]
@@ -62,6 +68,9 @@ namespace StoreMVC.Areas.Identity.Pages.Account
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
+
+            [Display(Name = "Location")]
+            public string Location { get; set; }
 
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
@@ -105,6 +114,17 @@ namespace StoreMVC.Areas.Identity.Pages.Account
 
                     _customerBL.AddCustomer(customertoAdd);
 
+                    //we also want to create a cart for that customer in our system
+                    //we'll need to retrieve our customer we just created to guarantee we have the correct ID
+                    //and our location based on the selection in the form
+                    Customer customerWithCart = new Customer();
+                    customerWithCart = _customerBL.GetCustomerByFirstName(customertoAdd.FName);
+
+                    //grab location next
+                    Location location = _locationBL.GetLocationByName(Input.Location);
+
+                    //if a cart already exists for this customer, find that - else, make a new one with passed in data
+                    _cartBL.FindCart(customerWithCart.ID, location.ID);
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));

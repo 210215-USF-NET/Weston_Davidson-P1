@@ -7,15 +7,16 @@ using System.Threading.Tasks;
 using StoreModel;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http;
 
 namespace StoreData
 {
     public class StoreDBContext : IdentityDbContext<ApplicationUser>
     {
-
-        public StoreDBContext(DbContextOptions options) : base(options)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public StoreDBContext(DbContextOptions options, IHttpContextAccessor httpContextAccessor) : base(options)
         {
-
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public StoreDBContext()

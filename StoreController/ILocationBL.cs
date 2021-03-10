@@ -13,5 +13,8 @@ namespace StoreController
 
         public Location GetSpecifiedLocation(int locationID);
 
+
+        public Location GetLocationByName(string locationName);
+
     }
 }

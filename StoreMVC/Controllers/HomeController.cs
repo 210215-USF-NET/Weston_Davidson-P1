@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using StoreController;
+using StoreModel;
 using StoreMVC.Models;
 using System;
 using System.Collections.Generic;
@@ -12,10 +15,13 @@ namespace StoreMVC.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ICustomerBL _customerBL;
+        UserManager<ApplicationUser> _userManager;
+        public HomeController(ILogger<HomeController> logger, ICustomerBL customerBL, UserManager<ApplicationUser> userManager)
         {
             _logger = logger;
+            _customerBL = customerBL;
+            _userManager = userManager;
         }
 
         [Route("")]
@@ -23,7 +29,13 @@ namespace StoreMVC.Controllers
         [Route("Home/Index")]
         public IActionResult Index()
         {
-            return View();
+            if (_userManager.GetUserId(User) != null)
+            {
+                ViewBag.customer = _customerBL.GetCustomerByFK(_userManager.GetUserId(User));
+                return View();
+
+            }
+            else return View();
         }
 
         public IActionResult Privacy()

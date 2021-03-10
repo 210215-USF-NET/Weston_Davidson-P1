@@ -53,5 +53,16 @@ namespace StoreData
                     .FirstOrDefault(c => c.FName == name);
 
         }
+
+        public Customer GetCustomerByFK(string fk)
+        {
+            return _context.Customers
+                    .Include(c => c.Carts)
+                    .ThenInclude(carts => carts.CartProducts)
+                    .Include(c => c.Orders)
+                    .ThenInclude(orders => orders.OrderProducts)
+                    .AsNoTracking()
+                    .FirstOrDefault(c => c.AppUserFK == fk);
+        }
     }
 }

@@ -8,7 +8,7 @@ namespace StoreData
         List<Cart> GetCarts();
 
         Cart AddCart(Cart newCart);
-        Cart AddCart(int customerID);
+        Cart AddCart(int customerID, int locationID);
 
         Cart FindCart(int customerID);
 

@@ -18,5 +18,6 @@ namespace StoreController
 
         Customer GetCustomerByFirstName(string name);
 
+        Customer GetCustomerByFK(string fk);
     }
 }

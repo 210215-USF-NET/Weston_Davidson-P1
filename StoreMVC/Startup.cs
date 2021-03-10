@@ -21,7 +21,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 using StoreModel;
-
+using Microsoft.AspNetCore.Http;
 
 namespace StoreMVC
 {
@@ -64,9 +64,17 @@ namespace StoreMVC
             services.AddScoped<ICustomerRepoDB, CustomerRepoDB>();
 
             services.AddScoped<ICustomerBL, CustomerBL>();
+            services.AddTransient<CustomerBL>();
 
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IProductBL, ProductBL>();
+
+            services.AddScoped<ILocationRepository, LocationRepoDB>();
+            services.AddScoped<ILocationBL, LocationBL>();
+
+
+            services.AddScoped<ICartBL, CartBL>();
+            services.AddScoped<ICartRepoDB, CartRepoDB>();
             /*
             services.AddScoped<ILocationBL, LocationBL>();
             services.AddScoped<ILocationProductBL, LocationProductBL>();
@@ -81,6 +89,8 @@ namespace StoreMVC
 
             //these are the things your application is dependent on
 
+            //in order to access the identity users user id, we must include this:
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -107,6 +117,12 @@ namespace StoreMVC
 
             app.UseEndpoints(endpoints =>
             {
+
+                endpoints.MapControllerRoute(
+                  name: "Cart",
+                  pattern: "{area:exists}/{controller=Cart}/{action=Index}/{id?}"
+                );
+
                 endpoints.MapControllerRoute(
                     name: "Products",
                     pattern: "{area:exists}/{controller=Product}/{action=Index}/{id?}");

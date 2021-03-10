@@ -11,6 +11,6 @@ namespace StoreController
 
         List<Cart> GetCarts();
 
-        Cart FindCart(int customerID);
+        Cart FindCart(int customerID, int locationID);
     }
 }

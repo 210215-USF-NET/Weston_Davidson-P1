@@ -8,10 +8,12 @@ namespace StoreController
     public class CartBL : ICartBL
     {
         private ICartRepoDB _repo;
+        private ILocationRepository _locationRepo;
 
-        public CartBL(ICartRepoDB repo)
+        public CartBL(ICartRepoDB repo, ILocationRepository locationRepo)
         {
             _repo = repo;
+            _locationRepo = locationRepo;
         }
 
         public void AddCart(Cart newCart)
@@ -19,10 +21,24 @@ namespace StoreController
             _repo.AddCart(newCart);
         }
 
-        public Cart FindCart(int customerID)
+        public Cart FindCart(int customerID, int locationID)
         {
             //cart found is the db findcart method return
-            return _repo.FindCart(customerID);
+            try
+            {
+                return _repo.FindCart(customerID);
+            }
+            catch (NullReferenceException)
+            {
+
+                return _repo.AddCart(customerID, locationID);
+            }
+            catch (InvalidOperationException)
+            {
+
+                return _repo.AddCart(customerID, locationID);
+            }
+
 
 
 

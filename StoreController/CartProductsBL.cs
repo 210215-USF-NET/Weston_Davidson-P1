@@ -9,7 +9,8 @@ namespace StoreController
     {
         private ICartProductsRepoDB _repo;
 
-        public CartProductsBL(ICartProductsRepoDB repo){
+        public CartProductsBL(ICartProductsRepoDB repo)
+        {
             _repo = repo;
         }
 
@@ -24,7 +25,8 @@ namespace StoreController
         }
 
 
-        public List<CartProducts> FindCartProducts(int cartID){
+        public List<CartProducts> FindCartProducts(int cartID)
+        {
             return _repo.FindCartProducts(cartID);
 
         }
