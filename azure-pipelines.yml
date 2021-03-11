@@ -16,7 +16,7 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
-steps:
+    steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
@@ -33,3 +33,12 @@ steps:
     publishWebProjects: false
     zipAfterPublish: true
     projects: '**/StoreMVC/*.csproj'
+
+
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Azure subscription 1(0bcf3285-b43d-4285-97f2-47f2ef104e66)'
+    appType: 'webApp'
+    WebAppName: 'sineshop'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
