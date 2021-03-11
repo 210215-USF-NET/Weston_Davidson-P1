@@ -11,6 +11,7 @@ namespace StoreData
         Cart AddCart(int customerID, int locationID);
 
         Cart FindCart(int customerID);
+        Cart FindCart(int customerID, int locationID);
 
     }
 }

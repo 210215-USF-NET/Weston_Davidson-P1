@@ -26,19 +26,26 @@ namespace StoreMVC.Areas.Identity.Pages.Account
         private readonly IEmailSender _emailSender;
         private readonly ILogger<ExternalLoginModel> _logger;
         private readonly ICustomerBL _customerBL;
+        private readonly ILocationBL _locationBL;
+        private readonly ICartBL _cartBL;
 
         public ExternalLoginModel(
             SignInManager<ApplicationUser> signInManager,
             UserManager<ApplicationUser> userManager,
             ILogger<ExternalLoginModel> logger,
             IEmailSender emailSender,
-            ICustomerBL customerBL)
+            ICustomerBL customerBL,
+            ILocationBL locationBL,
+            ICartBL cartBL
+            )
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _logger = logger;
             _emailSender = emailSender;
             _customerBL = customerBL;
+            _locationBL = locationBL;
+            _cartBL = cartBL;
         }
 
         [BindProperty]
@@ -56,6 +63,7 @@ namespace StoreMVC.Areas.Identity.Pages.Account
             [Required]
             [EmailAddress]
             public string Email { get; set; }
+            public string Location { get; set; }
         }
 
         public IActionResult OnGetAsync()
@@ -136,7 +144,9 @@ namespace StoreMVC.Areas.Identity.Pages.Account
                     {
                         _logger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);
 
-                        //ADD IN NEW CUSTOMER HERE
+
+
+                        //let's create a customer entry now that a user account has been generated
                         Customer customertoAdd = new Customer();
 
                         customertoAdd.AppUserFK = user.Id;
@@ -146,6 +156,20 @@ namespace StoreMVC.Areas.Identity.Pages.Account
 
 
                         _customerBL.AddCustomer(customertoAdd);
+
+                        //we also want to create a cart for that customer in our system
+                        //we'll need to retrieve our customer we just created to guarantee we have the correct ID
+                        //and our location based on the selection in the form
+                        Customer customerWithCart = new Customer();
+                        customerWithCart = _customerBL.GetCustomerByFirstName(customertoAdd.FName);
+
+                        //grab location next
+                        Location location = _locationBL.GetLocationByName(Input.Location);
+
+                        //if a cart already exists for this customer, find that - else, make a new one with passed in data
+                        _cartBL.FindCart(customerWithCart.ID, location.ID);
+
+
 
 
                         var userId = await _userManager.GetUserIdAsync(user);

@@ -26,7 +26,7 @@ namespace StoreController
             //cart found is the db findcart method return
             try
             {
-                return _repo.FindCart(customerID);
+                return _repo.FindCart(customerID, locationID);
             }
             catch (NullReferenceException)
             {

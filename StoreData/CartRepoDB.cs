@@ -39,6 +39,11 @@ namespace StoreData
             return _context.Carts.Where(c => c.CustomerID == customerID).First();
         }
 
+        public Cart FindCart(int customerID, int locationID)
+        {
+            return _context.Carts.Where(c => c.CustomerID == customerID && c.LocationID == locationID).First();
+        }
+
         public List<Cart> GetCarts()
         {
             throw new NotImplementedException();

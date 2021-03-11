@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using StoreController;
 using StoreModel;
 
 namespace StoreMVC.Areas.Identity.Pages.Account.Manage
@@ -14,13 +15,23 @@ namespace StoreMVC.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly ICustomerBL _customerBL;
+        private readonly ILocationBL _locationBL;
+        private readonly ICartBL _cartBL;
 
         public IndexModel(
             UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager)
+            SignInManager<ApplicationUser> signInManager,
+            ICustomerBL customerBL,
+            ILocationBL locationBL,
+            ICartBL cartBL)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _customerBL = customerBL;
+            _locationBL = locationBL;
+            _cartBL = cartBL;
+
         }
 
         public string Username { get; set; }
@@ -36,6 +47,8 @@ namespace StoreMVC.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+
+            public string Location { get; set; }
         }
 
         private async Task LoadAsync(ApplicationUser user)
@@ -87,6 +100,10 @@ namespace StoreMVC.Areas.Identity.Pages.Account.Manage
                     return RedirectToPage();
                 }
             }
+
+            Customer cloggedin = _customerBL.GetCustomerByFK(user.Id);
+            Location location = _locationBL.GetLocationByName(Input.Location);
+            _cartBL.FindCart(cloggedin.ID, location.ID);
 
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
