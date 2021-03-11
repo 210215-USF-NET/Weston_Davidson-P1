@@ -16,11 +16,27 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'sonarcloud'
+    organization: '210215-usf-net'
+    scannerMode: 'MSBuild'
+    projectKey: '210215-USF-NET_Weston_Davidson-P1'
+    projectName: 'Weston_Davidson-P1'
+
+
+
 steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
     projects: $(solution)
+
+- task: SonarCloudAnalyze@1
+  displayName: public code analysis
+
+- task: SonarCloudPublish@1
+
 
 - task: DotNetCoreCLI@2
   inputs:
