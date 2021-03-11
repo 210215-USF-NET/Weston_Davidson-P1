@@ -32,8 +32,7 @@ steps:
 - task: AzureRmWebAppDeployment@4
   inputs:
     ConnectionType: 'AzureRM'
-    azureSubscription: 'Azure subscription 1(0bcf3285-b43d-4285-97f2-47f2ef104e66)'
+    azureSubscription: 'connectionforproject'
     appType: 'webApp'
     WebAppName: 'sineshop'
     packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
-
