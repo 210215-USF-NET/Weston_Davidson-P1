@@ -24,11 +24,6 @@ steps:
 
 - task: DotNetCoreCLI@2
   inputs:
-    command: 'test'
-    projects: '**/StoreTests/*.csproj'
-
-- task: DotNetCoreCLI@2
-  inputs:
     command: 'publish'
     publishWebProjects: false
     zipAfterPublish: true
