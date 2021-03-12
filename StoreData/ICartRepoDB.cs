@@ -13,5 +13,7 @@ namespace StoreData
         Cart FindCart(int customerID);
         Cart FindCart(int customerID, int locationID);
 
+        public void RemoveCartByLocation(string locationName, int customerID);
+
     }
 }

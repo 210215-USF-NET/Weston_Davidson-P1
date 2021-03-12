@@ -103,7 +103,11 @@ namespace StoreMVC.Areas.Identity.Pages.Account.Manage
 
             Customer cloggedin = _customerBL.GetCustomerByFK(user.Id);
             Location location = _locationBL.GetLocationByName(Input.Location);
+
+            _cartBL.RemoveCartByLocation(location.LocationName, cloggedin.ID);
             _cartBL.FindCart(cloggedin.ID, location.ID);
+
+
 
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";

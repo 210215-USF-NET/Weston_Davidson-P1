@@ -4,9 +4,12 @@
 
 @{
     ViewData["Title"] = "Index";
+
 }
 @{
-    List<StoreModel.CartProducts> products = Model.Carts.First().CartProducts.ToList();
+    List<StoreModel.CartProducts> products = Model.Carts.FirstOrDefault().CartProducts.ToList();
+
+
 }
 <h1>Cart</h1>
 

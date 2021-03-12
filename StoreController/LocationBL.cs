@@ -40,8 +40,7 @@ namespace StoreController
 
         public Location GetSpecifiedLocation(int locationID)
         {
-            Location location = _repo.GetSpecifiedLocation(locationID);
-            return location;
+            return _repo.GetSpecifiedLocation(locationID);
         }
 
 

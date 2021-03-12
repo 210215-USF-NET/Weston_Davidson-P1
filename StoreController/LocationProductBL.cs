@@ -9,7 +9,7 @@ namespace StoreController
     {
 
 
-        private ILocationProductRepoDB _repo;
+        private readonly ILocationProductRepoDB _repo;
 
         public LocationProductBL(ILocationProductRepoDB repo)
         {
@@ -21,9 +21,9 @@ namespace StoreController
             _repo.AddLocationProduct(newInventory);
         }
 
-        public List<LocationProduct> GetLocationProducts()
+        public List<LocationProduct> GetLocationProducts(int locationID)
         {
-            return _repo.GetLocationProducts();
+            return _repo.GetLocationProducts(locationID);
         }
 
         public void UpdateLocationProduct(LocationProduct inventoryForUpdating)

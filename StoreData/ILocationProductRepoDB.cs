@@ -5,7 +5,7 @@ namespace StoreData
 {
     public interface ILocationProductRepoDB
     {
-        List<LocationProduct> GetLocationProducts();
+        List<LocationProduct> GetLocationProducts(int locationID);
 
         LocationProduct AddLocationProduct(LocationProduct newInventory);
 

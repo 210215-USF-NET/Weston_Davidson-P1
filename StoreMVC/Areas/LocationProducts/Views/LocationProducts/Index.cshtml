@@ -1,0 +1,73 @@
+﻿@model IEnumerable<StoreModel.LocationProduct>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Products Available at Our @ViewBag.location Location!</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LocationProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductQuantity)
+            </th>
+            <th>Details</th>
+            <th>Add to Cart</th>
+            <th>Quanity to Add</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LocationProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductQuantity)
+                </td>
+                <td>
+                    <a href='@Url.Action("Details", "Product", new { name = item.ProductID })' class="btn btn-info">Details</a>
+                </td>
+                <td>
+                    <form class="form-inline" asp-area="Cart" asp-action="AddToCart" asp-route-productID="@item.ProductID" asp-route-productCount="productCount" asp-route-customerID="@ViewBag.customerID" method="post">
+                        <div class="form-row">
+                            <div class="col">
+                                <input type="submit" class="btn btn-primary" value="Add to Cart">
+                            </div>
+                            <div class="col-sm-1">
+                                @Html.TextBox("productCount", (int)ViewBag.prodCount, new { @class = "form-control", @type="number", @name="productCount"})
+                                
+                            </div>
+                        </div>
+                    </form>
+                </td>
+                <td>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

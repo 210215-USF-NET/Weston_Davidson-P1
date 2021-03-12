@@ -48,5 +48,14 @@ namespace StoreData
         {
             throw new NotImplementedException();
         }
+
+        public void RemoveCartByLocation(string locationName, int customerID)
+        {
+            Location location = _context.Locations.Where(l => l.LocationName == locationName).First();
+            Cart cartToRemove = _context.Carts.Where(c => c.CustomerID == customerID && c.LocationID == location.ID).FirstOrDefault();
+            _context.Carts.Remove(cartToRemove);
+            _context.SaveChanges();
+
+        }
     }
 }

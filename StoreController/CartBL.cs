@@ -45,6 +45,17 @@ namespace StoreController
 
         }
 
+        public void RemoveCartByLocation(string locationName, int customerID)
+        {
+            if (locationName == "Tampa")
+            {
+                _repo.RemoveCartByLocation("Orlando", customerID);
+            }
+            else
+                _repo.RemoveCartByLocation("Tampa", customerID);
+
+        }
+
         public List<Cart> GetCarts()
         {
             return _repo.GetCarts();

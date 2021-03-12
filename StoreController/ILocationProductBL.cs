@@ -10,7 +10,7 @@ namespace StoreController
     {
         void AddLocationProduct(LocationProduct newLocationProduct);
 
-        List<LocationProduct> GetLocationProducts();
+        List<LocationProduct> GetLocationProducts(int locationID);
 
         void UpdateLocationProduct(LocationProduct locationProductForupdating);
     }

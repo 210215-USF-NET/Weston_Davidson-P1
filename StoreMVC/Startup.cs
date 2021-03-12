@@ -75,6 +75,10 @@ namespace StoreMVC
 
             services.AddScoped<ICartBL, CartBL>();
             services.AddScoped<ICartRepoDB, CartRepoDB>();
+
+
+            services.AddScoped<ILocationProductBL, LocationProductBL>();
+            services.AddScoped<ILocationProductRepoDB, LocationProductRepoDB>();
             /*
             services.AddScoped<ILocationBL, LocationBL>();
             services.AddScoped<ILocationProductBL, LocationProductBL>();
@@ -126,6 +130,10 @@ namespace StoreMVC
                 endpoints.MapControllerRoute(
                     name: "Products",
                     pattern: "{area:exists}/{controller=Product}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+                    name: "LocationProducts",
+                    pattern: "{area:exists}/{controller=LocationProducts}/{action=Index}/{id?}");
 
                 endpoints.MapControllerRoute(
                     name: "Products",

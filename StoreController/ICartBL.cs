@@ -12,5 +12,7 @@ namespace StoreController
         List<Cart> GetCarts();
 
         Cart FindCart(int customerID, int locationID);
+
+        void RemoveCartByLocation(string locationName, int customerID);
     }
 }

@@ -24,7 +24,7 @@ namespace StoreData
 
         public Location GetSpecifiedLocation(int locationID)
         {
-            return _context.Locations.Find(locationID);
+            return _context.Locations.Where(l => l.ID == locationID).FirstOrDefault();
         }
 
         public Location GetLocationByName(string locationName)
