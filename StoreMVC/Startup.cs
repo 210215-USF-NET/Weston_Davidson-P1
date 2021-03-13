@@ -79,6 +79,9 @@ namespace StoreMVC
 
             services.AddScoped<ILocationProductBL, LocationProductBL>();
             services.AddScoped<ILocationProductRepoDB, LocationProductRepoDB>();
+
+            services.AddScoped<ICartProductsBL, CartProductsBL>();
+            services.AddScoped<ICartProductsRepoDB, CartProductsRepoDB>();
             /*
             services.AddScoped<ILocationBL, LocationBL>();
             services.AddScoped<ILocationProductBL, LocationProductBL>();

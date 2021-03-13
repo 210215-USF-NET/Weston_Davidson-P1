@@ -17,13 +17,17 @@ namespace StoreMVC.Areas.LocationProducts.Controllers
         private readonly ILocationProductBL _locationProductBL;
         private readonly IMapper _mapper;
         private readonly ICustomerBL _customerBL;
+        private readonly ICartBL _cartBL;
+        private readonly ICartProductsBL _cartProductsBL;
 
-        public LocationProductsController(ILocationBL locationBL, IMapper mapper, ILocationProductBL locationProductBL, ICustomerBL customerBL)
+        public LocationProductsController(ILocationBL locationBL, IMapper mapper, ILocationProductBL locationProductBL, ICustomerBL customerBL, ICartBL cartBL, ICartProductsBL cartProductsBL)
         {
             _locationBL = locationBL;
             _locationProductBL = locationProductBL;
             _mapper = mapper;
             _customerBL = customerBL;
+            _cartBL = cartBL;
+            _cartProductsBL = cartProductsBL;
         }
         [Area("LocationProducts")]
         // GET: LocationProductController/locationID
@@ -40,6 +44,24 @@ namespace StoreMVC.Areas.LocationProducts.Controllers
             ViewBag.cartID = cart.ID;
             ViewBag.prodCount = 1;
             return View(l);
+        }
+
+        [HttpPost]
+        public ActionResult AddToCart(int customerID, int productID, int locationID, int inputValue)
+        {
+            //find customer making purchase
+            //Customer c = _customerBL.GetCustomerByID(customerID);
+            //retrieve customer cart
+            StoreModel.Cart cart = _cartBL.FindCart(customerID, locationID);
+            //add the product with quantity to cartproduct list
+            _cartProductsBL.AddCartProduct(productID, cart.ID, inputValue);
+            //find location based on location ID
+            List<LocationProduct> l = _locationProductBL.GetLocationProducts(locationID);
+            //Location location = _locationBL.GetSpecifiedLocation(locationID);
+            //return back to the same view
+            ViewBag.locationID = locationID;
+            ViewBag.customerID = customerID;
+            return View("~/Areas/LocationProducts/Views/LocationProducts/Index.cshtml", l);
         }
 
         // GET: LocationProductController/Details/5

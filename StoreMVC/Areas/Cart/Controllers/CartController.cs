@@ -46,18 +46,7 @@ namespace StoreMVC.Areas.Cart.Controllers
             }
         }
 
-        [HttpPost]
-        public ActionResult AddToCart(int productID, int customerID, int locationID, int inputValue)
-        {
-            //find customer making purchase
-            Customer c = _customerBL.GetCustomerByID(customerID);
-            //retrieve customer cart
-            StoreModel.Cart cart = _cartBL.FindCart(customerID, locationID);
-            //add the product with quantity to cartproduct list
-            _cartProductsBL.AddCartProduct(productID, cart.ID, inputValue);
-            //return back to the same view
-            return View("Index", c);
-        }
+
 
         // GET: CartController/Details/5
         public ActionResult Details(int id)

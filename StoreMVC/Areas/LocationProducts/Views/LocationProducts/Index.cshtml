@@ -52,13 +52,13 @@
                     <a href='@Url.Action("Details", "Product", new { name = item.ProductID })' class="btn btn-info">Details</a>
                 </td>
                 <td>
-                    <form class="form-inline" action="AddToCart" asp-method="post">
+                    <form class="form-inline" action="AddToCart" method="post">
                         <div class="form-row">
                             <div class="col">
                                 <input type="submit" class="btn btn-primary" value="Add to Cart">
                                 <input type="hidden" value="@ViewBag.customerID" name="customerID" />
                                 <input type="hidden" value="@item.ID" name="productID" />
-                                <input type="hidden" value="@ViewBag.locationID" name="locationID"/>
+                                <input type="hidden" value="@ViewBag.locationID" name="locationID" />
                             </div>
                             <div class="col-sm-1">
                                 <input type="number" value="1" name="inputValue" />
