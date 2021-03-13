@@ -16,13 +16,14 @@ namespace StoreMVC.Areas.LocationProducts.Controllers
         private readonly ILocationBL _locationBL;
         private readonly ILocationProductBL _locationProductBL;
         private readonly IMapper _mapper;
+        private readonly ICustomerBL _customerBL;
 
-        public LocationProductsController(ILocationBL locationBL, IMapper mapper, ILocationProductBL locationProductBL)
+        public LocationProductsController(ILocationBL locationBL, IMapper mapper, ILocationProductBL locationProductBL, ICustomerBL customerBL)
         {
             _locationBL = locationBL;
             _locationProductBL = locationProductBL;
             _mapper = mapper;
-
+            _customerBL = customerBL;
         }
         [Area("LocationProducts")]
         // GET: LocationProductController/locationID
@@ -30,8 +31,13 @@ namespace StoreMVC.Areas.LocationProducts.Controllers
         {
             List<LocationProduct> l = _locationProductBL.GetLocationProducts(locationID);
             Location location = _locationBL.GetSpecifiedLocation(locationID);
+
+            Customer customer = _customerBL.GetCustomerByID(customerID);
+            StoreModel.Cart cart = customer.Carts.First();
             ViewBag.location = location.LocationName;
+            ViewBag.locationID = location.ID;
             ViewBag.customerID = customerID;
+            ViewBag.cartID = cart.ID;
             ViewBag.prodCount = 1;
             return View(l);
         }

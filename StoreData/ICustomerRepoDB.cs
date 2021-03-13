@@ -9,7 +9,7 @@ namespace StoreData
         Customer DeleteCustomer(Customer customer2BDeleted);
         Customer GetCustomerByFirstName(string name);
         List<Customer> GetCustomers();
-
+        public Customer GetCustomerByID(int id);
         Customer GetCustomerByFK(string fk);
     }
 }

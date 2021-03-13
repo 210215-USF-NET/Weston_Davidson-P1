@@ -19,10 +19,16 @@ namespace StoreMVC.Areas.Cart.Controllers
 
         private readonly ICartBL _cartBL;
 
-        public CartController(ICartBL cartBL, ICustomerBL customerBL)
+        private readonly ILocationProductBL _locationProductBL;
+
+        private readonly ICartProductsBL _cartProductsBL;
+
+        public CartController(ICartBL cartBL, ICustomerBL customerBL, ILocationProductBL locationproductBL, ICartProductsBL cartProductsBL)
         {
             _cartBL = cartBL;
             _customerBL = customerBL;
+            _locationProductBL = locationproductBL;
+            _cartProductsBL = cartProductsBL;
         }
 
         // GET: CartController
@@ -38,6 +44,19 @@ namespace StoreMVC.Areas.Cart.Controllers
             {
                 return View();
             }
+        }
+
+        [HttpPost]
+        public ActionResult AddToCart(int productID, int customerID, int locationID, int inputValue)
+        {
+            //find customer making purchase
+            Customer c = _customerBL.GetCustomerByID(customerID);
+            //retrieve customer cart
+            StoreModel.Cart cart = _cartBL.FindCart(customerID, locationID);
+            //add the product with quantity to cartproduct list
+            _cartProductsBL.AddCartProduct(productID, cart.ID, inputValue);
+            //return back to the same view
+            return View("Index", c);
         }
 
         // GET: CartController/Details/5

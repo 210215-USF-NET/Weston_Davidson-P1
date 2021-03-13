@@ -12,8 +12,10 @@ namespace StoreController
         List<CartProducts> GetCartProducts();
 
         List<CartProducts> FindCartProducts(int cartID);
-        
+
 
         void RemoveCartProducts(CartProducts cartProducts);
+
+        CartProducts AddCartProduct(int productID, int cartID, int inputValue);
     }
 }

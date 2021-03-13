@@ -35,5 +35,10 @@ namespace StoreController
         {
             _repo.RemoveCartProducts(cartProducts);
         }
+
+        public CartProducts AddCartProduct(int productID, int cartID, int inputValue)
+        {
+            return _repo.AddCartProduct(productID, cartID, inputValue);
+        }
     }
 }

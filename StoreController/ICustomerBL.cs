@@ -10,6 +10,7 @@ namespace StoreController
 
 
 
+        public Customer GetCustomerByID(int id);
         Customer AddCustomer(Customer newCustomer);
 
         List<Customer> GetCustomers();

@@ -38,5 +38,16 @@ namespace StoreData
             _context.CartProducts.Remove(cartProducts);
             _context.SaveChanges();
         }
+
+        public CartProducts AddCartProduct(int productID, int cartID, int inputValue)
+        {
+            CartProducts cartProduct2Add = new CartProducts();
+            cartProduct2Add.ProductID = productID;
+            cartProduct2Add.ProductCount = inputValue;
+            cartProduct2Add.CartID = cartID;
+            _context.CartProducts.Add(cartProduct2Add);
+            return cartProduct2Add;
+
+        }
     }
 }

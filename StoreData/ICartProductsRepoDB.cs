@@ -13,5 +13,7 @@ namespace StoreData
 
         void RemoveCartProducts(CartProducts cartProducts);
 
+        CartProducts AddCartProduct(int productID, int cartID, int inputValue);
+
     }
 }

@@ -64,5 +64,16 @@ namespace StoreData
                     .AsNoTracking()
                     .FirstOrDefault(c => c.AppUserFK == fk);
         }
+
+        public Customer GetCustomerByID(int id)
+        {
+            return _context.Customers
+                    .Include(c => c.Carts)
+                    .ThenInclude(carts => carts.CartProducts)
+                    .Include(c => c.Orders)
+                    .ThenInclude(orders => orders.OrderProducts)
+                    .AsNoTracking()
+                    .FirstOrDefault(c => c.ID == id);
+        }
     }
 }
