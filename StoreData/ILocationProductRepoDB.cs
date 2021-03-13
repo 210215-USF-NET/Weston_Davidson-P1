@@ -10,5 +10,6 @@ namespace StoreData
         LocationProduct AddLocationProduct(LocationProduct newInventory);
 
         void UpdateLocationProduct(LocationProduct inventoryForUpdate);
+        void UpdateLocationProduct(int productID, int locationID, int productQuantity);
     }
 }

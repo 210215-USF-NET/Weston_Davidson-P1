@@ -13,5 +13,7 @@ namespace StoreController
         List<LocationProduct> GetLocationProducts(int locationID);
 
         void UpdateLocationProduct(LocationProduct locationProductForupdating);
+
+        void UpdateLocationProduct(int productID, int locationID, int productQuantity);
     }
 }

@@ -52,15 +52,23 @@ namespace StoreMVC.Areas.LocationProducts.Controllers
             //find customer making purchase
             //Customer c = _customerBL.GetCustomerByID(customerID);
             //retrieve customer cart
+            //subtract the product with quantity from the locationproduct quantity
+            int reversedInput = (inputValue * -1);
+            _locationProductBL.UpdateLocationProduct(productID, locationID, reversedInput);
+
             StoreModel.Cart cart = _cartBL.FindCart(customerID, locationID);
             //add the product with quantity to cartproduct list
             _cartProductsBL.AddCartProduct(productID, cart.ID, inputValue);
+
+
             //find location based on location ID
             List<LocationProduct> l = _locationProductBL.GetLocationProducts(locationID);
-            //Location location = _locationBL.GetSpecifiedLocation(locationID);
+            Location location = _locationBL.GetSpecifiedLocation(locationID);
             //return back to the same view
             ViewBag.locationID = locationID;
             ViewBag.customerID = customerID;
+            ViewBag.location = location.LocationName;
+            ViewBag.cartID = cart.ID;
             return View("~/Areas/LocationProducts/Views/LocationProducts/Index.cshtml", l);
         }
 

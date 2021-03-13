@@ -30,5 +30,10 @@ namespace StoreController
         {
             _repo.UpdateLocationProduct(inventoryForUpdating);
         }
+
+        public void UpdateLocationProduct(int productID, int locationID, int productQuantity)
+        {
+            _repo.UpdateLocationProduct(productID, locationID, productQuantity);
+        }
     }
 }
