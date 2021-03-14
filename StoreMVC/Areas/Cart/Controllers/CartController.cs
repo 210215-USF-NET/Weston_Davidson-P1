@@ -85,11 +85,14 @@ namespace StoreMVC.Areas.Cart.Controllers
 
             _cartProductsBL.RemoveCartProducts(cartID);
 
-            //retrieve cart to return to customer
-            StoreModel.Cart returnedCart = _cartBL.FindCart(customerForOrder.ID, locationID);
-            List<CartProducts> cartProducts = _cartProductsBL.FindCartProducts(returnedCart.ID);
+            //retrieve order again, this time including the list of orderproducts associated with it
+            Order orderToPass = _orderBL.GetRecentOrder();
 
-            return View("Index", cartProducts);
+            //retrieve cart to return to customer
+            //StoreModel.Cart returnedCart = _cartBL.FindCart(customerForOrder.ID, locationID);
+            //List<CartProducts> cartProducts = _cartProductsBL.FindCartProducts(returnedCart.ID);
+
+            return View("OrderReview", orderToPass);
         }
 
 

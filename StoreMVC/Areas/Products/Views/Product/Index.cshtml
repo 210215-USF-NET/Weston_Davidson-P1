@@ -46,9 +46,6 @@
                 <td>
                     <a href='@Url.Action("Details", "Product", new { name = item.ProductName })' class="btn btn-info">Details</a>
                 </td>
-                <td>
-                    <a type="button" asp-action="AddToCart" asp-route-id="@item.ID" class="btn btn-primary">Add to Cart</a>
-                </td>
             </tr>
         }
     </tbody>

@@ -16,5 +16,9 @@ namespace StoreData
 
         public Order GetOrderFromDateCustomer(int customerID, string orderDate);
 
+        public Order GetRecentOrder();
+
+        public List<Order> GetOrdersForCustomer(int customerID);
+
     }
 }

@@ -33,5 +33,15 @@ namespace StoreController
         {
             return _repo.GetOrderFromDateCustomer(customerID, orderDate);
         }
+
+        public Order GetRecentOrder()
+        {
+            return _repo.GetRecentOrder();
+        }
+
+        public List<Order> GetOrdersForCustomer(int customerID)
+        {
+            return _repo.GetOrdersForCustomer(customerID);
+        }
     }
 }

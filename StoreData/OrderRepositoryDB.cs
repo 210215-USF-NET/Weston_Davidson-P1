@@ -1,4 +1,5 @@
-﻿using StoreModel;
+﻿using Microsoft.EntityFrameworkCore;
+using StoreModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace StoreData
 
         public Order GetOrderFromDateCustomer(int customerID, string orderDate)
         {
-            return _context.Orders.Select(o => o).OrderBy(o => o.OrderDate).LastOrDefault();
+            return _context.Orders.AsNoTracking().Select(o => o).OrderBy(o => o.OrderDate).LastOrDefault();
         }
 
         public List<Order> GetOrders()
@@ -41,6 +42,27 @@ namespace StoreData
         public Order GetSpecifiedOrder(DateTime exactDateTime)
         {
             throw new NotImplementedException();
+        }
+
+        public Order GetRecentOrder()
+        {
+            return _context.Orders
+                .Include(o => o.Customer)
+                .Include(o => o.Location)
+                .Include(o => o.OrderProducts)
+                .ThenInclude(op => op.Product)
+                .Select(o => o).OrderBy(o => o.OrderDate).LastOrDefault();
+        }
+
+        public List<Order> GetOrdersForCustomer(int customerID)
+        {
+            return _context.Orders
+                .Include(o => o.Customer)
+                .Include(o => o.Location)
+                .Include(o => o.OrderProducts)
+                .ThenInclude(op => op.Product)
+                .AsNoTracking()
+                .Where(o => o.CustomerID == customerID).ToList();
         }
     }
 }
