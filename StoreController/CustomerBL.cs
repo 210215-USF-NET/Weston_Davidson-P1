@@ -50,7 +50,10 @@ namespace StoreController
             return _repo.GetCustomerByFK(fk);
         }
 
-
+        public Customer GetCustomerByCartID(int cartId)
+        {
+            return _repo.GetCustomerByCartID(cartId);
+        }
 
     }
 }

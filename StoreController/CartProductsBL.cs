@@ -36,6 +36,11 @@ namespace StoreController
             _repo.RemoveCartProducts(cartProducts);
         }
 
+        public void RemoveCartProducts(int cartID)
+        {
+            _repo.RemoveCartProducts(cartID);
+        }
+
         public CartProducts AddCartProduct(int productID, int cartID, int inputValue)
         {
             return _repo.AddCartProduct(productID, cartID, inputValue);

@@ -23,5 +23,10 @@ namespace StoreController
         {
             return _repo.GetOrderProducts(orderID);
         }
+
+        public List<OrderProducts> ProcessProducts(int cartId, int orderID)
+        {
+            return _repo.ProcessProducts(cartId, orderID);
+        }
     }
 }

@@ -12,6 +12,6 @@ namespace StoreController
 
         Order AddOrder(Order newOrder);
 
-
+        Order GetOrderFromDateCustomer(int customerID, string orderDate);
     }
 }

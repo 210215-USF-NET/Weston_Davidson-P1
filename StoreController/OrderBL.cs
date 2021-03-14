@@ -5,11 +5,12 @@ using StoreData;
 
 namespace StoreController
 {
-    public class OrderBL:IOrderBL
+    public class OrderBL : IOrderBL
     {
         private IOrderRepository _repo;
 
-        public OrderBL(IOrderRepository repo){
+        public OrderBL(IOrderRepository repo)
+        {
             _repo = repo;
         }
 
@@ -18,13 +19,19 @@ namespace StoreController
             return _repo.AddOrder(newOrder);
         }
 
-        public List<Order> GetOrders(){
+        public List<Order> GetOrders()
+        {
             return _repo.GetOrdersWithCustomers();
         }
 
         public Order GetSpecifiedOrder(DateTime exactDateTime)
         {
             return _repo.GetSpecifiedOrder(exactDateTime);
+        }
+
+        public Order GetOrderFromDateCustomer(int customerID, string orderDate)
+        {
+            return _repo.GetOrderFromDateCustomer(customerID, orderDate);
         }
     }
 }

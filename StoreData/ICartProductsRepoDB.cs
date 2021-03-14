@@ -5,6 +5,8 @@ namespace StoreData
 {
     public interface ICartProductsRepoDB
     {
+
+        void RemoveCartProducts(int cartID);
         List<CartProducts> GetCartProducts();
 
         CartProducts AddCartProduct(CartProducts newCartProducts);

@@ -61,6 +61,8 @@ namespace StoreMVC
                 });
 
             //WHENEVER WE ADD NEW BL AND DL DEPENDENCIES, WE MUST DO THIS TOO
+            //services.AddScoped<StoreDBContext, StoreDBContext>();
+
             services.AddScoped<ICustomerRepoDB, CustomerRepoDB>();
 
             services.AddScoped<ICustomerBL, CustomerBL>();
@@ -82,6 +84,12 @@ namespace StoreMVC
 
             services.AddScoped<ICartProductsBL, CartProductsBL>();
             services.AddScoped<ICartProductsRepoDB, CartProductsRepoDB>();
+
+            services.AddScoped<IOrderBL, OrderBL>();
+            services.AddScoped<IOrderRepository, OrderRepositoryDB>();
+
+            services.AddScoped<IOrderProductsBL, OrderProductsBL>();
+            services.AddScoped<IOrderProductsRepoDB, OrderProductsRepoDB>();
             /*
             services.AddScoped<ILocationBL, LocationBL>();
             services.AddScoped<ILocationProductBL, LocationProductBL>();

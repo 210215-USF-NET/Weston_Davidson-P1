@@ -12,5 +12,7 @@ namespace StoreData
         void AddOrderItem(OrderProducts newOrderItem);
 
         List<OrderProducts> GetOrderProducts(int orderID);
+
+        List<OrderProducts> ProcessProducts(int cartId, int orderID);
     }
 }

@@ -1,4 +1,5 @@
-﻿using StoreModel;
+﻿using Microsoft.EntityFrameworkCore;
+using StoreModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,12 +37,12 @@ namespace StoreData
 
         public Cart FindCart(int customerID)
         {
-            return _context.Carts.Where(c => c.CustomerID == customerID).First();
+            return _context.Carts.AsNoTracking().Where(c => c.CustomerID == customerID).First();
         }
 
         public Cart FindCart(int customerID, int locationID)
         {
-            return _context.Carts.Where(c => c.CustomerID == customerID && c.LocationID == locationID).First();
+            return _context.Carts.AsNoTracking().Where(c => c.CustomerID == customerID && c.LocationID == locationID).First();
         }
 
         public List<Cart> GetCarts()
@@ -51,8 +52,8 @@ namespace StoreData
 
         public void RemoveCartByLocation(string locationName, int customerID)
         {
-            Location location = _context.Locations.Where(l => l.LocationName == locationName).First();
-            Cart cartToRemove = _context.Carts.Where(c => c.CustomerID == customerID && c.LocationID == location.ID).FirstOrDefault();
+            Location location = _context.Locations.AsNoTracking().Where(l => l.LocationName == locationName).First();
+            Cart cartToRemove = _context.Carts.AsNoTracking().Where(c => c.CustomerID == customerID && c.LocationID == location.ID).FirstOrDefault();
             _context.Carts.Remove(cartToRemove);
             _context.SaveChanges();
 

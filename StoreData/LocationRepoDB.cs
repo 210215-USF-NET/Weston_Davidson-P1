@@ -1,4 +1,5 @@
-﻿using StoreModel;
+﻿using Microsoft.EntityFrameworkCore;
+using StoreModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;

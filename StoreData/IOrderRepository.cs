@@ -14,6 +14,7 @@ namespace StoreData
 
         Order AddOrder(Order newOrder);
 
+        public Order GetOrderFromDateCustomer(int customerID, string orderDate);
 
     }
 }

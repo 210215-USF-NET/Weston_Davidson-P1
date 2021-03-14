@@ -1,16 +1,15 @@
 ﻿@using System.Collections;
 
-@model StoreModel.Customer
+@model ICollection<StoreModel.CartProducts>
 
 @{
     ViewData["Title"] = "Index";
 
 }
 @{
-    List<StoreModel.CartProducts> products = Model.Carts.FirstOrDefault().CartProducts.ToList();
-
 
 }
+
 <h1>Cart</h1>
 
 
@@ -18,37 +17,57 @@
     <thead>
         <tr>
             <th>
-                Product ID
+                Product Name
+            </th>
+            <th>
+                Product Price
             </th>
             <th>
                 Product Count
-            </th>
-            <th>
-                Product
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
+        @{
+            decimal orderTotal = 0;
 
-        @foreach (var item in products)
-        {
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.ProductName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.ProductPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductCount)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Remove from Cart", "DeleteCartProduct", new { /* id=item.PrimaryKey */ })
+                    </td>
+                </tr>
+                orderTotal += (item.Product.ProductPrice * Convert.ToDecimal(item.ProductCount));
+            }
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ProductID)
+                    Order Total:
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ProductCount)
+                    @orderTotal
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Product)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    <form asp-action="PlaceOrder" method="post">
+                        <input type="hidden" name="cartID" value="@ViewBag.cartID" />
+
+                        <input type="hidden" name="cost" value="@orderTotal" />
+                        <input type="submit" class="btn btn-primary" name="PlaceOrder" value="Place Order" />
+                    </form>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+

@@ -9,6 +9,7 @@ namespace StoreController
     {
 
 
+        public Customer GetCustomerByCartID(int cartId);
 
         public Customer GetCustomerByID(int id);
         Customer AddCustomer(Customer newCustomer);

@@ -1,4 +1,5 @@
-﻿using StoreModel;
+﻿using Microsoft.EntityFrameworkCore;
+using StoreModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,9 @@ namespace StoreData
 
         public List<CartProducts> FindCartProducts(int cartID)
         {
-            return _context.CartProducts.Where(c => c.CartID == cartID).ToList();
+            return _context.CartProducts
+                .Include(cp => cp.Product).AsNoTracking()
+                .Where(c => c.CartID == cartID).ToList();
         }
 
         public List<CartProducts> GetCartProducts()
@@ -39,13 +42,29 @@ namespace StoreData
             _context.SaveChanges();
         }
 
+        public void RemoveCartProducts(int cartID)
+        {
+            _context.Carts.AsNoTracking().Where(c => c.ID == cartID).FirstOrDefault();
+
+            List<CartProducts> cartProducts2Remove = _context.CartProducts.AsNoTracking().Where(cp => cp.CartID == cartID).ToList();
+
+            foreach (CartProducts c in cartProducts2Remove)
+            {
+                //_context.Entry(c).State = EntityState.Deleted;
+                //_context.Entry(c).State = EntityState.Detached;
+                _context.CartProducts.Remove(c);
+                _context.SaveChanges();
+                _context.ChangeTracker.Clear();
+            }
+        }
+
         public CartProducts AddCartProduct(int productID, int cartID, int inputValue)
         {
             //if a cartproducts already exists for that product, then just add the additional input value to the amount
             //in users cart
-            if (_context.CartProducts.Where(cp => cp.CartID == cartID && cp.ProductID == productID).FirstOrDefault() != null)
+            if (_context.CartProducts.AsNoTracking().Where(cp => cp.CartID == cartID && cp.ProductID == productID).FirstOrDefault() != null)
             {
-                CartProducts cartproduct2update = _context.CartProducts.Where(cp => cp.CartID == cartID && cp.ProductID == productID).FirstOrDefault();
+                CartProducts cartproduct2update = _context.CartProducts.AsNoTracking().Where(cp => cp.CartID == cartID && cp.ProductID == productID).FirstOrDefault();
                 CartProducts newCartProductVersion = new CartProducts
                 {
                     ID = cartproduct2update.ID,
@@ -67,6 +86,7 @@ namespace StoreData
                 cartProduct2Add.CartID = cartID;
                 _context.CartProducts.Add(cartProduct2Add);
                 _context.SaveChanges();
+                _context.ChangeTracker.Clear();
                 return cartProduct2Add;
             }
 

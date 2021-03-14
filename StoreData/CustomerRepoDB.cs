@@ -35,8 +35,10 @@ namespace StoreData
             return _context.Customers
                     .Include(c => c.Carts)
                     .ThenInclude(carts => carts.CartProducts)
+                    .ThenInclude(cartProducts => cartProducts.Product)
                     .Include(c => c.Orders)
                     .ThenInclude(orders => orders.OrderProducts)
+                    .ThenInclude(op => op.Product)
                     .AsNoTracking()
                     .Select(customer => customer)
                     .ToList();
@@ -74,6 +76,19 @@ namespace StoreData
                     .ThenInclude(orders => orders.OrderProducts)
                     .AsNoTracking()
                     .FirstOrDefault(c => c.ID == id);
+        }
+
+
+        public Customer GetCustomerByCartID(int cartId)
+        {
+            return _context.Customers
+                    .Include(c => c.Carts)
+                    .ThenInclude(carts => carts.CartProducts)
+                    .Include(c => c.Orders)
+                    .ThenInclude(orders => orders.OrderProducts)
+                    .AsNoTracking()
+                    .FirstOrDefault(c => c.Carts.FirstOrDefault().ID == cartId);
+
         }
     }
 }

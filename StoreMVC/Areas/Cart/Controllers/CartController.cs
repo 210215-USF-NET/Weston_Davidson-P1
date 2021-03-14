@@ -23,12 +23,19 @@ namespace StoreMVC.Areas.Cart.Controllers
 
         private readonly ICartProductsBL _cartProductsBL;
 
-        public CartController(ICartBL cartBL, ICustomerBL customerBL, ILocationProductBL locationproductBL, ICartProductsBL cartProductsBL)
+        private readonly IOrderBL _orderBL;
+
+        private readonly IOrderProductsBL _orderProductsBL;
+
+
+        public CartController(ICartBL cartBL, ICustomerBL customerBL, ILocationProductBL locationproductBL, ICartProductsBL cartProductsBL, IOrderBL orderBL, IOrderProductsBL orderProductsBL)
         {
             _cartBL = cartBL;
             _customerBL = customerBL;
             _locationProductBL = locationproductBL;
             _cartProductsBL = cartProductsBL;
+            _orderBL = orderBL;
+            _orderProductsBL = orderProductsBL;
         }
 
         // GET: CartController
@@ -36,14 +43,53 @@ namespace StoreMVC.Areas.Cart.Controllers
         public ActionResult Index(string id)
         {
             Customer c = _customerBL.GetCustomerByFK(id);
+            StoreModel.Cart cart = c.Carts.FirstOrDefault();
+            List<CartProducts> cartProducts = _cartProductsBL.FindCartProducts(cart.ID);
+            ViewBag.cartID = cart.ID;
             try
             {
-                return View(c);
+                return View(cartProducts);
             }
             catch (InvalidOperationException)
             {
                 return View();
             }
+        }
+
+
+
+        //receives a cart id
+        [Area("Cart")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult PlaceOrder(int cartID, decimal cost)
+        {
+            //retrieve customer for order
+            Customer customerForOrder = _customerBL.GetCustomerByCartID(cartID);
+
+
+            int locationID = customerForOrder.Carts.FirstOrDefault().LocationID;
+            //gather info for order
+            Order order2process = new Order();
+
+            order2process.CustomerID = customerForOrder.ID;
+            order2process.LocationID = locationID;
+            order2process.TotalCost = cost;
+            order2process.OrderDate = DateTime.Now;
+            //create a new order with references to customer ID, location ID, and total cost
+            _orderBL.AddOrder(order2process);
+            //retrieve order from system, which should now have an ID assigned to it
+            Order orderCompleted = _orderBL.GetOrderFromDateCustomer(customerForOrder.ID, order2process.OrderDate.ToString());
+            //process a list of orderproducts based on products in cart and order ID
+            List<OrderProducts> orderProducts = _orderProductsBL.ProcessProducts(cartID, orderCompleted.ID);
+
+            _cartProductsBL.RemoveCartProducts(cartID);
+
+            //retrieve cart to return to customer
+            StoreModel.Cart returnedCart = _cartBL.FindCart(customerForOrder.ID, locationID);
+            List<CartProducts> cartProducts = _cartProductsBL.FindCartProducts(returnedCart.ID);
+
+            return View("Index", cartProducts);
         }
 
 
