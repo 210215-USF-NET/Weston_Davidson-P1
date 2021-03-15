@@ -6,7 +6,7 @@
 - [X] Search customers by name
 - [X] Display details of an order
 - [ ] Place orders to store locations for customers
-- [ ] View order history of customer
+- [X] View order history of customer
 - [ ] View order history of location
 - [X] View location inventory
 - [X] The customer should be able to purchase multiple products
