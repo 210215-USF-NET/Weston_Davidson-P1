@@ -145,6 +145,10 @@ namespace StoreMVC
             {
 
                 endpoints.MapControllerRoute(
+                    name: "Orders",
+                    pattern: "{area:exists}/{controller=Orders}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
                   name: "Cart",
                   pattern: "{area:exists}/{controller=Cart}/{action=Index}/{id?}"
                 );
@@ -152,6 +156,9 @@ namespace StoreMVC
                 endpoints.MapControllerRoute(
                     name: "Products",
                     pattern: "{area:exists}/{controller=Product}/{action=Index}/{id?}");
+
+
+
 
                 endpoints.MapControllerRoute(
                     name: "LocationProducts",

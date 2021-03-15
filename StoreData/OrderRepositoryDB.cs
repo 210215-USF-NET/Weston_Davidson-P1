@@ -36,7 +36,24 @@ namespace StoreData
 
         public List<Order> GetOrdersWithCustomers()
         {
-            throw new NotImplementedException();
+            return _context.Orders
+                .Include(o => o.Customer)
+                .Include(o => o.Location)
+                .Include(o => o.OrderProducts)
+                .ThenInclude(op => op.Product)
+                .AsNoTracking()
+                .ToList();
+        }
+
+        public Order GetOrderByID(int id)
+        {
+            return _context.Orders
+                    .Include(o => o.Customer)
+                    .Include(o => o.Location)
+                    .Include(o => o.OrderProducts)
+                    .ThenInclude(op => op.Product)
+                    .AsNoTracking()
+                    .Where(o => o.ID == id).FirstOrDefault();
         }
 
         public Order GetSpecifiedOrder(DateTime exactDateTime)

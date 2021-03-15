@@ -1,0 +1,65 @@
+﻿@model IEnumerable<StoreModel.Order>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<p>Search by Customer</p>
+<form class="form-inline" asp-action="Search" method="post">
+    <input type="text" placeholder="customer name" name="customerName" />
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+<hr />
+<form class="form-inline" asp-action="SearchByLocation" method="post">
+    <input type="text" placeholder="Location Name" name="customerName" />
+    <button type="submit" class="btn btn-primary">Search By Location</button>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Order Date
+            </th>
+            <th>
+                Customer Name
+            </th>
+            <th>
+                Location Name
+            </th>
+            <th>
+                Total Cost
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.FName) @Html.DisplayFor(modelItem => item.Customer.LName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location.LocationName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalCost)
+                </td>
+                <td>
+                    <form asp-action="Details" method="post">
+                        <input type="hidden" name="id" value="@item.ID" />
+                        <input type="submit" class="btn btn-primary" name="Details" value="Details" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

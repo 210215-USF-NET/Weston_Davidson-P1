@@ -6,6 +6,8 @@ namespace StoreData
 {
     public interface IOrderRepository
     {
+
+        Order GetOrderByID(int id);
         List<Order> GetOrders();
 
         List<Order> GetOrdersWithCustomers();

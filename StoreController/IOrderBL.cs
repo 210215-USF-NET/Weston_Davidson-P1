@@ -15,7 +15,7 @@ namespace StoreController
         Order GetOrderFromDateCustomer(int customerID, string orderDate);
         Order GetRecentOrder();
 
-
-        public List<Order> GetOrdersForCustomer(int customerID);
+        Order GetOrderByID(int id);
+        List<Order> GetOrdersForCustomer(int customerID);
     }
 }

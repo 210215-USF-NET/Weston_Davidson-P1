@@ -24,6 +24,11 @@ namespace StoreController
             return _repo.GetOrdersWithCustomers();
         }
 
+        public Order GetOrderByID(int id)
+        {
+            return _repo.GetOrderByID(id);
+        }
+
         public Order GetSpecifiedOrder(DateTime exactDateTime)
         {
             return _repo.GetSpecifiedOrder(exactDateTime);
