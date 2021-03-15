@@ -19,7 +19,11 @@
 - [x] Order
 - [x] Product
 
-Additional tables: Inventory, OrderItem
+### Additional tables included (not part of requirements): 
+- LocationProducts
+- OrderProducts
+- Carts
+- CartProducts
 
 ### Additional Requirements
 - [ ] Exception Handling
