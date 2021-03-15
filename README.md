@@ -7,7 +7,7 @@
 - [X] Display details of an order
 - [ ] Place orders to store locations for customers
 - [X] View order history of customer
-- [ ] View order history of location
+- [X] View order history of location
 - [X] View location inventory
 - [X] The customer should be able to purchase multiple products
 - [ ] Order histories should have the option to be sorted by date (latest to oldest and vice versa) or cost (least expensive to most expensive)
