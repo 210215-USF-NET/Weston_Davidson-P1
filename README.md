@@ -4,7 +4,7 @@
 ### Functionality
 - [x] Add a new customer
 - [X] Search customers by name
-- [ ] Display details of an order
+- [X] Display details of an order
 - [ ] Place orders to store locations for customers
 - [ ] View order history of customer
 - [ ] View order history of location
