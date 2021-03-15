@@ -147,6 +147,27 @@ namespace StoreMVC.Areas.Orders.Controllers
         }
 
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Area("Orders")]
+        public ActionResult SortByCostLow()
+        {
+            List<Order> order = _orderBL.GetOrders();
+            List<Order> orderSortedByCostHigh = order.OrderBy(o => o.TotalCost).ToList();
+            return View("Index", orderSortedByCostHigh);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Area("Orders")]
+        public ActionResult SortByCostHigh()
+        {
+            List<Order> order = _orderBL.GetOrders();
+            List<Order> orderSortedByCostHigh = order.OrderBy(o => o.TotalCost).Reverse().ToList();
+            return View("Index", orderSortedByCostHigh);
+        }
+
+
         // GET: OrderController/Delete/5
         public ActionResult Delete(int id)
         {

@@ -21,6 +21,11 @@ namespace StoreController
             _repo.AddLocationProduct(newInventory);
         }
 
+        public List<LocationProduct> GetAllLP()
+        {
+            return _repo.GetAllLP();
+        }
+
         public List<LocationProduct> GetLocationProducts(int locationID)
         {
             return _repo.GetLocationProducts(locationID);
@@ -34,6 +39,12 @@ namespace StoreController
         public void UpdateLocationProduct(int productID, int locationID, int productQuantity)
         {
             _repo.UpdateLocationProduct(productID, locationID, productQuantity);
+        }
+
+        public void UpdateLocationProductManager(int id, int productQuantity)
+        {
+            _repo.UpdateLocationProduct(id, productQuantity);
+
         }
     }
 }

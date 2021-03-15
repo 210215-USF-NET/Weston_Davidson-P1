@@ -16,6 +16,16 @@ namespace StoreData
         {
             _context = context;
         }
+
+        public List<LocationProduct> GetAllLP()
+        {
+            return _context.LocationProducts
+                .Include(lp => lp.Product)
+                .Include(lp => lp.Location)
+                .AsNoTracking()
+                .Select(o => o).ToList();
+        }
+
         public LocationProduct AddLocationProduct(LocationProduct newInventory)
         {
             throw new NotImplementedException();
@@ -62,5 +72,28 @@ namespace StoreData
             _context.ChangeTracker.Clear();
 
         }
+
+
+        public void UpdateLocationProduct(int id, int productQuantity)
+        {
+            LocationProduct oldlp = _context.LocationProducts.Where(lp => lp.ID == id).FirstOrDefault();
+            LocationProduct updatedlp = new LocationProduct();
+
+            updatedlp.ID = oldlp.ID;
+            updatedlp.ProductID = oldlp.ProductID;
+            updatedlp.LocationID = oldlp.LocationID;
+            updatedlp.ProductQuantity = productQuantity;
+            updatedlp.LocationProductName = oldlp.LocationProductName;
+
+
+            _context.Entry(oldlp).CurrentValues.SetValues(updatedlp);
+
+            _context.SaveChanges();
+            _context.ChangeTracker.Clear();
+
+        }
+
+
+
     }
 }

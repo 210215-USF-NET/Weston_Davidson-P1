@@ -4,29 +4,29 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Products Available at Our @ViewBag.location Location!</h1>
+<h1>Inventory Update Page</h1>
 
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ID)
+                Inventory ID
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Product)
+                Product Name
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Location)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LocationProductName)
+                Inventory Name
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ProductQuantity)
             </th>
             <th>Details</th>
-            <th>Add to Cart</th>
-            <th>Quanity to Add</th>
+            <th>Update Quantity</th>
+            <th>New Quantity</th>
         </tr>
     </thead>
     <tbody>
@@ -37,10 +37,10 @@
                     @Html.DisplayFor(modelItem => item.ID)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Product.ID)
+                    @Html.DisplayFor(modelItem => item.Product.ProductName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Location.ID)
+                    @Html.DisplayFor(modelItem => item.Location.LocationName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.LocationProductName)
@@ -52,18 +52,16 @@
                 <td>
                     <a href='@Url.Action("Details", "Product", new { name = item.ProductID })' class="btn btn-info">Details</a>
                 </td>
-
                 <td>
-                    <form class="form-inline" action="AddToCart" method="post">
+                    <form class="form-inline" asp-area="LocationProducts" asp-action="ManageInventory" method="post">
                         <div class="form-row">
                             <div class="col">
-                                <input type="submit" class="btn btn-primary" value="Add to Cart">
-                                <input type="hidden" value="@ViewBag.customerID" name="customerID" />
-                                <input type="hidden" value="@item.Product.ID" name="productID" />
-                                <input type="hidden" value="@ViewBag.locationID" name="locationID" />
+                                <input type="submit" class="btn btn-primary" value="Update Inventory">
+
                             </div>
                             <div class="col-sm-1">
-                                <input type="number" value="1" name="inputValue" />
+                                <input type="number" value="1" name="productQuantity" />
+                                <input type="hidden" value="@item.ID" name="id" />
 
                             </div>
                         </div>

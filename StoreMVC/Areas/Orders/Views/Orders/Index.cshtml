@@ -4,21 +4,39 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Order History</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <p>Search by Customer</p>
-<form class="form-inline" asp-action="Search" method="post">
-    <input type="text" placeholder="customer name" name="customerName" />
-    <button type="submit" class="btn btn-primary">Search</button>
+<form class="form-inline float-left pr-4" asp-action="Search" method="post">
+    <div class="form-row">
+        <div class="col">
+            <input type="text" placeholder="customer name" name="customerName" />
+        </div>
+        <div class="col">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </div>
 </form>
+<form class="form-inline float-left" asp-action="SearchByLocation" method="post">
+    <div class="form-row">
+        <div class="col">
+            <input type="text" placeholder="Location Name" name="customerName" />
+        </div>
+        <div class="col">
+            <button type="submit" class="btn btn-primary">Search By Location</button>
+        </div>
+    </div>
+</form>
+<br />
 <hr />
-<form class="form-inline" asp-action="SearchByLocation" method="post">
-    <input type="text" placeholder="Location Name" name="customerName" />
-    <button type="submit" class="btn btn-primary">Search By Location</button>
+<br />
+<form class="form-inline float-left pr-4" asp-action="SortByCostHigh" method="post">
+    <button type="submit" class="btn btn-primary">Sort Cost: Highest-Lowest</button>
 </form>
+<form class="form-inline float-left" asp-action="SortByCostLow" method="post">
+    <button type="submit" class="btn btn-primary">Sort Cost: Lowest-Highest</button>
+</form>
+<br />
 <table class="table">
     <thead>
         <tr>

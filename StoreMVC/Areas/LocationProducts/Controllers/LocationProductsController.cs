@@ -46,6 +46,24 @@ namespace StoreMVC.Areas.LocationProducts.Controllers
             return View(l);
         }
 
+        [Area("LocationProducts")]
+        public ActionResult InventoryManagerPage()
+        {
+            List<LocationProduct> lp = _locationProductBL.GetAllLP();
+            return View("ManageInventory", lp);
+        }
+
+        [Area("LocationProducts")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ManageInventory(int id, int productQuantity)
+        {
+            _locationProductBL.UpdateLocationProductManager(id, productQuantity);
+            List<LocationProduct> lp = _locationProductBL.GetAllLP();
+            return View("ManageInventory", lp);
+
+        }
+
         [HttpPost]
         public ActionResult AddToCart(int customerID, int productID, int locationID, int inputValue)
         {
