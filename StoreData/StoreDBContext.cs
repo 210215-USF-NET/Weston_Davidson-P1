@@ -24,7 +24,6 @@ namespace StoreData
 
         }
 
-
         public DbSet<ApplicationUser> AppUsers { get; set; }
         public DbSet<AppRole> AppRoles { get; set; }
         public DbSet<Cart> Carts { get; set; }

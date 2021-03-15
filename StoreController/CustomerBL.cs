@@ -55,5 +55,11 @@ namespace StoreController
             return _repo.GetCustomerByCartID(cartId);
         }
 
+
+        public Customer RemoveCustomerByID(int id)
+        {
+            return _repo.RemoveCustomerByID(id);
+        }
+
     }
 }

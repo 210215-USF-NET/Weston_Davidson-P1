@@ -7,7 +7,7 @@ namespace StoreController
 {
     public interface ICustomerBL
     {
-
+        public Customer RemoveCustomerByID(int id);
 
         public Customer GetCustomerByCartID(int cartId);
 

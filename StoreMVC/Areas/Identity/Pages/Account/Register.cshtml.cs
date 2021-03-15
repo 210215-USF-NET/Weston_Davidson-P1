@@ -118,7 +118,7 @@ namespace StoreMVC.Areas.Identity.Pages.Account
                     //we'll need to retrieve our customer we just created to guarantee we have the correct ID
                     //and our location based on the selection in the form
                     Customer customerWithCart = new Customer();
-                    customerWithCart = _customerBL.GetCustomerByFirstName(customertoAdd.FName);
+                    customerWithCart = _customerBL.GetCustomerByFK(customertoAdd.AppUserFK);
 
                     //grab location next
                     Location location = _locationBL.GetLocationByName(Input.Location);

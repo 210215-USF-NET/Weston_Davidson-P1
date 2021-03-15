@@ -11,8 +11,7 @@ namespace StoreData
         List<Customer> GetCustomers();
         public Customer GetCustomerByID(int id);
         Customer GetCustomerByFK(string fk);
-
-
+        Customer RemoveCustomerByID(int id);
         Customer GetCustomerByCartID(int cartId);
     }
 }

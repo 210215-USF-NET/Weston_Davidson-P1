@@ -35,4 +35,8 @@
     <ProjectReference Include="..\StoreModel\StoreModel.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Orders\Views\" />
+  </ItemGroup>
+
 </Project>

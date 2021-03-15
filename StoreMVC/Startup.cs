@@ -39,13 +39,23 @@ namespace StoreMVC
         {
             services.AddControllersWithViews();
             services.AddRazorPages();
-            services.AddDbContext<StoreDBContext>(options =>
-            options.UseNpgsql(Configuration.GetConnectionString("StoreDB")));
+            services.AddDbContext<StoreDBContext>(
+                options =>
+            options.UseNpgsql(Configuration.GetConnectionString("StoreDB")
+            ),
+                ServiceLifetime.Transient
+            );
 
             //identityuser services stuff
-            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<StoreDBContext>()
                 .AddDefaultTokenProviders();
+
+            //configure a claim option to represent an admin
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("EmployeeOnly", policy => policy.RequireClaim("Employee"));
+            });
 
 
 
@@ -106,6 +116,7 @@ namespace StoreMVC
 
             //in order to access the identity users user id, we must include this:
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

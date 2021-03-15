@@ -12,6 +12,12 @@ namespace StoreData
     {
         private readonly StoreDBContext _context;
 
+        public Customer RemoveCustomerByID(int id)
+        {
+            Customer customer2Delete = _context.Customers.AsNoTracking().Where(c => c.ID == id).FirstOrDefault();
+            _context.Customers.Remove(customer2Delete);
+            return customer2Delete;
+        }
         public CustomerRepoDB(StoreDBContext context)
         {
             _context = context;
