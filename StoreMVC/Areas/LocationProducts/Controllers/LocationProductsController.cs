@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Serilog;
 
 namespace StoreMVC.Areas.LocationProducts.Controllers
 {
@@ -79,7 +80,7 @@ namespace StoreMVC.Areas.LocationProducts.Controllers
             //add the product with quantity to cartproduct list
             _cartProductsBL.AddCartProduct(productID, cart.ID, inputValue);
 
-
+            Log.Information($"Product ID {productID} added to cart by user ID {customerID}");
             //find location based on location ID
             List<LocationProduct> l = _locationProductBL.GetLocationProducts(locationID);
             Location location = _locationBL.GetSpecifiedLocation(locationID);
@@ -88,7 +89,7 @@ namespace StoreMVC.Areas.LocationProducts.Controllers
             ViewBag.customerID = customerID;
             ViewBag.location = location.LocationName;
             ViewBag.cartID = cart.ID;
-            return View("~/Areas/LocationProducts/Views/LocationProducts/Index.cshtml", l);
+            return View("Index", l);
         }
 
         // GET: LocationProductController/Details/5
