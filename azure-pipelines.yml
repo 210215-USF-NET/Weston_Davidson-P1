@@ -32,6 +32,11 @@ steps:
     command: 'build'
     projects: $(solution)
 
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'test'
+    projects: '**/StoreTests/*.csproj'
+
 - task: SonarCloudAnalyze@1
   displayName: public code analysis
 
