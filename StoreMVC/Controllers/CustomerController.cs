@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using StoreController;
 using StoreMVC.Models;
 using Microsoft.AspNetCore.Identity;
-using System.Threading.Tasks;
 using StoreModel;
 
 namespace StoreMVC.Controllers

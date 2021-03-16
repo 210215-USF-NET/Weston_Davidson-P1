@@ -64,6 +64,7 @@ namespace StoreMVC.Areas.LocationProducts.Controllers
 
         }
 
+        [Area("LocationProducts")]
         [HttpPost]
         public ActionResult AddToCart(int customerID, int productID, int locationID, int inputValue)
         {
@@ -157,6 +158,34 @@ namespace StoreMVC.Areas.LocationProducts.Controllers
             {
                 return View();
             }
+        }
+
+
+
+        [Area("LocationProducts")]
+        [HttpPost]
+        public ActionResult OrderForCustomer(string id, string location)
+        {
+            //we have a customer account ID, and a location
+            //we need to set the customer's cart to said location
+            Customer customer = _customerBL.GetCustomerByFK(id);
+
+
+
+
+            Location l = _locationBL.GetLocationByName(location);
+
+            List<LocationProduct> lp = _locationProductBL.GetLocationProducts(l.ID);
+
+            StoreModel.Cart cart = _cartBL.FindCart(customer.ID, l.ID);
+
+            ViewBag.location = l.LocationName;
+            ViewBag.locationID = l.ID;
+            ViewBag.customerID = customer.ID;
+            ViewBag.cartID = cart.ID;
+            ViewBag.prodCount = 1;
+            return View("ManagerOrdering", lp);
+
         }
     }
 }

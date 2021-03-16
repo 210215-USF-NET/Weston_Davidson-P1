@@ -56,6 +56,23 @@ namespace StoreMVC.Areas.Cart.Controllers
             }
         }
 
+        [Area("Cart")]
+        public ActionResult ViewCustomerCart(int id)
+        {
+            Customer c = _customerBL.GetCustomerByID(id);
+            StoreModel.Cart cart = c.Carts.FirstOrDefault();
+            List<CartProducts> cartProducts = _cartProductsBL.FindCartProducts(cart.ID);
+            ViewBag.cartID = cart.ID;
+            try
+            {
+                return View("Index", cartProducts);
+            }
+            catch (InvalidOperationException)
+            {
+                return View();
+            }
+        }
+
 
 
         //receives a cart id

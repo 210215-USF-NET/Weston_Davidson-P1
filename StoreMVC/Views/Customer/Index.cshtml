@@ -44,6 +44,21 @@
                     @Html.DisplayFor(modelItem => item.UserName)
                 </td>
                 <td>
+                    <form class="form-inline" asp-area="LocationProducts" asp-controller="LocationProducts" asp-action="OrderForCustomer" method="post">
+                        <div class="form-group">
+                            <label>Location</label>
+                            <select class="form-control" name="location">
+                                <option value="Tampa">Tampa</option>
+                                <option value="Orlando">Orlando</option>
+                            </select>
+                        </div>
+                        <input type="hidden" value="@item.Id" name="id" />
+                        <button type="submit" class="btn btn-sm btn-primary">
+                            Start Order for Customer at Selected Location
+                        </button>
+                    </form>
+                </td>
+                <td>
                     <form asp-action="Delete" asp-route-id="@item.Id" method="post">
                         <button type="submit" class="btn btn-sm btn-danger">
                             Delete
