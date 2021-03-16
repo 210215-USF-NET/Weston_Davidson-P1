@@ -5,7 +5,7 @@
 - [x] Add a new customer
 - [X] Search customers by name
 - [X] Display details of an order
-- [ ] Place orders to store locations for customers
+- [X] Place orders to store locations for customers
 - [X] View order history of customer
 - [X] View order history of location
 - [X] View location inventory
