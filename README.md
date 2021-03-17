@@ -26,11 +26,11 @@
 - CartProducts
 
 ### Additional Requirements
-- [ ] Exception Handling
+- [X] Exception Handling
 - [ ] Input validation
-- [ ] Logging (useful ones)
-- [ ] At least 20 unit tests:
-  - [ ] DB methods should be tested
+- [X] Logging (useful ones)
+- [X] At least 20 unit tests:
+  - [X] DB methods should be tested
 - [X] Data should be persisted, (no data should be hard coded)
   - [x] You should use PostgreSQL DB
   - [x] Use code first approach to establish a connection to your DB
