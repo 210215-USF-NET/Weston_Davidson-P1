@@ -31,7 +31,7 @@ namespace StoreData
 
         public List<Order> GetOrders()
         {
-            throw new NotImplementedException();
+            return _context.Orders.AsNoTracking().Select(o => o).ToList();
         }
 
         public List<Order> GetOrdersWithCustomers()

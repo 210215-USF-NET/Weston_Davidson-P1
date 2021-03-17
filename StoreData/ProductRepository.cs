@@ -24,7 +24,7 @@ namespace StoreData
 
         public Product GetProductByID(int ID)
         {
-            throw new NotImplementedException();
+            return _context.Products.Where(p => p.ID == ID).FirstOrDefault();
         }
 
         public List<Product> GetProducts()

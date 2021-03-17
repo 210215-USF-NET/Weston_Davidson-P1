@@ -1152,3 +1152,1711 @@ Object name: 'StoreDBContext'.
    at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(DbContext _, Boolean result, CancellationToken cancellationToken)
    at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
    at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+2021-03-16 18:53:40.065 -04:00 [INF] Starting up
+2021-03-16 18:53:41.392 -04:00 [INF] User profile is available. Using 'C:\Users\Westo\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2021-03-16 18:53:41.606 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-03-16 18:53:41.606 -04:00 [INF] Hosting environment: Development
+2021-03-16 18:53:41.606 -04:00 [INF] Content root path: C:\Revature training repositories\Weston_Davidson-P1\Weston_Davidson-P1\StoreMVC
+2021-03-16 18:53:41.633 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44343/ - -
+2021-03-16 18:53:42.719 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:53:43.762 -04:00 [INF] Executed DbCommand (59ms) [Parameters=[@__p_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."FirstName", a."LastName", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__p_0
+LIMIT 1
+2021-03-16 18:53:43.932 -04:00 [INF] Executed DbCommand (51ms) [Parameters=[@__user_Id_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ClaimType", a."ClaimValue", a."UserId"
+FROM "AspNetUserClaims" AS a
+WHERE a."UserId" = @__user_Id_0
+2021-03-16 18:53:43.940 -04:00 [INF] Executing endpoint 'StoreMVC.Controllers.HomeController.Index (StoreMVC)'
+2021-03-16 18:53:43.958 -04:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller StoreMVC.Controllers.HomeController (StoreMVC).
+2021-03-16 18:53:44.009 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:53:44.034 -04:00 [WRN] Compiling a query which loads related collections for more than one collection navigation either via 'Include' or through projection but no 'QuerySplittingBehavior' has been configured. By default Entity Framework will use 'QuerySplittingBehavior.SingleQuery' which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'
+2021-03-16 18:53:44.155 -04:00 [INF] Executed DbCommand (70ms) [Parameters=[@__fk_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT t."ID", t."AppUserFK", t."FName", t."LName", t."Username", t0."ID", t0."CustomerID", t0."LocationID", t0."CartID", t0."ProductID", t0."ID0", t0."ProductCount", t1."ID", t1."CustomerID", t1."LocationID", t1."OrderDate", t1."TotalCost", t1."OrderID", t1."ProductID", t1."ID0", t1."OrderItemsQuantity"
+FROM (
+    SELECT c."ID", c."AppUserFK", c."FName", c."LName", c."Username"
+    FROM "Customers" AS c
+    WHERE c."AppUserFK" = @__fk_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT c0."ID", c0."CustomerID", c0."LocationID", c1."CartID", c1."ProductID", c1."ID" AS "ID0", c1."ProductCount"
+    FROM "Carts" AS c0
+    LEFT JOIN "CartProducts" AS c1 ON c0."ID" = c1."CartID"
+) AS t0 ON t."ID" = t0."CustomerID"
+LEFT JOIN (
+    SELECT o."ID", o."CustomerID", o."LocationID", o."OrderDate", o."TotalCost", o0."OrderID", o0."ProductID", o0."ID" AS "ID0", o0."OrderItemsQuantity"
+    FROM "Orders" AS o
+    LEFT JOIN "OrderProducts" AS o0 ON o."ID" = o0."OrderID"
+) AS t1 ON t."ID" = t1."CustomerID"
+ORDER BY t."ID", t0."ID", t0."CartID", t0."ProductID", t1."ID", t1."OrderID", t1."ProductID"
+2021-03-16 18:53:44.191 -04:00 [INF] Executing ViewResult, running view Index.
+2021-03-16 18:53:44.325 -04:00 [INF] Executed DbCommand (47ms) [Parameters=[@__fk_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT t."ID", t."AppUserFK", t."FName", t."LName", t."Username", t0."ID", t0."CustomerID", t0."LocationID", t0."CartID", t0."ProductID", t0."ID0", t0."ProductCount", t1."ID", t1."CustomerID", t1."LocationID", t1."OrderDate", t1."TotalCost", t1."OrderID", t1."ProductID", t1."ID0", t1."OrderItemsQuantity"
+FROM (
+    SELECT c."ID", c."AppUserFK", c."FName", c."LName", c."Username"
+    FROM "Customers" AS c
+    WHERE c."AppUserFK" = @__fk_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT c0."ID", c0."CustomerID", c0."LocationID", c1."CartID", c1."ProductID", c1."ID" AS "ID0", c1."ProductCount"
+    FROM "Carts" AS c0
+    LEFT JOIN "CartProducts" AS c1 ON c0."ID" = c1."CartID"
+) AS t0 ON t."ID" = t0."CustomerID"
+LEFT JOIN (
+    SELECT o."ID", o."CustomerID", o."LocationID", o."OrderDate", o."TotalCost", o0."OrderID", o0."ProductID", o0."ID" AS "ID0", o0."OrderItemsQuantity"
+    FROM "Orders" AS o
+    LEFT JOIN "OrderProducts" AS o0 ON o."ID" = o0."OrderID"
+) AS t1 ON t."ID" = t1."CustomerID"
+ORDER BY t."ID", t0."ID", t0."CartID", t0."ProductID", t1."ID", t1."OrderID", t1."ProductID"
+2021-03-16 18:53:44.380 -04:00 [INF] Executed ViewResult - view Index executed in 190.3368ms.
+2021-03-16 18:53:44.380 -04:00 [INF] Executed action StoreMVC.Controllers.HomeController.Index (StoreMVC) in 421.7088ms
+2021-03-16 18:53:44.381 -04:00 [INF] Executed endpoint 'StoreMVC.Controllers.HomeController.Index (StoreMVC)'
+2021-03-16 18:53:44.390 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44343/ - - - 200 - text/html;+charset=utf-8 2757.8330ms
+2021-03-16 18:53:48.789 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44343/LocationProducts/LocationProducts?customerID=21&locationID=2 - -
+2021-03-16 18:53:48.795 -04:00 [INF] Executing endpoint 'StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController.Index (StoreMVC)'
+2021-03-16 18:53:48.806 -04:00 [INF] Route matched with {area = "LocationProducts", action = "Index", controller = "LocationProducts", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult Index(Int32, Int32) on controller StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController (StoreMVC).
+2021-03-16 18:53:48.822 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:53:48.893 -04:00 [INF] Executed DbCommand (56ms) [Parameters=[@__locationID_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."LocationID", l."ProductID", l."ID", l."LocationProductName", l."ProductQuantity", p."ID", p."Manufacturer", p."ProductDescription", p."ProductName", p."ProductPrice"
+FROM "LocationProducts" AS l
+INNER JOIN "Products" AS p ON l."ProductID" = p."ID"
+WHERE l."LocationID" = @__locationID_0
+2021-03-16 18:53:48.894 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:53:48.946 -04:00 [INF] Executed DbCommand (49ms) [Parameters=[@__locationID_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."ID", l."Address", l."LocationName"
+FROM "Locations" AS l
+WHERE l."ID" = @__locationID_0
+LIMIT 1
+2021-03-16 18:53:48.960 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:53:48.963 -04:00 [WRN] Compiling a query which loads related collections for more than one collection navigation either via 'Include' or through projection but no 'QuerySplittingBehavior' has been configured. By default Entity Framework will use 'QuerySplittingBehavior.SingleQuery' which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'
+2021-03-16 18:53:49.026 -04:00 [INF] Executed DbCommand (48ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT t."ID", t."AppUserFK", t."FName", t."LName", t."Username", t0."ID", t0."CustomerID", t0."LocationID", t0."CartID", t0."ProductID", t0."ID0", t0."ProductCount", t1."ID", t1."CustomerID", t1."LocationID", t1."OrderDate", t1."TotalCost", t1."OrderID", t1."ProductID", t1."ID0", t1."OrderItemsQuantity"
+FROM (
+    SELECT c."ID", c."AppUserFK", c."FName", c."LName", c."Username"
+    FROM "Customers" AS c
+    WHERE c."ID" = @__id_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT c0."ID", c0."CustomerID", c0."LocationID", c1."CartID", c1."ProductID", c1."ID" AS "ID0", c1."ProductCount"
+    FROM "Carts" AS c0
+    LEFT JOIN "CartProducts" AS c1 ON c0."ID" = c1."CartID"
+) AS t0 ON t."ID" = t0."CustomerID"
+LEFT JOIN (
+    SELECT o."ID", o."CustomerID", o."LocationID", o."OrderDate", o."TotalCost", o0."OrderID", o0."ProductID", o0."ID" AS "ID0", o0."OrderItemsQuantity"
+    FROM "Orders" AS o
+    LEFT JOIN "OrderProducts" AS o0 ON o."ID" = o0."OrderID"
+) AS t1 ON t."ID" = t1."CustomerID"
+ORDER BY t."ID", t0."ID", t0."CartID", t0."ProductID", t1."ID", t1."OrderID", t1."ProductID"
+2021-03-16 18:53:49.037 -04:00 [INF] Executing ViewResult, running view Index.
+2021-03-16 18:53:49.083 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:53:49.129 -04:00 [INF] Executed DbCommand (46ms) [Parameters=[@__p_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."FirstName", a."LastName", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__p_0
+LIMIT 1
+2021-03-16 18:53:49.312 -04:00 [INF] Executed DbCommand (49ms) [Parameters=[@__fk_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT t."ID", t."AppUserFK", t."FName", t."LName", t."Username", t0."ID", t0."CustomerID", t0."LocationID", t0."CartID", t0."ProductID", t0."ID0", t0."ProductCount", t1."ID", t1."CustomerID", t1."LocationID", t1."OrderDate", t1."TotalCost", t1."OrderID", t1."ProductID", t1."ID0", t1."OrderItemsQuantity"
+FROM (
+    SELECT c."ID", c."AppUserFK", c."FName", c."LName", c."Username"
+    FROM "Customers" AS c
+    WHERE c."AppUserFK" = @__fk_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT c0."ID", c0."CustomerID", c0."LocationID", c1."CartID", c1."ProductID", c1."ID" AS "ID0", c1."ProductCount"
+    FROM "Carts" AS c0
+    LEFT JOIN "CartProducts" AS c1 ON c0."ID" = c1."CartID"
+) AS t0 ON t."ID" = t0."CustomerID"
+LEFT JOIN (
+    SELECT o."ID", o."CustomerID", o."LocationID", o."OrderDate", o."TotalCost", o0."OrderID", o0."ProductID", o0."ID" AS "ID0", o0."OrderItemsQuantity"
+    FROM "Orders" AS o
+    LEFT JOIN "OrderProducts" AS o0 ON o."ID" = o0."OrderID"
+) AS t1 ON t."ID" = t1."CustomerID"
+ORDER BY t."ID", t0."ID", t0."CartID", t0."ProductID", t1."ID", t1."OrderID", t1."ProductID"
+2021-03-16 18:53:49.315 -04:00 [INF] Executed ViewResult - view Index executed in 278.2498ms.
+2021-03-16 18:53:49.315 -04:00 [INF] Executed action StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController.Index (StoreMVC) in 508.2872ms
+2021-03-16 18:53:49.315 -04:00 [INF] Executed endpoint 'StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController.Index (StoreMVC)'
+2021-03-16 18:53:49.315 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44343/LocationProducts/LocationProducts?customerID=21&locationID=2 - - - 200 - text/html;+charset=utf-8 525.9052ms
+2021-03-16 18:53:53.458 -04:00 [INF] Request starting HTTP/2 POST https://localhost:44343/LocationProducts/LocationProducts/AddToCart application/x-www-form-urlencoded 277
+2021-03-16 18:53:53.467 -04:00 [INF] Executing endpoint 'StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController.AddToCart (StoreMVC)'
+2021-03-16 18:53:53.468 -04:00 [INF] Route matched with {area = "LocationProducts", action = "AddToCart", controller = "LocationProducts", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult AddToCart(Int32, Int32, Int32, Int32) on controller StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController (StoreMVC).
+2021-03-16 18:53:53.484 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:53:53.536 -04:00 [INF] Executed DbCommand (49ms) [Parameters=[@__locationID_0='?' (DbType = Int32), @__productID_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."LocationID", l."ProductID", l."ID", l."LocationProductName", l."ProductQuantity"
+FROM "LocationProducts" AS l
+WHERE (l."LocationID" = @__locationID_0) AND (l."ProductID" = @__productID_1)
+LIMIT 1
+2021-03-16 18:53:53.698 -04:00 [INF] Executed DbCommand (93ms) [Parameters=[@p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "LocationProducts" SET "ProductQuantity" = @p0
+WHERE "LocationID" = @p1 AND "ProductID" = @p2;
+2021-03-16 18:53:53.776 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:53:53.823 -04:00 [INF] Executed DbCommand (45ms) [Parameters=[@__customerID_0='?' (DbType = Int32), @__locationID_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT c."ID", c."CustomerID", c."LocationID"
+FROM "Carts" AS c
+WHERE (c."CustomerID" = @__customerID_0) AND (c."LocationID" = @__locationID_1)
+LIMIT 1
+2021-03-16 18:53:53.824 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:53:53.871 -04:00 [INF] Executed DbCommand (45ms) [Parameters=[@__cartID_0='?' (DbType = Int32), @__productID_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT c."CartID", c."ProductID", c."ID", c."ProductCount"
+FROM "CartProducts" AS c
+WHERE (c."CartID" = @__cartID_0) AND (c."ProductID" = @__productID_1)
+LIMIT 1
+2021-03-16 18:53:53.953 -04:00 [INF] Executed DbCommand (55ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "CartProducts" ("CartID", "ProductID", "ProductCount")
+VALUES (@p0, @p1, @p2)
+RETURNING "ID";
+2021-03-16 18:53:54.033 -04:00 [INF] Product ID 2 added to cart by user ID 21
+2021-03-16 18:53:54.076 -04:00 [INF] Executed DbCommand (43ms) [Parameters=[@__locationID_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."LocationID", l."ProductID", l."ID", l."LocationProductName", l."ProductQuantity", p."ID", p."Manufacturer", p."ProductDescription", p."ProductName", p."ProductPrice"
+FROM "LocationProducts" AS l
+INNER JOIN "Products" AS p ON l."ProductID" = p."ID"
+WHERE l."LocationID" = @__locationID_0
+2021-03-16 18:53:54.076 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:53:54.124 -04:00 [INF] Executed DbCommand (47ms) [Parameters=[@__locationID_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."ID", l."Address", l."LocationName"
+FROM "Locations" AS l
+WHERE l."ID" = @__locationID_0
+LIMIT 1
+2021-03-16 18:53:54.124 -04:00 [INF] Executing ViewResult, running view Index.
+2021-03-16 18:53:54.132 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:53:54.134 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:53:54.175 -04:00 [INF] Executed DbCommand (43ms) [Parameters=[@__p_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."FirstName", a."LastName", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__p_0
+LIMIT 1
+2021-03-16 18:53:54.182 -04:00 [INF] Executed DbCommand (48ms) [Parameters=[@__fk_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT t."ID", t."AppUserFK", t."FName", t."LName", t."Username", t0."ID", t0."CustomerID", t0."LocationID", t0."CartID", t0."ProductID", t0."ID0", t0."ProductCount", t1."ID", t1."CustomerID", t1."LocationID", t1."OrderDate", t1."TotalCost", t1."OrderID", t1."ProductID", t1."ID0", t1."OrderItemsQuantity"
+FROM (
+    SELECT c."ID", c."AppUserFK", c."FName", c."LName", c."Username"
+    FROM "Customers" AS c
+    WHERE c."AppUserFK" = @__fk_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT c0."ID", c0."CustomerID", c0."LocationID", c1."CartID", c1."ProductID", c1."ID" AS "ID0", c1."ProductCount"
+    FROM "Carts" AS c0
+    LEFT JOIN "CartProducts" AS c1 ON c0."ID" = c1."CartID"
+) AS t0 ON t."ID" = t0."CustomerID"
+LEFT JOIN (
+    SELECT o."ID", o."CustomerID", o."LocationID", o."OrderDate", o."TotalCost", o0."OrderID", o0."ProductID", o0."ID" AS "ID0", o0."OrderItemsQuantity"
+    FROM "Orders" AS o
+    LEFT JOIN "OrderProducts" AS o0 ON o."ID" = o0."OrderID"
+) AS t1 ON t."ID" = t1."CustomerID"
+ORDER BY t."ID", t0."ID", t0."CartID", t0."ProductID", t1."ID", t1."OrderID", t1."ProductID"
+2021-03-16 18:53:54.183 -04:00 [INF] Executed ViewResult - view Index executed in 59.437ms.
+2021-03-16 18:53:54.183 -04:00 [INF] Executed action StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController.AddToCart (StoreMVC) in 715.2903ms
+2021-03-16 18:53:54.184 -04:00 [INF] Executed endpoint 'StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController.AddToCart (StoreMVC)'
+2021-03-16 18:53:54.184 -04:00 [INF] Request finished HTTP/2 POST https://localhost:44343/LocationProducts/LocationProducts/AddToCart application/x-www-form-urlencoded 277 - 200 - text/html;+charset=utf-8 727.6275ms
+2021-03-16 18:53:56.459 -04:00 [INF] Request starting HTTP/2 POST https://localhost:44343/LocationProducts/LocationProducts/AddToCart application/x-www-form-urlencoded 277
+2021-03-16 18:53:56.460 -04:00 [INF] Executing endpoint 'StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController.AddToCart (StoreMVC)'
+2021-03-16 18:53:56.460 -04:00 [INF] Route matched with {area = "LocationProducts", action = "AddToCart", controller = "LocationProducts", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult AddToCart(Int32, Int32, Int32, Int32) on controller StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController (StoreMVC).
+2021-03-16 18:53:56.464 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:53:56.513 -04:00 [INF] Executed DbCommand (49ms) [Parameters=[@__locationID_0='?' (DbType = Int32), @__productID_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."LocationID", l."ProductID", l."ID", l."LocationProductName", l."ProductQuantity"
+FROM "LocationProducts" AS l
+WHERE (l."LocationID" = @__locationID_0) AND (l."ProductID" = @__productID_1)
+LIMIT 1
+2021-03-16 18:53:56.575 -04:00 [INF] Executed DbCommand (62ms) [Parameters=[@p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "LocationProducts" SET "ProductQuantity" = @p0
+WHERE "LocationID" = @p1 AND "ProductID" = @p2;
+2021-03-16 18:53:56.642 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:53:56.689 -04:00 [INF] Executed DbCommand (47ms) [Parameters=[@__customerID_0='?' (DbType = Int32), @__locationID_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT c."ID", c."CustomerID", c."LocationID"
+FROM "Carts" AS c
+WHERE (c."CustomerID" = @__customerID_0) AND (c."LocationID" = @__locationID_1)
+LIMIT 1
+2021-03-16 18:53:56.690 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:53:56.736 -04:00 [INF] Executed DbCommand (46ms) [Parameters=[@__cartID_0='?' (DbType = Int32), @__productID_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT c."CartID", c."ProductID", c."ID", c."ProductCount"
+FROM "CartProducts" AS c
+WHERE (c."CartID" = @__cartID_0) AND (c."ProductID" = @__productID_1)
+LIMIT 1
+2021-03-16 18:53:56.783 -04:00 [INF] Executed DbCommand (46ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "CartProducts" ("CartID", "ProductID", "ProductCount")
+VALUES (@p0, @p1, @p2)
+RETURNING "ID";
+2021-03-16 18:53:56.851 -04:00 [INF] Product ID 4 added to cart by user ID 21
+2021-03-16 18:53:56.898 -04:00 [INF] Executed DbCommand (46ms) [Parameters=[@__locationID_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."LocationID", l."ProductID", l."ID", l."LocationProductName", l."ProductQuantity", p."ID", p."Manufacturer", p."ProductDescription", p."ProductName", p."ProductPrice"
+FROM "LocationProducts" AS l
+INNER JOIN "Products" AS p ON l."ProductID" = p."ID"
+WHERE l."LocationID" = @__locationID_0
+2021-03-16 18:53:56.898 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:53:56.943 -04:00 [INF] Executed DbCommand (44ms) [Parameters=[@__locationID_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."ID", l."Address", l."LocationName"
+FROM "Locations" AS l
+WHERE l."ID" = @__locationID_0
+LIMIT 1
+2021-03-16 18:53:56.943 -04:00 [INF] Executing ViewResult, running view Index.
+2021-03-16 18:53:56.952 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:53:56.954 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:53:56.997 -04:00 [INF] Executed DbCommand (45ms) [Parameters=[@__p_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."FirstName", a."LastName", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__p_0
+LIMIT 1
+2021-03-16 18:53:57.004 -04:00 [INF] Executed DbCommand (50ms) [Parameters=[@__fk_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT t."ID", t."AppUserFK", t."FName", t."LName", t."Username", t0."ID", t0."CustomerID", t0."LocationID", t0."CartID", t0."ProductID", t0."ID0", t0."ProductCount", t1."ID", t1."CustomerID", t1."LocationID", t1."OrderDate", t1."TotalCost", t1."OrderID", t1."ProductID", t1."ID0", t1."OrderItemsQuantity"
+FROM (
+    SELECT c."ID", c."AppUserFK", c."FName", c."LName", c."Username"
+    FROM "Customers" AS c
+    WHERE c."AppUserFK" = @__fk_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT c0."ID", c0."CustomerID", c0."LocationID", c1."CartID", c1."ProductID", c1."ID" AS "ID0", c1."ProductCount"
+    FROM "Carts" AS c0
+    LEFT JOIN "CartProducts" AS c1 ON c0."ID" = c1."CartID"
+) AS t0 ON t."ID" = t0."CustomerID"
+LEFT JOIN (
+    SELECT o."ID", o."CustomerID", o."LocationID", o."OrderDate", o."TotalCost", o0."OrderID", o0."ProductID", o0."ID" AS "ID0", o0."OrderItemsQuantity"
+    FROM "Orders" AS o
+    LEFT JOIN "OrderProducts" AS o0 ON o."ID" = o0."OrderID"
+) AS t1 ON t."ID" = t1."CustomerID"
+ORDER BY t."ID", t0."ID", t0."CartID", t0."ProductID", t1."ID", t1."OrderID", t1."ProductID"
+2021-03-16 18:53:57.005 -04:00 [INF] Executed ViewResult - view Index executed in 61.7222ms.
+2021-03-16 18:53:57.005 -04:00 [INF] Executed action StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController.AddToCart (StoreMVC) in 544.6907ms
+2021-03-16 18:53:57.005 -04:00 [INF] Executed endpoint 'StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController.AddToCart (StoreMVC)'
+2021-03-16 18:53:57.006 -04:00 [INF] Request finished HTTP/2 POST https://localhost:44343/LocationProducts/LocationProducts/AddToCart application/x-www-form-urlencoded 277 - 200 - text/html;+charset=utf-8 546.6392ms
+2021-03-16 18:53:57.917 -04:00 [INF] Request starting HTTP/2 POST https://localhost:44343/LocationProducts/LocationProducts/AddToCart application/x-www-form-urlencoded 277
+2021-03-16 18:53:57.918 -04:00 [INF] Executing endpoint 'StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController.AddToCart (StoreMVC)'
+2021-03-16 18:53:57.918 -04:00 [INF] Route matched with {area = "LocationProducts", action = "AddToCart", controller = "LocationProducts", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult AddToCart(Int32, Int32, Int32, Int32) on controller StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController (StoreMVC).
+2021-03-16 18:53:57.918 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:53:57.963 -04:00 [INF] Executed DbCommand (44ms) [Parameters=[@__locationID_0='?' (DbType = Int32), @__productID_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."LocationID", l."ProductID", l."ID", l."LocationProductName", l."ProductQuantity"
+FROM "LocationProducts" AS l
+WHERE (l."LocationID" = @__locationID_0) AND (l."ProductID" = @__productID_1)
+LIMIT 1
+2021-03-16 18:53:58.020 -04:00 [INF] Executed DbCommand (57ms) [Parameters=[@p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "LocationProducts" SET "ProductQuantity" = @p0
+WHERE "LocationID" = @p1 AND "ProductID" = @p2;
+2021-03-16 18:53:58.089 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:53:58.133 -04:00 [INF] Executed DbCommand (44ms) [Parameters=[@__customerID_0='?' (DbType = Int32), @__locationID_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT c."ID", c."CustomerID", c."LocationID"
+FROM "Carts" AS c
+WHERE (c."CustomerID" = @__customerID_0) AND (c."LocationID" = @__locationID_1)
+LIMIT 1
+2021-03-16 18:53:58.133 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:53:58.177 -04:00 [INF] Executed DbCommand (43ms) [Parameters=[@__cartID_0='?' (DbType = Int32), @__productID_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT c."CartID", c."ProductID", c."ID", c."ProductCount"
+FROM "CartProducts" AS c
+WHERE (c."CartID" = @__cartID_0) AND (c."ProductID" = @__productID_1)
+LIMIT 1
+2021-03-16 18:53:58.233 -04:00 [INF] Executed DbCommand (56ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "CartProducts" ("CartID", "ProductID", "ProductCount")
+VALUES (@p0, @p1, @p2)
+RETURNING "ID";
+2021-03-16 18:53:58.298 -04:00 [INF] Product ID 6 added to cart by user ID 21
+2021-03-16 18:53:58.347 -04:00 [INF] Executed DbCommand (49ms) [Parameters=[@__locationID_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."LocationID", l."ProductID", l."ID", l."LocationProductName", l."ProductQuantity", p."ID", p."Manufacturer", p."ProductDescription", p."ProductName", p."ProductPrice"
+FROM "LocationProducts" AS l
+INNER JOIN "Products" AS p ON l."ProductID" = p."ID"
+WHERE l."LocationID" = @__locationID_0
+2021-03-16 18:53:58.348 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:53:58.392 -04:00 [INF] Executed DbCommand (44ms) [Parameters=[@__locationID_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."ID", l."Address", l."LocationName"
+FROM "Locations" AS l
+WHERE l."ID" = @__locationID_0
+LIMIT 1
+2021-03-16 18:53:58.393 -04:00 [INF] Executing ViewResult, running view Index.
+2021-03-16 18:53:58.401 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:53:58.403 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:53:58.449 -04:00 [INF] Executed DbCommand (48ms) [Parameters=[@__p_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."FirstName", a."LastName", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__p_0
+LIMIT 1
+2021-03-16 18:53:58.451 -04:00 [INF] Executed DbCommand (47ms) [Parameters=[@__fk_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT t."ID", t."AppUserFK", t."FName", t."LName", t."Username", t0."ID", t0."CustomerID", t0."LocationID", t0."CartID", t0."ProductID", t0."ID0", t0."ProductCount", t1."ID", t1."CustomerID", t1."LocationID", t1."OrderDate", t1."TotalCost", t1."OrderID", t1."ProductID", t1."ID0", t1."OrderItemsQuantity"
+FROM (
+    SELECT c."ID", c."AppUserFK", c."FName", c."LName", c."Username"
+    FROM "Customers" AS c
+    WHERE c."AppUserFK" = @__fk_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT c0."ID", c0."CustomerID", c0."LocationID", c1."CartID", c1."ProductID", c1."ID" AS "ID0", c1."ProductCount"
+    FROM "Carts" AS c0
+    LEFT JOIN "CartProducts" AS c1 ON c0."ID" = c1."CartID"
+) AS t0 ON t."ID" = t0."CustomerID"
+LEFT JOIN (
+    SELECT o."ID", o."CustomerID", o."LocationID", o."OrderDate", o."TotalCost", o0."OrderID", o0."ProductID", o0."ID" AS "ID0", o0."OrderItemsQuantity"
+    FROM "Orders" AS o
+    LEFT JOIN "OrderProducts" AS o0 ON o."ID" = o0."OrderID"
+) AS t1 ON t."ID" = t1."CustomerID"
+ORDER BY t."ID", t0."ID", t0."CartID", t0."ProductID", t1."ID", t1."OrderID", t1."ProductID"
+2021-03-16 18:53:58.452 -04:00 [INF] Executed ViewResult - view Index executed in 59.3484ms.
+2021-03-16 18:53:58.452 -04:00 [INF] Executed action StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController.AddToCart (StoreMVC) in 534.2192ms
+2021-03-16 18:53:58.452 -04:00 [INF] Executed endpoint 'StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController.AddToCart (StoreMVC)'
+2021-03-16 18:53:58.452 -04:00 [INF] Request finished HTTP/2 POST https://localhost:44343/LocationProducts/LocationProducts/AddToCart application/x-www-form-urlencoded 277 - 200 - text/html;+charset=utf-8 535.0805ms
+2021-03-16 18:53:59.565 -04:00 [INF] Request starting HTTP/2 POST https://localhost:44343/LocationProducts/LocationProducts/AddToCart application/x-www-form-urlencoded 277
+2021-03-16 18:53:59.565 -04:00 [INF] Executing endpoint 'StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController.AddToCart (StoreMVC)'
+2021-03-16 18:53:59.565 -04:00 [INF] Route matched with {area = "LocationProducts", action = "AddToCart", controller = "LocationProducts", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult AddToCart(Int32, Int32, Int32, Int32) on controller StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController (StoreMVC).
+2021-03-16 18:53:59.566 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:53:59.611 -04:00 [INF] Executed DbCommand (44ms) [Parameters=[@__locationID_0='?' (DbType = Int32), @__productID_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."LocationID", l."ProductID", l."ID", l."LocationProductName", l."ProductQuantity"
+FROM "LocationProducts" AS l
+WHERE (l."LocationID" = @__locationID_0) AND (l."ProductID" = @__productID_1)
+LIMIT 1
+2021-03-16 18:53:59.675 -04:00 [INF] Executed DbCommand (64ms) [Parameters=[@p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "LocationProducts" SET "ProductQuantity" = @p0
+WHERE "LocationID" = @p1 AND "ProductID" = @p2;
+2021-03-16 18:53:59.735 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:53:59.781 -04:00 [INF] Executed DbCommand (45ms) [Parameters=[@__customerID_0='?' (DbType = Int32), @__locationID_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT c."ID", c."CustomerID", c."LocationID"
+FROM "Carts" AS c
+WHERE (c."CustomerID" = @__customerID_0) AND (c."LocationID" = @__locationID_1)
+LIMIT 1
+2021-03-16 18:53:59.781 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:53:59.826 -04:00 [INF] Executed DbCommand (44ms) [Parameters=[@__cartID_0='?' (DbType = Int32), @__productID_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT c."CartID", c."ProductID", c."ID", c."ProductCount"
+FROM "CartProducts" AS c
+WHERE (c."CartID" = @__cartID_0) AND (c."ProductID" = @__productID_1)
+LIMIT 1
+2021-03-16 18:53:59.870 -04:00 [INF] Executed DbCommand (44ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "CartProducts" ("CartID", "ProductID", "ProductCount")
+VALUES (@p0, @p1, @p2)
+RETURNING "ID";
+2021-03-16 18:53:59.934 -04:00 [INF] Product ID 8 added to cart by user ID 21
+2021-03-16 18:53:59.979 -04:00 [INF] Executed DbCommand (44ms) [Parameters=[@__locationID_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."LocationID", l."ProductID", l."ID", l."LocationProductName", l."ProductQuantity", p."ID", p."Manufacturer", p."ProductDescription", p."ProductName", p."ProductPrice"
+FROM "LocationProducts" AS l
+INNER JOIN "Products" AS p ON l."ProductID" = p."ID"
+WHERE l."LocationID" = @__locationID_0
+2021-03-16 18:53:59.979 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:00.028 -04:00 [INF] Executed DbCommand (49ms) [Parameters=[@__locationID_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."ID", l."Address", l."LocationName"
+FROM "Locations" AS l
+WHERE l."ID" = @__locationID_0
+LIMIT 1
+2021-03-16 18:54:00.028 -04:00 [INF] Executing ViewResult, running view Index.
+2021-03-16 18:54:00.039 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:00.042 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:00.087 -04:00 [INF] Executed DbCommand (44ms) [Parameters=[@__fk_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT t."ID", t."AppUserFK", t."FName", t."LName", t."Username", t0."ID", t0."CustomerID", t0."LocationID", t0."CartID", t0."ProductID", t0."ID0", t0."ProductCount", t1."ID", t1."CustomerID", t1."LocationID", t1."OrderDate", t1."TotalCost", t1."OrderID", t1."ProductID", t1."ID0", t1."OrderItemsQuantity"
+FROM (
+    SELECT c."ID", c."AppUserFK", c."FName", c."LName", c."Username"
+    FROM "Customers" AS c
+    WHERE c."AppUserFK" = @__fk_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT c0."ID", c0."CustomerID", c0."LocationID", c1."CartID", c1."ProductID", c1."ID" AS "ID0", c1."ProductCount"
+    FROM "Carts" AS c0
+    LEFT JOIN "CartProducts" AS c1 ON c0."ID" = c1."CartID"
+) AS t0 ON t."ID" = t0."CustomerID"
+LEFT JOIN (
+    SELECT o."ID", o."CustomerID", o."LocationID", o."OrderDate", o."TotalCost", o0."OrderID", o0."ProductID", o0."ID" AS "ID0", o0."OrderItemsQuantity"
+    FROM "Orders" AS o
+    LEFT JOIN "OrderProducts" AS o0 ON o."ID" = o0."OrderID"
+) AS t1 ON t."ID" = t1."CustomerID"
+ORDER BY t."ID", t0."ID", t0."CartID", t0."ProductID", t1."ID", t1."OrderID", t1."ProductID"
+2021-03-16 18:54:00.088 -04:00 [INF] Executed ViewResult - view Index executed in 60.0152ms.
+2021-03-16 18:54:00.088 -04:00 [INF] Executed action StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController.AddToCart (StoreMVC) in 522.806ms
+2021-03-16 18:54:00.088 -04:00 [INF] Executed endpoint 'StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController.AddToCart (StoreMVC)'
+2021-03-16 18:54:00.089 -04:00 [INF] Executed DbCommand (48ms) [Parameters=[@__p_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."FirstName", a."LastName", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__p_0
+LIMIT 1
+2021-03-16 18:54:00.090 -04:00 [INF] Request finished HTTP/2 POST https://localhost:44343/LocationProducts/LocationProducts/AddToCart application/x-www-form-urlencoded 277 - 200 - text/html;+charset=utf-8 524.8294ms
+2021-03-16 18:54:01.660 -04:00 [INF] Request starting HTTP/2 POST https://localhost:44343/LocationProducts/LocationProducts/AddToCart application/x-www-form-urlencoded 278
+2021-03-16 18:54:01.661 -04:00 [INF] Executing endpoint 'StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController.AddToCart (StoreMVC)'
+2021-03-16 18:54:01.661 -04:00 [INF] Route matched with {area = "LocationProducts", action = "AddToCart", controller = "LocationProducts", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult AddToCart(Int32, Int32, Int32, Int32) on controller StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController (StoreMVC).
+2021-03-16 18:54:01.662 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:01.719 -04:00 [INF] Executed DbCommand (56ms) [Parameters=[@__locationID_0='?' (DbType = Int32), @__productID_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."LocationID", l."ProductID", l."ID", l."LocationProductName", l."ProductQuantity"
+FROM "LocationProducts" AS l
+WHERE (l."LocationID" = @__locationID_0) AND (l."ProductID" = @__productID_1)
+LIMIT 1
+2021-03-16 18:54:01.795 -04:00 [INF] Executed DbCommand (75ms) [Parameters=[@p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "LocationProducts" SET "ProductQuantity" = @p0
+WHERE "LocationID" = @p1 AND "ProductID" = @p2;
+2021-03-16 18:54:01.864 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:01.908 -04:00 [INF] Executed DbCommand (44ms) [Parameters=[@__customerID_0='?' (DbType = Int32), @__locationID_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT c."ID", c."CustomerID", c."LocationID"
+FROM "Carts" AS c
+WHERE (c."CustomerID" = @__customerID_0) AND (c."LocationID" = @__locationID_1)
+LIMIT 1
+2021-03-16 18:54:01.908 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:01.962 -04:00 [INF] Executed DbCommand (53ms) [Parameters=[@__cartID_0='?' (DbType = Int32), @__productID_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT c."CartID", c."ProductID", c."ID", c."ProductCount"
+FROM "CartProducts" AS c
+WHERE (c."CartID" = @__cartID_0) AND (c."ProductID" = @__productID_1)
+LIMIT 1
+2021-03-16 18:54:02.010 -04:00 [INF] Executed DbCommand (47ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "CartProducts" ("CartID", "ProductID", "ProductCount")
+VALUES (@p0, @p1, @p2)
+RETURNING "ID";
+2021-03-16 18:54:02.091 -04:00 [INF] Product ID 10 added to cart by user ID 21
+2021-03-16 18:54:02.137 -04:00 [INF] Executed DbCommand (46ms) [Parameters=[@__locationID_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."LocationID", l."ProductID", l."ID", l."LocationProductName", l."ProductQuantity", p."ID", p."Manufacturer", p."ProductDescription", p."ProductName", p."ProductPrice"
+FROM "LocationProducts" AS l
+INNER JOIN "Products" AS p ON l."ProductID" = p."ID"
+WHERE l."LocationID" = @__locationID_0
+2021-03-16 18:54:02.137 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:02.187 -04:00 [INF] Executed DbCommand (50ms) [Parameters=[@__locationID_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."ID", l."Address", l."LocationName"
+FROM "Locations" AS l
+WHERE l."ID" = @__locationID_0
+LIMIT 1
+2021-03-16 18:54:02.187 -04:00 [INF] Executing ViewResult, running view Index.
+2021-03-16 18:54:02.194 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:02.197 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:02.245 -04:00 [INF] Executed DbCommand (48ms) [Parameters=[@__fk_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT t."ID", t."AppUserFK", t."FName", t."LName", t."Username", t0."ID", t0."CustomerID", t0."LocationID", t0."CartID", t0."ProductID", t0."ID0", t0."ProductCount", t1."ID", t1."CustomerID", t1."LocationID", t1."OrderDate", t1."TotalCost", t1."OrderID", t1."ProductID", t1."ID0", t1."OrderItemsQuantity"
+FROM (
+    SELECT c."ID", c."AppUserFK", c."FName", c."LName", c."Username"
+    FROM "Customers" AS c
+    WHERE c."AppUserFK" = @__fk_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT c0."ID", c0."CustomerID", c0."LocationID", c1."CartID", c1."ProductID", c1."ID" AS "ID0", c1."ProductCount"
+    FROM "Carts" AS c0
+    LEFT JOIN "CartProducts" AS c1 ON c0."ID" = c1."CartID"
+) AS t0 ON t."ID" = t0."CustomerID"
+LEFT JOIN (
+    SELECT o."ID", o."CustomerID", o."LocationID", o."OrderDate", o."TotalCost", o0."OrderID", o0."ProductID", o0."ID" AS "ID0", o0."OrderItemsQuantity"
+    FROM "Orders" AS o
+    LEFT JOIN "OrderProducts" AS o0 ON o."ID" = o0."OrderID"
+) AS t1 ON t."ID" = t1."CustomerID"
+ORDER BY t."ID", t0."ID", t0."CartID", t0."ProductID", t1."ID", t1."OrderID", t1."ProductID"
+2021-03-16 18:54:02.245 -04:00 [INF] Executed DbCommand (50ms) [Parameters=[@__p_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."FirstName", a."LastName", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__p_0
+LIMIT 1
+2021-03-16 18:54:02.246 -04:00 [INF] Executed ViewResult - view Index executed in 58.2647ms.
+2021-03-16 18:54:02.246 -04:00 [INF] Executed action StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController.AddToCart (StoreMVC) in 584.6394ms
+2021-03-16 18:54:02.246 -04:00 [INF] Executed endpoint 'StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController.AddToCart (StoreMVC)'
+2021-03-16 18:54:02.246 -04:00 [INF] Request finished HTTP/2 POST https://localhost:44343/LocationProducts/LocationProducts/AddToCart application/x-www-form-urlencoded 278 - 200 - text/html;+charset=utf-8 586.1037ms
+2021-03-16 18:54:04.265 -04:00 [INF] Request starting HTTP/2 POST https://localhost:44343/Identity/Account/Logout?returnUrl=%2FHome%2FIndex application/x-www-form-urlencoded 225
+2021-03-16 18:54:04.273 -04:00 [INF] Executing endpoint '/Account/Logout'
+2021-03-16 18:54:04.282 -04:00 [INF] Route matched with {page = "/Account/Logout", area = "Identity", action = "", controller = ""}. Executing page /Account/Logout
+2021-03-16 18:54:04.290 -04:00 [INF] Executing handler method StoreMVC.Areas.Identity.Pages.Account.LogoutModel.OnPost - ModelState is "Valid"
+2021-03-16 18:54:04.293 -04:00 [INF] AuthenticationScheme: Identity.Application signed out.
+2021-03-16 18:54:04.293 -04:00 [INF] AuthenticationScheme: Identity.External signed out.
+2021-03-16 18:54:04.293 -04:00 [INF] AuthenticationScheme: Identity.TwoFactorUserId signed out.
+2021-03-16 18:54:04.294 -04:00 [INF] User logged out.
+2021-03-16 18:54:04.294 -04:00 [INF] Executed handler method OnPost, returned result Microsoft.AspNetCore.Mvc.LocalRedirectResult.
+2021-03-16 18:54:04.295 -04:00 [INF] Executing LocalRedirectResult, redirecting to /Home/Index.
+2021-03-16 18:54:04.295 -04:00 [INF] Executed page /Account/Logout in 13.2855ms
+2021-03-16 18:54:04.295 -04:00 [INF] Executed endpoint '/Account/Logout'
+2021-03-16 18:54:04.296 -04:00 [INF] Request finished HTTP/2 POST https://localhost:44343/Identity/Account/Logout?returnUrl=%2FHome%2FIndex application/x-www-form-urlencoded 225 - 302 - - 30.6946ms
+2021-03-16 18:54:04.299 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44343/Home/Index - -
+2021-03-16 18:54:04.299 -04:00 [INF] Executing endpoint 'StoreMVC.Controllers.HomeController.Index (StoreMVC)'
+2021-03-16 18:54:04.300 -04:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller StoreMVC.Controllers.HomeController (StoreMVC).
+2021-03-16 18:54:04.300 -04:00 [INF] Executing ViewResult, running view Index.
+2021-03-16 18:54:04.301 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:04.302 -04:00 [INF] Executed ViewResult - view Index executed in 1.7575ms.
+2021-03-16 18:54:04.302 -04:00 [INF] Executed action StoreMVC.Controllers.HomeController.Index (StoreMVC) in 2.0931ms
+2021-03-16 18:54:04.302 -04:00 [INF] Executed endpoint 'StoreMVC.Controllers.HomeController.Index (StoreMVC)'
+2021-03-16 18:54:04.303 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44343/Home/Index - - - 200 - text/html;+charset=utf-8 3.8037ms
+2021-03-16 18:54:05.363 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44343/Identity/Account/Login - -
+2021-03-16 18:54:05.368 -04:00 [INF] Executing endpoint '/Account/Login'
+2021-03-16 18:54:05.375 -04:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2021-03-16 18:54:05.376 -04:00 [INF] Executing handler method StoreMVC.Areas.Identity.Pages.Account.LoginModel.OnGetAsync - ModelState is "Valid"
+2021-03-16 18:54:05.378 -04:00 [INF] AuthenticationScheme: Identity.External signed out.
+2021-03-16 18:54:05.378 -04:00 [INF] Executed handler method OnGetAsync, returned result .
+2021-03-16 18:54:05.381 -04:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2021-03-16 18:54:05.381 -04:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2021-03-16 18:54:05.415 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:05.424 -04:00 [INF] Executed page /Account/Login in 48.9483ms
+2021-03-16 18:54:05.424 -04:00 [INF] Executed endpoint '/Account/Login'
+2021-03-16 18:54:05.424 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44343/Identity/Account/Login - - - 200 - text/html;+charset=utf-8 61.7782ms
+2021-03-16 18:54:06.803 -04:00 [INF] Request starting HTTP/2 POST https://localhost:44343/Identity/Account/ExternalLogin?returnUrl=%2F application/x-www-form-urlencoded 198
+2021-03-16 18:54:06.804 -04:00 [INF] Executing endpoint '/Account/ExternalLogin'
+2021-03-16 18:54:06.810 -04:00 [INF] Route matched with {page = "/Account/ExternalLogin", area = "Identity", action = "", controller = ""}. Executing page /Account/ExternalLogin
+2021-03-16 18:54:06.821 -04:00 [INF] Executing handler method StoreMVC.Areas.Identity.Pages.Account.ExternalLoginModel.OnPost - ModelState is "Invalid"
+2021-03-16 18:54:06.822 -04:00 [INF] Executed handler method OnPost, returned result Microsoft.AspNetCore.Mvc.ChallengeResult.
+2021-03-16 18:54:06.824 -04:00 [INF] Executing ChallengeResult with authentication schemes (["Google"]).
+2021-03-16 18:54:06.827 -04:00 [INF] AuthenticationScheme: Google was challenged.
+2021-03-16 18:54:06.827 -04:00 [INF] Executed page /Account/ExternalLogin in 17.5689ms
+2021-03-16 18:54:06.827 -04:00 [INF] Executed endpoint '/Account/ExternalLogin'
+2021-03-16 18:54:06.828 -04:00 [INF] Request finished HTTP/2 POST https://localhost:44343/Identity/Account/ExternalLogin?returnUrl=%2F application/x-www-form-urlencoded 198 - 302 - - 25.0775ms
+2021-03-16 18:54:09.059 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44343/signin-google?state=CfDJ8OLyby5grB1Lugl_1WcHp5q2QE1wUlNdMOQ8x7eCEtZVvgLK8p7QxnA2J8T2SuIavMeyz_uwm5MU2YSgrt3aFbaslzPtBMLi_D_A0cxKjL9Gp3qNfG-g4kHZzibN9c923DFZUYY-WTz6yyNoFEe6GHeHBpUw1GmWeWT0-dsgScBMY0oabkE1RUYEuZwB5y6fPvgT5RvE12gUBIyE3j0kUMii_IBrurWgf0pIysmrESbCtBCwswCqWSnfbtCiL9iXIkgaClot_CTfDyUsUxY87kCVtv3vRvdoYD6YT_ydqb12qWY2D1TE9KvwLWT7w7P-nA&code=4%2F0AY0e-g4a74Rpute1IcQDuFYi8wsfunsCP8dvP7XilmCWld50N4WZoSLQr7dLAyU7wJQrXQ&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=0&prompt=consent - -
+2021-03-16 18:54:09.641 -04:00 [INF] AuthenticationScheme: Identity.External signed in.
+2021-03-16 18:54:09.642 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44343/signin-google?state=CfDJ8OLyby5grB1Lugl_1WcHp5q2QE1wUlNdMOQ8x7eCEtZVvgLK8p7QxnA2J8T2SuIavMeyz_uwm5MU2YSgrt3aFbaslzPtBMLi_D_A0cxKjL9Gp3qNfG-g4kHZzibN9c923DFZUYY-WTz6yyNoFEe6GHeHBpUw1GmWeWT0-dsgScBMY0oabkE1RUYEuZwB5y6fPvgT5RvE12gUBIyE3j0kUMii_IBrurWgf0pIysmrESbCtBCwswCqWSnfbtCiL9iXIkgaClot_CTfDyUsUxY87kCVtv3vRvdoYD6YT_ydqb12qWY2D1TE9KvwLWT7w7P-nA&code=4%2F0AY0e-g4a74Rpute1IcQDuFYi8wsfunsCP8dvP7XilmCWld50N4WZoSLQr7dLAyU7wJQrXQ&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=0&prompt=consent - - - 302 - - 583.1245ms
+2021-03-16 18:54:09.645 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44343/Identity/Account/ExternalLogin?returnUrl=%2F&handler=Callback - -
+2021-03-16 18:54:09.645 -04:00 [INF] Executing endpoint '/Account/ExternalLogin'
+2021-03-16 18:54:09.646 -04:00 [INF] Route matched with {page = "/Account/ExternalLogin", area = "Identity", action = "", controller = ""}. Executing page /Account/ExternalLogin
+2021-03-16 18:54:09.646 -04:00 [INF] Executing handler method StoreMVC.Areas.Identity.Pages.Account.ExternalLoginModel.OnGetCallbackAsync - ModelState is "Valid"
+2021-03-16 18:54:09.651 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:09.705 -04:00 [INF] Executed DbCommand (49ms) [Parameters=[@__loginProvider_0='?', @__providerKey_1='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."LoginProvider", a."ProviderKey", a."ProviderDisplayName", a."UserId"
+FROM "AspNetUserLogins" AS a
+WHERE (a."LoginProvider" = @__loginProvider_0) AND (a."ProviderKey" = @__providerKey_1)
+LIMIT 2
+2021-03-16 18:54:09.764 -04:00 [INF] Executed DbCommand (51ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."FirstName", a."LastName", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__userId_0
+LIMIT 2
+2021-03-16 18:54:09.772 -04:00 [INF] AuthenticationScheme: Identity.External signed out.
+2021-03-16 18:54:09.825 -04:00 [INF] Executed DbCommand (52ms) [Parameters=[@__user_Id_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ClaimType", a."ClaimValue", a."UserId"
+FROM "AspNetUserClaims" AS a
+WHERE a."UserId" = @__user_Id_0
+2021-03-16 18:54:09.826 -04:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2021-03-16 18:54:09.827 -04:00 [INF] Weston Davidson logged in with Google provider.
+2021-03-16 18:54:09.828 -04:00 [INF] Executed handler method OnGetCallbackAsync, returned result Microsoft.AspNetCore.Mvc.LocalRedirectResult.
+2021-03-16 18:54:09.830 -04:00 [INF] Executing LocalRedirectResult, redirecting to /.
+2021-03-16 18:54:09.831 -04:00 [INF] Executed page /Account/ExternalLogin in 185.2546ms
+2021-03-16 18:54:09.831 -04:00 [INF] Executed endpoint '/Account/ExternalLogin'
+2021-03-16 18:54:09.832 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44343/Identity/Account/ExternalLogin?returnUrl=%2F&handler=Callback - - - 302 - - 186.9959ms
+2021-03-16 18:54:09.835 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44343/ - -
+2021-03-16 18:54:09.836 -04:00 [INF] Executing endpoint 'StoreMVC.Controllers.HomeController.Index (StoreMVC)'
+2021-03-16 18:54:09.836 -04:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller StoreMVC.Controllers.HomeController (StoreMVC).
+2021-03-16 18:54:09.836 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:09.893 -04:00 [INF] Executed DbCommand (57ms) [Parameters=[@__fk_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT t."ID", t."AppUserFK", t."FName", t."LName", t."Username", t0."ID", t0."CustomerID", t0."LocationID", t0."CartID", t0."ProductID", t0."ID0", t0."ProductCount", t1."ID", t1."CustomerID", t1."LocationID", t1."OrderDate", t1."TotalCost", t1."OrderID", t1."ProductID", t1."ID0", t1."OrderItemsQuantity"
+FROM (
+    SELECT c."ID", c."AppUserFK", c."FName", c."LName", c."Username"
+    FROM "Customers" AS c
+    WHERE c."AppUserFK" = @__fk_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT c0."ID", c0."CustomerID", c0."LocationID", c1."CartID", c1."ProductID", c1."ID" AS "ID0", c1."ProductCount"
+    FROM "Carts" AS c0
+    LEFT JOIN "CartProducts" AS c1 ON c0."ID" = c1."CartID"
+) AS t0 ON t."ID" = t0."CustomerID"
+LEFT JOIN (
+    SELECT o."ID", o."CustomerID", o."LocationID", o."OrderDate", o."TotalCost", o0."OrderID", o0."ProductID", o0."ID" AS "ID0", o0."OrderItemsQuantity"
+    FROM "Orders" AS o
+    LEFT JOIN "OrderProducts" AS o0 ON o."ID" = o0."OrderID"
+) AS t1 ON t."ID" = t1."CustomerID"
+ORDER BY t."ID", t0."ID", t0."CartID", t0."ProductID", t1."ID", t1."OrderID", t1."ProductID"
+2021-03-16 18:54:09.936 -04:00 [INF] Executing ViewResult, running view Index.
+2021-03-16 18:54:09.936 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:09.986 -04:00 [INF] Executed DbCommand (49ms) [Parameters=[@__p_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."FirstName", a."LastName", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__p_0
+LIMIT 1
+2021-03-16 18:54:09.986 -04:00 [INF] Executed DbCommand (47ms) [Parameters=[@__fk_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT t."ID", t."AppUserFK", t."FName", t."LName", t."Username", t0."ID", t0."CustomerID", t0."LocationID", t0."CartID", t0."ProductID", t0."ID0", t0."ProductCount", t1."ID", t1."CustomerID", t1."LocationID", t1."OrderDate", t1."TotalCost", t1."OrderID", t1."ProductID", t1."ID0", t1."OrderItemsQuantity"
+FROM (
+    SELECT c."ID", c."AppUserFK", c."FName", c."LName", c."Username"
+    FROM "Customers" AS c
+    WHERE c."AppUserFK" = @__fk_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT c0."ID", c0."CustomerID", c0."LocationID", c1."CartID", c1."ProductID", c1."ID" AS "ID0", c1."ProductCount"
+    FROM "Carts" AS c0
+    LEFT JOIN "CartProducts" AS c1 ON c0."ID" = c1."CartID"
+) AS t0 ON t."ID" = t0."CustomerID"
+LEFT JOIN (
+    SELECT o."ID", o."CustomerID", o."LocationID", o."OrderDate", o."TotalCost", o0."OrderID", o0."ProductID", o0."ID" AS "ID0", o0."OrderItemsQuantity"
+    FROM "Orders" AS o
+    LEFT JOIN "OrderProducts" AS o0 ON o."ID" = o0."OrderID"
+) AS t1 ON t."ID" = t1."CustomerID"
+ORDER BY t."ID", t0."ID", t0."CartID", t0."ProductID", t1."ID", t1."OrderID", t1."ProductID"
+2021-03-16 18:54:09.996 -04:00 [INF] Executed ViewResult - view Index executed in 60.1462ms.
+2021-03-16 18:54:09.996 -04:00 [INF] Executed action StoreMVC.Controllers.HomeController.Index (StoreMVC) in 160.5419ms
+2021-03-16 18:54:09.996 -04:00 [INF] Executed endpoint 'StoreMVC.Controllers.HomeController.Index (StoreMVC)'
+2021-03-16 18:54:09.997 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44343/ - - - 200 - text/html;+charset=utf-8 161.4763ms
+2021-03-16 18:54:10.955 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44343/Identity/Account/Manage - -
+2021-03-16 18:54:10.959 -04:00 [INF] Authorization was successful.
+2021-03-16 18:54:10.960 -04:00 [INF] Executing endpoint '/Account/Manage/Index'
+2021-03-16 18:54:10.964 -04:00 [INF] Route matched with {page = "/Account/Manage/Index", area = "Identity", action = "", controller = ""}. Executing page /Account/Manage/Index
+2021-03-16 18:54:10.966 -04:00 [INF] Executing handler method StoreMVC.Areas.Identity.Pages.Account.Manage.IndexModel.OnGetAsync - ModelState is "Valid"
+2021-03-16 18:54:10.966 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:11.011 -04:00 [INF] Executed DbCommand (44ms) [Parameters=[@__p_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."FirstName", a."LastName", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__p_0
+LIMIT 1
+2021-03-16 18:54:11.012 -04:00 [INF] Executed handler method OnGetAsync, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2021-03-16 18:54:11.040 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:11.086 -04:00 [INF] Executed DbCommand (46ms) [Parameters=[@__fk_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT t."ID", t."AppUserFK", t."FName", t."LName", t."Username", t0."ID", t0."CustomerID", t0."LocationID", t0."CartID", t0."ProductID", t0."ID0", t0."ProductCount", t1."ID", t1."CustomerID", t1."LocationID", t1."OrderDate", t1."TotalCost", t1."OrderID", t1."ProductID", t1."ID0", t1."OrderItemsQuantity"
+FROM (
+    SELECT c."ID", c."AppUserFK", c."FName", c."LName", c."Username"
+    FROM "Customers" AS c
+    WHERE c."AppUserFK" = @__fk_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT c0."ID", c0."CustomerID", c0."LocationID", c1."CartID", c1."ProductID", c1."ID" AS "ID0", c1."ProductCount"
+    FROM "Carts" AS c0
+    LEFT JOIN "CartProducts" AS c1 ON c0."ID" = c1."CartID"
+) AS t0 ON t."ID" = t0."CustomerID"
+LEFT JOIN (
+    SELECT o."ID", o."CustomerID", o."LocationID", o."OrderDate", o."TotalCost", o0."OrderID", o0."ProductID", o0."ID" AS "ID0", o0."OrderItemsQuantity"
+    FROM "Orders" AS o
+    LEFT JOIN "OrderProducts" AS o0 ON o."ID" = o0."OrderID"
+) AS t1 ON t."ID" = t1."CustomerID"
+ORDER BY t."ID", t0."ID", t0."CartID", t0."ProductID", t1."ID", t1."OrderID", t1."ProductID"
+2021-03-16 18:54:11.131 -04:00 [INF] Executed page /Account/Manage/Index in 166.8515ms
+2021-03-16 18:54:11.131 -04:00 [INF] Executed endpoint '/Account/Manage/Index'
+2021-03-16 18:54:11.132 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44343/Identity/Account/Manage - - - 200 - text/html;+charset=utf-8 176.7241ms
+2021-03-16 18:54:12.378 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44343/Cart/Cart/Index/c019665e-3e2d-4cd2-abe8-8a02d35d539e - -
+2021-03-16 18:54:12.379 -04:00 [INF] Executing endpoint 'StoreMVC.Areas.Cart.Controllers.CartController.Index (StoreMVC)'
+2021-03-16 18:54:12.381 -04:00 [INF] Route matched with {area = "Cart", action = "Index", controller = "Cart", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult Index(System.String) on controller StoreMVC.Areas.Cart.Controllers.CartController (StoreMVC).
+2021-03-16 18:54:12.382 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:12.431 -04:00 [INF] Executed DbCommand (49ms) [Parameters=[@__fk_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT t."ID", t."AppUserFK", t."FName", t."LName", t."Username", t0."ID", t0."CustomerID", t0."LocationID", t0."CartID", t0."ProductID", t0."ID0", t0."ProductCount", t1."ID", t1."CustomerID", t1."LocationID", t1."OrderDate", t1."TotalCost", t1."OrderID", t1."ProductID", t1."ID0", t1."OrderItemsQuantity"
+FROM (
+    SELECT c."ID", c."AppUserFK", c."FName", c."LName", c."Username"
+    FROM "Customers" AS c
+    WHERE c."AppUserFK" = @__fk_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT c0."ID", c0."CustomerID", c0."LocationID", c1."CartID", c1."ProductID", c1."ID" AS "ID0", c1."ProductCount"
+    FROM "Carts" AS c0
+    LEFT JOIN "CartProducts" AS c1 ON c0."ID" = c1."CartID"
+) AS t0 ON t."ID" = t0."CustomerID"
+LEFT JOIN (
+    SELECT o."ID", o."CustomerID", o."LocationID", o."OrderDate", o."TotalCost", o0."OrderID", o0."ProductID", o0."ID" AS "ID0", o0."OrderItemsQuantity"
+    FROM "Orders" AS o
+    LEFT JOIN "OrderProducts" AS o0 ON o."ID" = o0."OrderID"
+) AS t1 ON t."ID" = t1."CustomerID"
+ORDER BY t."ID", t0."ID", t0."CartID", t0."ProductID", t1."ID", t1."OrderID", t1."ProductID"
+2021-03-16 18:54:12.483 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:12.534 -04:00 [INF] Executed DbCommand (44ms) [Parameters=[@__cartID_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT c."CartID", c."ProductID", c."ID", c."ProductCount", p."ID", p."Manufacturer", p."ProductDescription", p."ProductName", p."ProductPrice"
+FROM "CartProducts" AS c
+INNER JOIN "Products" AS p ON c."ProductID" = p."ID"
+WHERE c."CartID" = @__cartID_0
+2021-03-16 18:54:12.537 -04:00 [INF] Executing ViewResult, running view Index.
+2021-03-16 18:54:12.543 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:12.590 -04:00 [INF] Executed DbCommand (46ms) [Parameters=[@__p_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."FirstName", a."LastName", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__p_0
+LIMIT 1
+2021-03-16 18:54:12.596 -04:00 [INF] Executed DbCommand (51ms) [Parameters=[@__fk_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT t."ID", t."AppUserFK", t."FName", t."LName", t."Username", t0."ID", t0."CustomerID", t0."LocationID", t0."CartID", t0."ProductID", t0."ID0", t0."ProductCount", t1."ID", t1."CustomerID", t1."LocationID", t1."OrderDate", t1."TotalCost", t1."OrderID", t1."ProductID", t1."ID0", t1."OrderItemsQuantity"
+FROM (
+    SELECT c."ID", c."AppUserFK", c."FName", c."LName", c."Username"
+    FROM "Customers" AS c
+    WHERE c."AppUserFK" = @__fk_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT c0."ID", c0."CustomerID", c0."LocationID", c1."CartID", c1."ProductID", c1."ID" AS "ID0", c1."ProductCount"
+    FROM "Carts" AS c0
+    LEFT JOIN "CartProducts" AS c1 ON c0."ID" = c1."CartID"
+) AS t0 ON t."ID" = t0."CustomerID"
+LEFT JOIN (
+    SELECT o."ID", o."CustomerID", o."LocationID", o."OrderDate", o."TotalCost", o0."OrderID", o0."ProductID", o0."ID" AS "ID0", o0."OrderItemsQuantity"
+    FROM "Orders" AS o
+    LEFT JOIN "OrderProducts" AS o0 ON o."ID" = o0."OrderID"
+) AS t1 ON t."ID" = t1."CustomerID"
+ORDER BY t."ID", t0."ID", t0."CartID", t0."ProductID", t1."ID", t1."OrderID", t1."ProductID"
+2021-03-16 18:54:12.644 -04:00 [INF] Executed ViewResult - view Index executed in 108.2317ms.
+2021-03-16 18:54:12.644 -04:00 [INF] Executed action StoreMVC.Areas.Cart.Controllers.CartController.Index (StoreMVC) in 263.7315ms
+2021-03-16 18:54:12.644 -04:00 [INF] Executed endpoint 'StoreMVC.Areas.Cart.Controllers.CartController.Index (StoreMVC)'
+2021-03-16 18:54:12.645 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44343/Cart/Cart/Index/c019665e-3e2d-4cd2-abe8-8a02d35d539e - - - 200 - text/html;+charset=utf-8 266.5328ms
+2021-03-16 18:54:14.259 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44343/LocationProducts/LocationProducts?customerID=15&locationID=2 - -
+2021-03-16 18:54:14.260 -04:00 [INF] Executing endpoint 'StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController.Index (StoreMVC)'
+2021-03-16 18:54:14.260 -04:00 [INF] Route matched with {area = "LocationProducts", action = "Index", controller = "LocationProducts", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult Index(Int32, Int32) on controller StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController (StoreMVC).
+2021-03-16 18:54:14.260 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:14.307 -04:00 [INF] Executed DbCommand (47ms) [Parameters=[@__locationID_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."LocationID", l."ProductID", l."ID", l."LocationProductName", l."ProductQuantity", p."ID", p."Manufacturer", p."ProductDescription", p."ProductName", p."ProductPrice"
+FROM "LocationProducts" AS l
+INNER JOIN "Products" AS p ON l."ProductID" = p."ID"
+WHERE l."LocationID" = @__locationID_0
+2021-03-16 18:54:14.308 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:14.354 -04:00 [INF] Executed DbCommand (46ms) [Parameters=[@__locationID_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."ID", l."Address", l."LocationName"
+FROM "Locations" AS l
+WHERE l."ID" = @__locationID_0
+LIMIT 1
+2021-03-16 18:54:14.355 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:14.404 -04:00 [INF] Executed DbCommand (49ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT t."ID", t."AppUserFK", t."FName", t."LName", t."Username", t0."ID", t0."CustomerID", t0."LocationID", t0."CartID", t0."ProductID", t0."ID0", t0."ProductCount", t1."ID", t1."CustomerID", t1."LocationID", t1."OrderDate", t1."TotalCost", t1."OrderID", t1."ProductID", t1."ID0", t1."OrderItemsQuantity"
+FROM (
+    SELECT c."ID", c."AppUserFK", c."FName", c."LName", c."Username"
+    FROM "Customers" AS c
+    WHERE c."ID" = @__id_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT c0."ID", c0."CustomerID", c0."LocationID", c1."CartID", c1."ProductID", c1."ID" AS "ID0", c1."ProductCount"
+    FROM "Carts" AS c0
+    LEFT JOIN "CartProducts" AS c1 ON c0."ID" = c1."CartID"
+) AS t0 ON t."ID" = t0."CustomerID"
+LEFT JOIN (
+    SELECT o."ID", o."CustomerID", o."LocationID", o."OrderDate", o."TotalCost", o0."OrderID", o0."ProductID", o0."ID" AS "ID0", o0."OrderItemsQuantity"
+    FROM "Orders" AS o
+    LEFT JOIN "OrderProducts" AS o0 ON o."ID" = o0."OrderID"
+) AS t1 ON t."ID" = t1."CustomerID"
+ORDER BY t."ID", t0."ID", t0."CartID", t0."ProductID", t1."ID", t1."OrderID", t1."ProductID"
+2021-03-16 18:54:14.455 -04:00 [INF] Executing ViewResult, running view Index.
+2021-03-16 18:54:14.463 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:14.511 -04:00 [INF] Executed DbCommand (48ms) [Parameters=[@__p_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."FirstName", a."LastName", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__p_0
+LIMIT 1
+2021-03-16 18:54:14.515 -04:00 [INF] Executed DbCommand (50ms) [Parameters=[@__fk_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT t."ID", t."AppUserFK", t."FName", t."LName", t."Username", t0."ID", t0."CustomerID", t0."LocationID", t0."CartID", t0."ProductID", t0."ID0", t0."ProductCount", t1."ID", t1."CustomerID", t1."LocationID", t1."OrderDate", t1."TotalCost", t1."OrderID", t1."ProductID", t1."ID0", t1."OrderItemsQuantity"
+FROM (
+    SELECT c."ID", c."AppUserFK", c."FName", c."LName", c."Username"
+    FROM "Customers" AS c
+    WHERE c."AppUserFK" = @__fk_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT c0."ID", c0."CustomerID", c0."LocationID", c1."CartID", c1."ProductID", c1."ID" AS "ID0", c1."ProductCount"
+    FROM "Carts" AS c0
+    LEFT JOIN "CartProducts" AS c1 ON c0."ID" = c1."CartID"
+) AS t0 ON t."ID" = t0."CustomerID"
+LEFT JOIN (
+    SELECT o."ID", o."CustomerID", o."LocationID", o."OrderDate", o."TotalCost", o0."OrderID", o0."ProductID", o0."ID" AS "ID0", o0."OrderItemsQuantity"
+    FROM "Orders" AS o
+    LEFT JOIN "OrderProducts" AS o0 ON o."ID" = o0."OrderID"
+) AS t1 ON t."ID" = t1."CustomerID"
+ORDER BY t."ID", t0."ID", t0."CartID", t0."ProductID", t1."ID", t1."OrderID", t1."ProductID"
+2021-03-16 18:54:14.516 -04:00 [INF] Executed ViewResult - view Index executed in 60.9498ms.
+2021-03-16 18:54:14.516 -04:00 [INF] Executed action StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController.Index (StoreMVC) in 256.4643ms
+2021-03-16 18:54:14.516 -04:00 [INF] Executed endpoint 'StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController.Index (StoreMVC)'
+2021-03-16 18:54:14.517 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44343/LocationProducts/LocationProducts?customerID=15&locationID=2 - - - 200 - text/html;+charset=utf-8 257.3577ms
+2021-03-16 18:54:16.525 -04:00 [INF] Request starting HTTP/2 POST https://localhost:44343/LocationProducts/LocationProducts/AddToCart application/x-www-form-urlencoded 277
+2021-03-16 18:54:16.525 -04:00 [INF] Executing endpoint 'StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController.AddToCart (StoreMVC)'
+2021-03-16 18:54:16.525 -04:00 [INF] Route matched with {area = "LocationProducts", action = "AddToCart", controller = "LocationProducts", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult AddToCart(Int32, Int32, Int32, Int32) on controller StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController (StoreMVC).
+2021-03-16 18:54:16.526 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:16.579 -04:00 [INF] Executed DbCommand (53ms) [Parameters=[@__locationID_0='?' (DbType = Int32), @__productID_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."LocationID", l."ProductID", l."ID", l."LocationProductName", l."ProductQuantity"
+FROM "LocationProducts" AS l
+WHERE (l."LocationID" = @__locationID_0) AND (l."ProductID" = @__productID_1)
+LIMIT 1
+2021-03-16 18:54:16.648 -04:00 [INF] Executed DbCommand (69ms) [Parameters=[@p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "LocationProducts" SET "ProductQuantity" = @p0
+WHERE "LocationID" = @p1 AND "ProductID" = @p2;
+2021-03-16 18:54:16.717 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:16.760 -04:00 [INF] Executed DbCommand (43ms) [Parameters=[@__customerID_0='?' (DbType = Int32), @__locationID_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT c."ID", c."CustomerID", c."LocationID"
+FROM "Carts" AS c
+WHERE (c."CustomerID" = @__customerID_0) AND (c."LocationID" = @__locationID_1)
+LIMIT 1
+2021-03-16 18:54:16.760 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:16.812 -04:00 [INF] Executed DbCommand (52ms) [Parameters=[@__cartID_0='?' (DbType = Int32), @__productID_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT c."CartID", c."ProductID", c."ID", c."ProductCount"
+FROM "CartProducts" AS c
+WHERE (c."CartID" = @__cartID_0) AND (c."ProductID" = @__productID_1)
+LIMIT 1
+2021-03-16 18:54:16.862 -04:00 [INF] Executed DbCommand (50ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "CartProducts" ("CartID", "ProductID", "ProductCount")
+VALUES (@p0, @p1, @p2)
+RETURNING "ID";
+2021-03-16 18:54:16.926 -04:00 [INF] Product ID 2 added to cart by user ID 15
+2021-03-16 18:54:16.971 -04:00 [INF] Executed DbCommand (44ms) [Parameters=[@__locationID_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."LocationID", l."ProductID", l."ID", l."LocationProductName", l."ProductQuantity", p."ID", p."Manufacturer", p."ProductDescription", p."ProductName", p."ProductPrice"
+FROM "LocationProducts" AS l
+INNER JOIN "Products" AS p ON l."ProductID" = p."ID"
+WHERE l."LocationID" = @__locationID_0
+2021-03-16 18:54:16.972 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:17.015 -04:00 [INF] Executed DbCommand (43ms) [Parameters=[@__locationID_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."ID", l."Address", l."LocationName"
+FROM "Locations" AS l
+WHERE l."ID" = @__locationID_0
+LIMIT 1
+2021-03-16 18:54:17.015 -04:00 [INF] Executing ViewResult, running view Index.
+2021-03-16 18:54:17.022 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:17.024 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:17.067 -04:00 [INF] Executed DbCommand (45ms) [Parameters=[@__p_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."FirstName", a."LastName", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__p_0
+LIMIT 1
+2021-03-16 18:54:17.072 -04:00 [INF] Executed DbCommand (47ms) [Parameters=[@__fk_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT t."ID", t."AppUserFK", t."FName", t."LName", t."Username", t0."ID", t0."CustomerID", t0."LocationID", t0."CartID", t0."ProductID", t0."ID0", t0."ProductCount", t1."ID", t1."CustomerID", t1."LocationID", t1."OrderDate", t1."TotalCost", t1."OrderID", t1."ProductID", t1."ID0", t1."OrderItemsQuantity"
+FROM (
+    SELECT c."ID", c."AppUserFK", c."FName", c."LName", c."Username"
+    FROM "Customers" AS c
+    WHERE c."AppUserFK" = @__fk_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT c0."ID", c0."CustomerID", c0."LocationID", c1."CartID", c1."ProductID", c1."ID" AS "ID0", c1."ProductCount"
+    FROM "Carts" AS c0
+    LEFT JOIN "CartProducts" AS c1 ON c0."ID" = c1."CartID"
+) AS t0 ON t."ID" = t0."CustomerID"
+LEFT JOIN (
+    SELECT o."ID", o."CustomerID", o."LocationID", o."OrderDate", o."TotalCost", o0."OrderID", o0."ProductID", o0."ID" AS "ID0", o0."OrderItemsQuantity"
+    FROM "Orders" AS o
+    LEFT JOIN "OrderProducts" AS o0 ON o."ID" = o0."OrderID"
+) AS t1 ON t."ID" = t1."CustomerID"
+ORDER BY t."ID", t0."ID", t0."CartID", t0."ProductID", t1."ID", t1."OrderID", t1."ProductID"
+2021-03-16 18:54:17.119 -04:00 [INF] Executed ViewResult - view Index executed in 104.1456ms.
+2021-03-16 18:54:17.120 -04:00 [INF] Executed action StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController.AddToCart (StoreMVC) in 594.3833ms
+2021-03-16 18:54:17.120 -04:00 [INF] Executed endpoint 'StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController.AddToCart (StoreMVC)'
+2021-03-16 18:54:17.120 -04:00 [INF] Request finished HTTP/2 POST https://localhost:44343/LocationProducts/LocationProducts/AddToCart application/x-www-form-urlencoded 277 - 200 - text/html;+charset=utf-8 595.2525ms
+2021-03-16 18:54:20.080 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44343/Cart/Cart/Index/c019665e-3e2d-4cd2-abe8-8a02d35d539e - -
+2021-03-16 18:54:20.082 -04:00 [INF] Executing endpoint 'StoreMVC.Areas.Cart.Controllers.CartController.Index (StoreMVC)'
+2021-03-16 18:54:20.082 -04:00 [INF] Route matched with {area = "Cart", action = "Index", controller = "Cart", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult Index(System.String) on controller StoreMVC.Areas.Cart.Controllers.CartController (StoreMVC).
+2021-03-16 18:54:20.082 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:20.134 -04:00 [INF] Executed DbCommand (51ms) [Parameters=[@__fk_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT t."ID", t."AppUserFK", t."FName", t."LName", t."Username", t0."ID", t0."CustomerID", t0."LocationID", t0."CartID", t0."ProductID", t0."ID0", t0."ProductCount", t1."ID", t1."CustomerID", t1."LocationID", t1."OrderDate", t1."TotalCost", t1."OrderID", t1."ProductID", t1."ID0", t1."OrderItemsQuantity"
+FROM (
+    SELECT c."ID", c."AppUserFK", c."FName", c."LName", c."Username"
+    FROM "Customers" AS c
+    WHERE c."AppUserFK" = @__fk_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT c0."ID", c0."CustomerID", c0."LocationID", c1."CartID", c1."ProductID", c1."ID" AS "ID0", c1."ProductCount"
+    FROM "Carts" AS c0
+    LEFT JOIN "CartProducts" AS c1 ON c0."ID" = c1."CartID"
+) AS t0 ON t."ID" = t0."CustomerID"
+LEFT JOIN (
+    SELECT o."ID", o."CustomerID", o."LocationID", o."OrderDate", o."TotalCost", o0."OrderID", o0."ProductID", o0."ID" AS "ID0", o0."OrderItemsQuantity"
+    FROM "Orders" AS o
+    LEFT JOIN "OrderProducts" AS o0 ON o."ID" = o0."OrderID"
+) AS t1 ON t."ID" = t1."CustomerID"
+ORDER BY t."ID", t0."ID", t0."CartID", t0."ProductID", t1."ID", t1."OrderID", t1."ProductID"
+2021-03-16 18:54:20.187 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:20.235 -04:00 [INF] Executed DbCommand (48ms) [Parameters=[@__cartID_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT c."CartID", c."ProductID", c."ID", c."ProductCount", p."ID", p."Manufacturer", p."ProductDescription", p."ProductName", p."ProductPrice"
+FROM "CartProducts" AS c
+INNER JOIN "Products" AS p ON c."ProductID" = p."ID"
+WHERE c."CartID" = @__cartID_0
+2021-03-16 18:54:20.235 -04:00 [INF] Executing ViewResult, running view Index.
+2021-03-16 18:54:20.242 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:20.289 -04:00 [INF] Executed DbCommand (47ms) [Parameters=[@__p_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."FirstName", a."LastName", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__p_0
+LIMIT 1
+2021-03-16 18:54:20.292 -04:00 [INF] Executed DbCommand (48ms) [Parameters=[@__fk_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT t."ID", t."AppUserFK", t."FName", t."LName", t."Username", t0."ID", t0."CustomerID", t0."LocationID", t0."CartID", t0."ProductID", t0."ID0", t0."ProductCount", t1."ID", t1."CustomerID", t1."LocationID", t1."OrderDate", t1."TotalCost", t1."OrderID", t1."ProductID", t1."ID0", t1."OrderItemsQuantity"
+FROM (
+    SELECT c."ID", c."AppUserFK", c."FName", c."LName", c."Username"
+    FROM "Customers" AS c
+    WHERE c."AppUserFK" = @__fk_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT c0."ID", c0."CustomerID", c0."LocationID", c1."CartID", c1."ProductID", c1."ID" AS "ID0", c1."ProductCount"
+    FROM "Carts" AS c0
+    LEFT JOIN "CartProducts" AS c1 ON c0."ID" = c1."CartID"
+) AS t0 ON t."ID" = t0."CustomerID"
+LEFT JOIN (
+    SELECT o."ID", o."CustomerID", o."LocationID", o."OrderDate", o."TotalCost", o0."OrderID", o0."ProductID", o0."ID" AS "ID0", o0."OrderItemsQuantity"
+    FROM "Orders" AS o
+    LEFT JOIN "OrderProducts" AS o0 ON o."ID" = o0."OrderID"
+) AS t1 ON t."ID" = t1."CustomerID"
+ORDER BY t."ID", t0."ID", t0."CartID", t0."ProductID", t1."ID", t1."OrderID", t1."ProductID"
+2021-03-16 18:54:20.337 -04:00 [INF] Executed ViewResult - view Index executed in 102.087ms.
+2021-03-16 18:54:20.337 -04:00 [INF] Executed action StoreMVC.Areas.Cart.Controllers.CartController.Index (StoreMVC) in 255.4079ms
+2021-03-16 18:54:20.337 -04:00 [INF] Executed endpoint 'StoreMVC.Areas.Cart.Controllers.CartController.Index (StoreMVC)'
+2021-03-16 18:54:20.338 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44343/Cart/Cart/Index/c019665e-3e2d-4cd2-abe8-8a02d35d539e - - - 200 - text/html;+charset=utf-8 257.8009ms
+2021-03-16 18:54:31.589 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44343/LocationProducts/LocationProducts?customerID=15&locationID=2 - -
+2021-03-16 18:54:31.589 -04:00 [INF] Executing endpoint 'StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController.Index (StoreMVC)'
+2021-03-16 18:54:31.589 -04:00 [INF] Route matched with {area = "LocationProducts", action = "Index", controller = "LocationProducts", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult Index(Int32, Int32) on controller StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController (StoreMVC).
+2021-03-16 18:54:31.590 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:31.648 -04:00 [INF] Executed DbCommand (58ms) [Parameters=[@__locationID_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."LocationID", l."ProductID", l."ID", l."LocationProductName", l."ProductQuantity", p."ID", p."Manufacturer", p."ProductDescription", p."ProductName", p."ProductPrice"
+FROM "LocationProducts" AS l
+INNER JOIN "Products" AS p ON l."ProductID" = p."ID"
+WHERE l."LocationID" = @__locationID_0
+2021-03-16 18:54:31.648 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:31.691 -04:00 [INF] Executed DbCommand (43ms) [Parameters=[@__locationID_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."ID", l."Address", l."LocationName"
+FROM "Locations" AS l
+WHERE l."ID" = @__locationID_0
+LIMIT 1
+2021-03-16 18:54:31.691 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:31.743 -04:00 [INF] Executed DbCommand (52ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT t."ID", t."AppUserFK", t."FName", t."LName", t."Username", t0."ID", t0."CustomerID", t0."LocationID", t0."CartID", t0."ProductID", t0."ID0", t0."ProductCount", t1."ID", t1."CustomerID", t1."LocationID", t1."OrderDate", t1."TotalCost", t1."OrderID", t1."ProductID", t1."ID0", t1."OrderItemsQuantity"
+FROM (
+    SELECT c."ID", c."AppUserFK", c."FName", c."LName", c."Username"
+    FROM "Customers" AS c
+    WHERE c."ID" = @__id_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT c0."ID", c0."CustomerID", c0."LocationID", c1."CartID", c1."ProductID", c1."ID" AS "ID0", c1."ProductCount"
+    FROM "Carts" AS c0
+    LEFT JOIN "CartProducts" AS c1 ON c0."ID" = c1."CartID"
+) AS t0 ON t."ID" = t0."CustomerID"
+LEFT JOIN (
+    SELECT o."ID", o."CustomerID", o."LocationID", o."OrderDate", o."TotalCost", o0."OrderID", o0."ProductID", o0."ID" AS "ID0", o0."OrderItemsQuantity"
+    FROM "Orders" AS o
+    LEFT JOIN "OrderProducts" AS o0 ON o."ID" = o0."OrderID"
+) AS t1 ON t."ID" = t1."CustomerID"
+ORDER BY t."ID", t0."ID", t0."CartID", t0."ProductID", t1."ID", t1."OrderID", t1."ProductID"
+2021-03-16 18:54:31.785 -04:00 [INF] Executing ViewResult, running view Index.
+2021-03-16 18:54:31.791 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:31.837 -04:00 [INF] Executed DbCommand (45ms) [Parameters=[@__p_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."FirstName", a."LastName", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__p_0
+LIMIT 1
+2021-03-16 18:54:31.842 -04:00 [INF] Executed DbCommand (48ms) [Parameters=[@__fk_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT t."ID", t."AppUserFK", t."FName", t."LName", t."Username", t0."ID", t0."CustomerID", t0."LocationID", t0."CartID", t0."ProductID", t0."ID0", t0."ProductCount", t1."ID", t1."CustomerID", t1."LocationID", t1."OrderDate", t1."TotalCost", t1."OrderID", t1."ProductID", t1."ID0", t1."OrderItemsQuantity"
+FROM (
+    SELECT c."ID", c."AppUserFK", c."FName", c."LName", c."Username"
+    FROM "Customers" AS c
+    WHERE c."AppUserFK" = @__fk_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT c0."ID", c0."CustomerID", c0."LocationID", c1."CartID", c1."ProductID", c1."ID" AS "ID0", c1."ProductCount"
+    FROM "Carts" AS c0
+    LEFT JOIN "CartProducts" AS c1 ON c0."ID" = c1."CartID"
+) AS t0 ON t."ID" = t0."CustomerID"
+LEFT JOIN (
+    SELECT o."ID", o."CustomerID", o."LocationID", o."OrderDate", o."TotalCost", o0."OrderID", o0."ProductID", o0."ID" AS "ID0", o0."OrderItemsQuantity"
+    FROM "Orders" AS o
+    LEFT JOIN "OrderProducts" AS o0 ON o."ID" = o0."OrderID"
+) AS t1 ON t."ID" = t1."CustomerID"
+ORDER BY t."ID", t0."ID", t0."CartID", t0."ProductID", t1."ID", t1."OrderID", t1."ProductID"
+2021-03-16 18:54:31.843 -04:00 [INF] Executed ViewResult - view Index executed in 58.3028ms.
+2021-03-16 18:54:31.843 -04:00 [INF] Executed action StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController.Index (StoreMVC) in 253.5231ms
+2021-03-16 18:54:31.843 -04:00 [INF] Executed endpoint 'StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController.Index (StoreMVC)'
+2021-03-16 18:54:31.843 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44343/LocationProducts/LocationProducts?customerID=15&locationID=2 - - - 200 - text/html;+charset=utf-8 254.4390ms
+2021-03-16 18:54:37.117 -04:00 [INF] Request starting HTTP/2 POST https://localhost:44343/LocationProducts/LocationProducts/AddToCart application/x-www-form-urlencoded 277
+2021-03-16 18:54:37.117 -04:00 [INF] Executing endpoint 'StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController.AddToCart (StoreMVC)'
+2021-03-16 18:54:37.117 -04:00 [INF] Route matched with {area = "LocationProducts", action = "AddToCart", controller = "LocationProducts", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult AddToCart(Int32, Int32, Int32, Int32) on controller StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController (StoreMVC).
+2021-03-16 18:54:37.118 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:37.159 -04:00 [INF] Executed DbCommand (41ms) [Parameters=[@__locationID_0='?' (DbType = Int32), @__productID_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."LocationID", l."ProductID", l."ID", l."LocationProductName", l."ProductQuantity"
+FROM "LocationProducts" AS l
+WHERE (l."LocationID" = @__locationID_0) AND (l."ProductID" = @__productID_1)
+LIMIT 1
+2021-03-16 18:54:37.220 -04:00 [INF] Executed DbCommand (61ms) [Parameters=[@p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "LocationProducts" SET "ProductQuantity" = @p0
+WHERE "LocationID" = @p1 AND "ProductID" = @p2;
+2021-03-16 18:54:37.280 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:37.329 -04:00 [INF] Executed DbCommand (48ms) [Parameters=[@__customerID_0='?' (DbType = Int32), @__locationID_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT c."ID", c."CustomerID", c."LocationID"
+FROM "Carts" AS c
+WHERE (c."CustomerID" = @__customerID_0) AND (c."LocationID" = @__locationID_1)
+LIMIT 1
+2021-03-16 18:54:37.329 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:37.374 -04:00 [INF] Executed DbCommand (45ms) [Parameters=[@__cartID_0='?' (DbType = Int32), @__productID_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT c."CartID", c."ProductID", c."ID", c."ProductCount"
+FROM "CartProducts" AS c
+WHERE (c."CartID" = @__cartID_0) AND (c."ProductID" = @__productID_1)
+LIMIT 1
+2021-03-16 18:54:37.425 -04:00 [INF] Executed DbCommand (50ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "CartProducts" ("CartID", "ProductID", "ProductCount")
+VALUES (@p0, @p1, @p2)
+RETURNING "ID";
+2021-03-16 18:54:37.490 -04:00 [INF] Product ID 4 added to cart by user ID 15
+2021-03-16 18:54:37.534 -04:00 [INF] Executed DbCommand (44ms) [Parameters=[@__locationID_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."LocationID", l."ProductID", l."ID", l."LocationProductName", l."ProductQuantity", p."ID", p."Manufacturer", p."ProductDescription", p."ProductName", p."ProductPrice"
+FROM "LocationProducts" AS l
+INNER JOIN "Products" AS p ON l."ProductID" = p."ID"
+WHERE l."LocationID" = @__locationID_0
+2021-03-16 18:54:37.535 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:37.591 -04:00 [INF] Executed DbCommand (56ms) [Parameters=[@__locationID_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT l."ID", l."Address", l."LocationName"
+FROM "Locations" AS l
+WHERE l."ID" = @__locationID_0
+LIMIT 1
+2021-03-16 18:54:37.591 -04:00 [INF] Executing ViewResult, running view Index.
+2021-03-16 18:54:37.598 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:37.600 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:37.654 -04:00 [INF] Executed DbCommand (54ms) [Parameters=[@__fk_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT t."ID", t."AppUserFK", t."FName", t."LName", t."Username", t0."ID", t0."CustomerID", t0."LocationID", t0."CartID", t0."ProductID", t0."ID0", t0."ProductCount", t1."ID", t1."CustomerID", t1."LocationID", t1."OrderDate", t1."TotalCost", t1."OrderID", t1."ProductID", t1."ID0", t1."OrderItemsQuantity"
+FROM (
+    SELECT c."ID", c."AppUserFK", c."FName", c."LName", c."Username"
+    FROM "Customers" AS c
+    WHERE c."AppUserFK" = @__fk_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT c0."ID", c0."CustomerID", c0."LocationID", c1."CartID", c1."ProductID", c1."ID" AS "ID0", c1."ProductCount"
+    FROM "Carts" AS c0
+    LEFT JOIN "CartProducts" AS c1 ON c0."ID" = c1."CartID"
+) AS t0 ON t."ID" = t0."CustomerID"
+LEFT JOIN (
+    SELECT o."ID", o."CustomerID", o."LocationID", o."OrderDate", o."TotalCost", o0."OrderID", o0."ProductID", o0."ID" AS "ID0", o0."OrderItemsQuantity"
+    FROM "Orders" AS o
+    LEFT JOIN "OrderProducts" AS o0 ON o."ID" = o0."OrderID"
+) AS t1 ON t."ID" = t1."CustomerID"
+ORDER BY t."ID", t0."ID", t0."CartID", t0."ProductID", t1."ID", t1."OrderID", t1."ProductID"
+2021-03-16 18:54:37.655 -04:00 [INF] Executed DbCommand (56ms) [Parameters=[@__p_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."FirstName", a."LastName", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__p_0
+LIMIT 1
+2021-03-16 18:54:37.750 -04:00 [INF] Executed ViewResult - view Index executed in 159.5002ms.
+2021-03-16 18:54:37.750 -04:00 [INF] Executed action StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController.AddToCart (StoreMVC) in 633.0302ms
+2021-03-16 18:54:37.750 -04:00 [INF] Executed endpoint 'StoreMVC.Areas.LocationProducts.Controllers.LocationProductsController.AddToCart (StoreMVC)'
+2021-03-16 18:54:37.751 -04:00 [INF] Request finished HTTP/2 POST https://localhost:44343/LocationProducts/LocationProducts/AddToCart application/x-www-form-urlencoded 277 - 200 - text/html;+charset=utf-8 633.8698ms
+2021-03-16 18:54:46.823 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44343/Cart/Cart/Index/c019665e-3e2d-4cd2-abe8-8a02d35d539e - -
+2021-03-16 18:54:46.824 -04:00 [INF] Executing endpoint 'StoreMVC.Areas.Cart.Controllers.CartController.Index (StoreMVC)'
+2021-03-16 18:54:46.824 -04:00 [INF] Route matched with {area = "Cart", action = "Index", controller = "Cart", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult Index(System.String) on controller StoreMVC.Areas.Cart.Controllers.CartController (StoreMVC).
+2021-03-16 18:54:46.826 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:46.880 -04:00 [INF] Executed DbCommand (54ms) [Parameters=[@__fk_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT t."ID", t."AppUserFK", t."FName", t."LName", t."Username", t0."ID", t0."CustomerID", t0."LocationID", t0."CartID", t0."ProductID", t0."ID0", t0."ProductCount", t1."ID", t1."CustomerID", t1."LocationID", t1."OrderDate", t1."TotalCost", t1."OrderID", t1."ProductID", t1."ID0", t1."OrderItemsQuantity"
+FROM (
+    SELECT c."ID", c."AppUserFK", c."FName", c."LName", c."Username"
+    FROM "Customers" AS c
+    WHERE c."AppUserFK" = @__fk_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT c0."ID", c0."CustomerID", c0."LocationID", c1."CartID", c1."ProductID", c1."ID" AS "ID0", c1."ProductCount"
+    FROM "Carts" AS c0
+    LEFT JOIN "CartProducts" AS c1 ON c0."ID" = c1."CartID"
+) AS t0 ON t."ID" = t0."CustomerID"
+LEFT JOIN (
+    SELECT o."ID", o."CustomerID", o."LocationID", o."OrderDate", o."TotalCost", o0."OrderID", o0."ProductID", o0."ID" AS "ID0", o0."OrderItemsQuantity"
+    FROM "Orders" AS o
+    LEFT JOIN "OrderProducts" AS o0 ON o."ID" = o0."OrderID"
+) AS t1 ON t."ID" = t1."CustomerID"
+ORDER BY t."ID", t0."ID", t0."CartID", t0."ProductID", t1."ID", t1."OrderID", t1."ProductID"
+2021-03-16 18:54:46.971 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:47.016 -04:00 [INF] Executed DbCommand (45ms) [Parameters=[@__cartID_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT c."CartID", c."ProductID", c."ID", c."ProductCount", p."ID", p."Manufacturer", p."ProductDescription", p."ProductName", p."ProductPrice"
+FROM "CartProducts" AS c
+INNER JOIN "Products" AS p ON c."ProductID" = p."ID"
+WHERE c."CartID" = @__cartID_0
+2021-03-16 18:54:47.016 -04:00 [INF] Executing ViewResult, running view Index.
+2021-03-16 18:54:47.018 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:47.064 -04:00 [INF] Executed DbCommand (44ms) [Parameters=[@__fk_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT t."ID", t."AppUserFK", t."FName", t."LName", t."Username", t0."ID", t0."CustomerID", t0."LocationID", t0."CartID", t0."ProductID", t0."ID0", t0."ProductCount", t1."ID", t1."CustomerID", t1."LocationID", t1."OrderDate", t1."TotalCost", t1."OrderID", t1."ProductID", t1."ID0", t1."OrderItemsQuantity"
+FROM (
+    SELECT c."ID", c."AppUserFK", c."FName", c."LName", c."Username"
+    FROM "Customers" AS c
+    WHERE c."AppUserFK" = @__fk_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT c0."ID", c0."CustomerID", c0."LocationID", c1."CartID", c1."ProductID", c1."ID" AS "ID0", c1."ProductCount"
+    FROM "Carts" AS c0
+    LEFT JOIN "CartProducts" AS c1 ON c0."ID" = c1."CartID"
+) AS t0 ON t."ID" = t0."CustomerID"
+LEFT JOIN (
+    SELECT o."ID", o."CustomerID", o."LocationID", o."OrderDate", o."TotalCost", o0."OrderID", o0."ProductID", o0."ID" AS "ID0", o0."OrderItemsQuantity"
+    FROM "Orders" AS o
+    LEFT JOIN "OrderProducts" AS o0 ON o."ID" = o0."OrderID"
+) AS t1 ON t."ID" = t1."CustomerID"
+ORDER BY t."ID", t0."ID", t0."CartID", t0."ProductID", t1."ID", t1."OrderID", t1."ProductID"
+2021-03-16 18:54:47.064 -04:00 [INF] Executed DbCommand (45ms) [Parameters=[@__p_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."FirstName", a."LastName", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__p_0
+LIMIT 1
+2021-03-16 18:54:47.158 -04:00 [INF] Executed ViewResult - view Index executed in 142.0036ms.
+2021-03-16 18:54:47.158 -04:00 [INF] Executed action StoreMVC.Areas.Cart.Controllers.CartController.Index (StoreMVC) in 334.2442ms
+2021-03-16 18:54:47.158 -04:00 [INF] Executed endpoint 'StoreMVC.Areas.Cart.Controllers.CartController.Index (StoreMVC)'
+2021-03-16 18:54:47.159 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44343/Cart/Cart/Index/c019665e-3e2d-4cd2-abe8-8a02d35d539e - - - 200 - text/html;+charset=utf-8 335.1679ms
+2021-03-16 18:54:50.034 -04:00 [INF] Request starting HTTP/2 POST https://localhost:44343/Cart/Cart/PlaceOrder application/x-www-form-urlencoded 271
+2021-03-16 18:54:50.034 -04:00 [INF] Executing endpoint 'StoreMVC.Areas.Cart.Controllers.CartController.PlaceOrder (StoreMVC)'
+2021-03-16 18:54:50.036 -04:00 [INF] Route matched with {area = "Cart", action = "PlaceOrder", controller = "Cart", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult PlaceOrder(Int32, System.Decimal) on controller StoreMVC.Areas.Cart.Controllers.CartController (StoreMVC).
+2021-03-16 18:54:50.037 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:50.046 -04:00 [WRN] Compiling a query which loads related collections for more than one collection navigation either via 'Include' or through projection but no 'QuerySplittingBehavior' has been configured. By default Entity Framework will use 'QuerySplittingBehavior.SingleQuery' which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'
+2021-03-16 18:54:50.107 -04:00 [INF] Executed DbCommand (47ms) [Parameters=[@__cartId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT t."ID", t."AppUserFK", t."FName", t."LName", t."Username", t0."ID", t0."CustomerID", t0."LocationID", t0."CartID", t0."ProductID", t0."ID0", t0."ProductCount", t1."ID", t1."CustomerID", t1."LocationID", t1."OrderDate", t1."TotalCost", t1."OrderID", t1."ProductID", t1."ID0", t1."OrderItemsQuantity"
+FROM (
+    SELECT c."ID", c."AppUserFK", c."FName", c."LName", c."Username"
+    FROM "Customers" AS c
+    WHERE (
+        SELECT c0."ID"
+        FROM "Carts" AS c0
+        WHERE c."ID" = c0."CustomerID"
+        LIMIT 1) = @__cartId_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT c1."ID", c1."CustomerID", c1."LocationID", c2."CartID", c2."ProductID", c2."ID" AS "ID0", c2."ProductCount"
+    FROM "Carts" AS c1
+    LEFT JOIN "CartProducts" AS c2 ON c1."ID" = c2."CartID"
+) AS t0 ON t."ID" = t0."CustomerID"
+LEFT JOIN (
+    SELECT o."ID", o."CustomerID", o."LocationID", o."OrderDate", o."TotalCost", o0."OrderID", o0."ProductID", o0."ID" AS "ID0", o0."OrderItemsQuantity"
+    FROM "Orders" AS o
+    LEFT JOIN "OrderProducts" AS o0 ON o."ID" = o0."OrderID"
+) AS t1 ON t."ID" = t1."CustomerID"
+ORDER BY t."ID", t0."ID", t0."CartID", t0."ProductID", t1."ID", t1."OrderID", t1."ProductID"
+2021-03-16 18:54:50.201 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:50.291 -04:00 [INF] Executed DbCommand (59ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = DateTime), @p3='?' (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Orders" ("CustomerID", "LocationID", "OrderDate", "TotalCost")
+VALUES (@p0, @p1, @p2, @p3)
+RETURNING "ID";
+2021-03-16 18:54:50.421 -04:00 [INF] Executed DbCommand (51ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT o."ID", o."CustomerID", o."LocationID", o."OrderDate", o."TotalCost"
+FROM "Orders" AS o
+ORDER BY o."OrderDate" DESC
+LIMIT 1
+2021-03-16 18:54:50.422 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:50.467 -04:00 [INF] Executed DbCommand (43ms) [Parameters=[@__cartId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT c."ID", c."CustomerID", c."LocationID"
+FROM "Carts" AS c
+WHERE c."ID" = @__cartId_0
+LIMIT 1
+2021-03-16 18:54:50.513 -04:00 [INF] Executed DbCommand (45ms) [Parameters=[@__orderID_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT o."ID", o."CustomerID", o."LocationID", o."OrderDate", o."TotalCost"
+FROM "Orders" AS o
+WHERE o."ID" = @__orderID_0
+LIMIT 1
+2021-03-16 18:54:50.553 -04:00 [INF] Executed DbCommand (38ms) [Parameters=[@__cartId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT c."CartID", c."ProductID", c."ID", c."ProductCount"
+FROM "CartProducts" AS c
+WHERE c."CartID" = @__cartId_0
+2021-03-16 18:54:50.608 -04:00 [INF] Executed DbCommand (49ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "OrderProducts" ("OrderID", "ProductID", "OrderItemsQuantity")
+VALUES (@p0, @p1, @p2)
+RETURNING "ID";
+2021-03-16 18:54:50.730 -04:00 [INF] Executed DbCommand (57ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "OrderProducts" ("OrderID", "ProductID", "OrderItemsQuantity")
+VALUES (@p0, @p1, @p2)
+RETURNING "ID";
+2021-03-16 18:54:50.791 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:50.837 -04:00 [INF] Executed DbCommand (45ms) [Parameters=[@__cartID_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT c."ID", c."CustomerID", c."LocationID"
+FROM "Carts" AS c
+WHERE c."ID" = @__cartID_0
+LIMIT 1
+2021-03-16 18:54:50.889 -04:00 [INF] Executed DbCommand (50ms) [Parameters=[@__cartID_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT c."CartID", c."ProductID", c."ID", c."ProductCount"
+FROM "CartProducts" AS c
+WHERE c."CartID" = @__cartID_0
+2021-03-16 18:54:50.950 -04:00 [INF] Executed DbCommand (56ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "CartProducts"
+WHERE "CartID" = @p0 AND "ProductID" = @p1;
+2021-03-16 18:54:51.071 -04:00 [INF] Executed DbCommand (59ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "CartProducts"
+WHERE "CartID" = @p0 AND "ProductID" = @p1;
+2021-03-16 18:54:51.195 -04:00 [INF] Executed DbCommand (48ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."ID", t."CustomerID", t."LocationID", t."OrderDate", t."TotalCost", t."ID0", t."AppUserFK", t."FName", t."LName", t."Username", t."ID1", t."Address", t."LocationName", t0."OrderID", t0."ProductID", t0."ID", t0."OrderItemsQuantity", t0."ID0", t0."Manufacturer", t0."ProductDescription", t0."ProductName", t0."ProductPrice"
+FROM (
+    SELECT o."ID", o."CustomerID", o."LocationID", o."OrderDate", o."TotalCost", c."ID" AS "ID0", c."AppUserFK", c."FName", c."LName", c."Username", l."ID" AS "ID1", l."Address", l."LocationName"
+    FROM "Orders" AS o
+    INNER JOIN "Customers" AS c ON o."CustomerID" = c."ID"
+    INNER JOIN "Locations" AS l ON o."LocationID" = l."ID"
+    ORDER BY o."OrderDate" DESC
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT o0."OrderID", o0."ProductID", o0."ID", o0."OrderItemsQuantity", p."ID" AS "ID0", p."Manufacturer", p."ProductDescription", p."ProductName", p."ProductPrice"
+    FROM "OrderProducts" AS o0
+    INNER JOIN "Products" AS p ON o0."ProductID" = p."ID"
+) AS t0 ON t."ID" = t0."OrderID"
+ORDER BY t."OrderDate" DESC, t."ID", t."ID0", t."ID1", t0."OrderID", t0."ProductID", t0."ID0"
+2021-03-16 18:54:51.210 -04:00 [INF] Executing ViewResult, running view OrderReview.
+2021-03-16 18:54:51.218 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:54:51.261 -04:00 [INF] Executed DbCommand (42ms) [Parameters=[@__p_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."FirstName", a."LastName", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__p_0
+LIMIT 1
+2021-03-16 18:54:51.265 -04:00 [INF] Executed DbCommand (44ms) [Parameters=[@__fk_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT t."ID", t."AppUserFK", t."FName", t."LName", t."Username", t0."ID", t0."CustomerID", t0."LocationID", t0."CartID", t0."ProductID", t0."ID0", t0."ProductCount", t1."ID", t1."CustomerID", t1."LocationID", t1."OrderDate", t1."TotalCost", t1."OrderID", t1."ProductID", t1."ID0", t1."OrderItemsQuantity"
+FROM (
+    SELECT c."ID", c."AppUserFK", c."FName", c."LName", c."Username"
+    FROM "Customers" AS c
+    WHERE c."AppUserFK" = @__fk_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT c0."ID", c0."CustomerID", c0."LocationID", c1."CartID", c1."ProductID", c1."ID" AS "ID0", c1."ProductCount"
+    FROM "Carts" AS c0
+    LEFT JOIN "CartProducts" AS c1 ON c0."ID" = c1."CartID"
+) AS t0 ON t."ID" = t0."CustomerID"
+LEFT JOIN (
+    SELECT o."ID", o."CustomerID", o."LocationID", o."OrderDate", o."TotalCost", o0."OrderID", o0."ProductID", o0."ID" AS "ID0", o0."OrderItemsQuantity"
+    FROM "Orders" AS o
+    LEFT JOIN "OrderProducts" AS o0 ON o."ID" = o0."OrderID"
+) AS t1 ON t."ID" = t1."CustomerID"
+ORDER BY t."ID", t0."ID", t0."CartID", t0."ProductID", t1."ID", t1."OrderID", t1."ProductID"
+2021-03-16 18:54:51.269 -04:00 [INF] Executed ViewResult - view OrderReview executed in 60.1638ms.
+2021-03-16 18:54:51.269 -04:00 [INF] Executed action StoreMVC.Areas.Cart.Controllers.CartController.PlaceOrder (StoreMVC) in 1233.7707ms
+2021-03-16 18:54:51.269 -04:00 [INF] Executed endpoint 'StoreMVC.Areas.Cart.Controllers.CartController.PlaceOrder (StoreMVC)'
+2021-03-16 18:54:51.270 -04:00 [INF] Request finished HTTP/2 POST https://localhost:44343/Cart/Cart/PlaceOrder application/x-www-form-urlencoded 271 - 200 - text/html;+charset=utf-8 1235.9277ms
+2021-03-16 18:55:09.422 -04:00 [INF] Request starting HTTP/2 POST https://localhost:44343/Identity/Account/Logout?returnUrl=%2FHome%2FIndex application/x-www-form-urlencoded 225
+2021-03-16 18:55:09.423 -04:00 [INF] Executing endpoint '/Account/Logout'
+2021-03-16 18:55:09.423 -04:00 [INF] Route matched with {page = "/Account/Logout", area = "Identity", action = "", controller = ""}. Executing page /Account/Logout
+2021-03-16 18:55:09.423 -04:00 [INF] Executing handler method StoreMVC.Areas.Identity.Pages.Account.LogoutModel.OnPost - ModelState is "Valid"
+2021-03-16 18:55:09.423 -04:00 [INF] AuthenticationScheme: Identity.Application signed out.
+2021-03-16 18:55:09.423 -04:00 [INF] AuthenticationScheme: Identity.External signed out.
+2021-03-16 18:55:09.423 -04:00 [INF] AuthenticationScheme: Identity.TwoFactorUserId signed out.
+2021-03-16 18:55:09.423 -04:00 [INF] User logged out.
+2021-03-16 18:55:09.423 -04:00 [INF] Executed handler method OnPost, returned result Microsoft.AspNetCore.Mvc.LocalRedirectResult.
+2021-03-16 18:55:09.423 -04:00 [INF] Executing LocalRedirectResult, redirecting to /Home/Index.
+2021-03-16 18:55:09.423 -04:00 [INF] Executed page /Account/Logout in 0.6036ms
+2021-03-16 18:55:09.423 -04:00 [INF] Executed endpoint '/Account/Logout'
+2021-03-16 18:55:09.424 -04:00 [INF] Request finished HTTP/2 POST https://localhost:44343/Identity/Account/Logout?returnUrl=%2FHome%2FIndex application/x-www-form-urlencoded 225 - 302 - - 1.9336ms
+2021-03-16 18:55:09.427 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44343/Home/Index - -
+2021-03-16 18:55:09.427 -04:00 [INF] Executing endpoint 'StoreMVC.Controllers.HomeController.Index (StoreMVC)'
+2021-03-16 18:55:09.427 -04:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller StoreMVC.Controllers.HomeController (StoreMVC).
+2021-03-16 18:55:09.428 -04:00 [INF] Executing ViewResult, running view Index.
+2021-03-16 18:55:09.428 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:55:09.428 -04:00 [INF] Executed ViewResult - view Index executed in 0.6342ms.
+2021-03-16 18:55:09.428 -04:00 [INF] Executed action StoreMVC.Controllers.HomeController.Index (StoreMVC) in 0.7971ms
+2021-03-16 18:55:09.428 -04:00 [INF] Executed endpoint 'StoreMVC.Controllers.HomeController.Index (StoreMVC)'
+2021-03-16 18:55:09.429 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44343/Home/Index - - - 200 - text/html;+charset=utf-8 1.8242ms
+2021-03-16 18:55:11.007 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44343/Identity/Account/Login - -
+2021-03-16 18:55:11.007 -04:00 [INF] Executing endpoint '/Account/Login'
+2021-03-16 18:55:11.008 -04:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2021-03-16 18:55:11.008 -04:00 [INF] Executing handler method StoreMVC.Areas.Identity.Pages.Account.LoginModel.OnGetAsync - ModelState is "Valid"
+2021-03-16 18:55:11.008 -04:00 [INF] AuthenticationScheme: Identity.External signed out.
+2021-03-16 18:55:11.008 -04:00 [INF] Executed handler method OnGetAsync, returned result .
+2021-03-16 18:55:11.008 -04:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2021-03-16 18:55:11.008 -04:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2021-03-16 18:55:11.009 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:55:11.010 -04:00 [INF] Executed page /Account/Login in 2.0652ms
+2021-03-16 18:55:11.010 -04:00 [INF] Executed endpoint '/Account/Login'
+2021-03-16 18:55:11.010 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44343/Identity/Account/Login - - - 200 - text/html;+charset=utf-8 2.9197ms
+2021-03-16 18:55:17.055 -04:00 [INF] Request starting HTTP/2 POST https://localhost:44343/Identity/Account/Login application/x-www-form-urlencoded 268
+2021-03-16 18:55:17.055 -04:00 [INF] Executing endpoint '/Account/Login'
+2021-03-16 18:55:17.055 -04:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2021-03-16 18:55:17.057 -04:00 [INF] Executing handler method StoreMVC.Areas.Identity.Pages.Account.LoginModel.OnPostAsync - ModelState is "Valid"
+2021-03-16 18:55:17.060 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:55:17.106 -04:00 [INF] Executed DbCommand (43ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."FirstName", a."LastName", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+2021-03-16 18:55:17.122 -04:00 [WRN] Invalid password for user.
+2021-03-16 18:55:17.123 -04:00 [WRN] User failed to provide the correct password.
+2021-03-16 18:55:17.123 -04:00 [INF] Executed handler method OnPostAsync, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2021-03-16 18:55:17.125 -04:00 [INF] Executed page /Account/Login in 69.9429ms
+2021-03-16 18:55:17.125 -04:00 [INF] Executed endpoint '/Account/Login'
+2021-03-16 18:55:17.125 -04:00 [INF] Request finished HTTP/2 POST https://localhost:44343/Identity/Account/Login application/x-www-form-urlencoded 268 - 200 - text/html;+charset=utf-8 70.6325ms
+2021-03-16 18:55:23.098 -04:00 [INF] Request starting HTTP/2 POST https://localhost:44343/Identity/Account/Login application/x-www-form-urlencoded 268
+2021-03-16 18:55:23.098 -04:00 [INF] Executing endpoint '/Account/Login'
+2021-03-16 18:55:23.098 -04:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2021-03-16 18:55:23.099 -04:00 [INF] Executing handler method StoreMVC.Areas.Identity.Pages.Account.LoginModel.OnPostAsync - ModelState is "Valid"
+2021-03-16 18:55:23.099 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:55:23.152 -04:00 [INF] Executed DbCommand (52ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."FirstName", a."LastName", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+2021-03-16 18:55:23.158 -04:00 [WRN] Invalid password for user.
+2021-03-16 18:55:23.158 -04:00 [WRN] User failed to provide the correct password.
+2021-03-16 18:55:23.158 -04:00 [INF] Executed handler method OnPostAsync, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2021-03-16 18:55:23.160 -04:00 [INF] Executed page /Account/Login in 61.5728ms
+2021-03-16 18:55:23.160 -04:00 [INF] Executed endpoint '/Account/Login'
+2021-03-16 18:55:23.160 -04:00 [INF] Request finished HTTP/2 POST https://localhost:44343/Identity/Account/Login application/x-www-form-urlencoded 268 - 200 - text/html;+charset=utf-8 62.0679ms
+2021-03-16 18:55:25.869 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44343/Identity/Account/ForgotPassword - -
+2021-03-16 18:55:25.870 -04:00 [INF] Executing endpoint '/Account/ForgotPassword'
+2021-03-16 18:55:25.873 -04:00 [INF] Route matched with {page = "/Account/ForgotPassword", area = "Identity", action = "", controller = ""}. Executing page /Account/ForgotPassword
+2021-03-16 18:55:25.874 -04:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2021-03-16 18:55:25.874 -04:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2021-03-16 18:55:25.883 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:55:25.884 -04:00 [INF] Executed page /Account/ForgotPassword in 10.9544ms
+2021-03-16 18:55:25.884 -04:00 [INF] Executed endpoint '/Account/ForgotPassword'
+2021-03-16 18:55:25.885 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44343/Identity/Account/ForgotPassword - - - 200 - text/html;+charset=utf-8 15.6186ms
+2021-03-16 18:55:28.408 -04:00 [INF] Request starting HTTP/2 POST https://localhost:44343/Identity/Account/ForgotPassword application/x-www-form-urlencoded 215
+2021-03-16 18:55:28.409 -04:00 [INF] Executing endpoint '/Account/ForgotPassword'
+2021-03-16 18:55:28.409 -04:00 [INF] Route matched with {page = "/Account/ForgotPassword", area = "Identity", action = "", controller = ""}. Executing page /Account/ForgotPassword
+2021-03-16 18:55:28.410 -04:00 [INF] Executing handler method StoreMVC.Areas.Identity.Pages.Account.ForgotPasswordModel.OnPostAsync - ModelState is "Valid"
+2021-03-16 18:55:28.412 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:55:28.463 -04:00 [INF] Executed DbCommand (48ms) [Parameters=[@__normalizedEmail_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."FirstName", a."LastName", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedEmail" = @__normalizedEmail_0
+LIMIT 2
+2021-03-16 18:55:28.464 -04:00 [INF] Executed handler method OnPostAsync, returned result Microsoft.AspNetCore.Mvc.RedirectToPageResult.
+2021-03-16 18:55:28.465 -04:00 [INF] Executing RedirectToPageResult, redirecting to ./ForgotPasswordConfirmation.
+2021-03-16 18:55:28.465 -04:00 [INF] Executed page /Account/ForgotPassword in 56.3378ms
+2021-03-16 18:55:28.465 -04:00 [INF] Executed endpoint '/Account/ForgotPassword'
+2021-03-16 18:55:28.466 -04:00 [INF] Request finished HTTP/2 POST https://localhost:44343/Identity/Account/ForgotPassword application/x-www-form-urlencoded 215 - 302 - - 57.2181ms
+2021-03-16 18:55:28.469 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44343/Identity/Account/ForgotPasswordConfirmation - -
+2021-03-16 18:55:28.469 -04:00 [INF] Executing endpoint '/Account/ForgotPasswordConfirmation'
+2021-03-16 18:55:28.471 -04:00 [INF] Route matched with {page = "/Account/ForgotPasswordConfirmation", area = "Identity", action = "", controller = ""}. Executing page /Account/ForgotPasswordConfirmation
+2021-03-16 18:55:28.471 -04:00 [INF] Executing handler method StoreMVC.Areas.Identity.Pages.Account.ForgotPasswordConfirmation.OnGet - ModelState is "Valid"
+2021-03-16 18:55:28.471 -04:00 [INF] Executed handler method OnGet, returned result .
+2021-03-16 18:55:28.471 -04:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2021-03-16 18:55:28.471 -04:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2021-03-16 18:55:28.473 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:55:28.473 -04:00 [INF] Executed page /Account/ForgotPasswordConfirmation in 2.456ms
+2021-03-16 18:55:28.473 -04:00 [INF] Executed endpoint '/Account/ForgotPasswordConfirmation'
+2021-03-16 18:55:28.473 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44343/Identity/Account/ForgotPasswordConfirmation - - - 200 - text/html;+charset=utf-8 4.8698ms
+2021-03-16 18:55:31.319 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44343/Identity/Account/Login - -
+2021-03-16 18:55:31.320 -04:00 [INF] Executing endpoint '/Account/Login'
+2021-03-16 18:55:31.320 -04:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2021-03-16 18:55:31.320 -04:00 [INF] Executing handler method StoreMVC.Areas.Identity.Pages.Account.LoginModel.OnGetAsync - ModelState is "Valid"
+2021-03-16 18:55:31.320 -04:00 [INF] AuthenticationScheme: Identity.External signed out.
+2021-03-16 18:55:31.320 -04:00 [INF] Executed handler method OnGetAsync, returned result .
+2021-03-16 18:55:31.320 -04:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2021-03-16 18:55:31.320 -04:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2021-03-16 18:55:31.321 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:55:31.322 -04:00 [INF] Executed page /Account/Login in 2.1795ms
+2021-03-16 18:55:31.322 -04:00 [INF] Executed endpoint '/Account/Login'
+2021-03-16 18:55:31.322 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44343/Identity/Account/Login - - - 200 - text/html;+charset=utf-8 2.8489ms
+2021-03-16 18:55:48.662 -04:00 [INF] Request starting HTTP/2 POST https://localhost:44343/Identity/Account/Login application/x-www-form-urlencoded 268
+2021-03-16 18:55:48.662 -04:00 [INF] Executing endpoint '/Account/Login'
+2021-03-16 18:55:48.662 -04:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2021-03-16 18:55:48.662 -04:00 [INF] Executing handler method StoreMVC.Areas.Identity.Pages.Account.LoginModel.OnPostAsync - ModelState is "Valid"
+2021-03-16 18:55:48.663 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:55:48.719 -04:00 [INF] Executed DbCommand (56ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."FirstName", a."LastName", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+2021-03-16 18:55:48.776 -04:00 [INF] Executed DbCommand (49ms) [Parameters=[@__user_Id_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ClaimType", a."ClaimValue", a."UserId"
+FROM "AspNetUserClaims" AS a
+WHERE a."UserId" = @__user_Id_0
+2021-03-16 18:55:48.777 -04:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2021-03-16 18:55:48.778 -04:00 [INF] User logged in.
+2021-03-16 18:55:48.778 -04:00 [INF] Executed handler method OnPostAsync, returned result Microsoft.AspNetCore.Mvc.LocalRedirectResult.
+2021-03-16 18:55:48.778 -04:00 [INF] Executing LocalRedirectResult, redirecting to /.
+2021-03-16 18:55:48.778 -04:00 [INF] Executed page /Account/Login in 115.7034ms
+2021-03-16 18:55:48.778 -04:00 [INF] Executed endpoint '/Account/Login'
+2021-03-16 18:55:48.778 -04:00 [INF] Request finished HTTP/2 POST https://localhost:44343/Identity/Account/Login application/x-www-form-urlencoded 268 - 302 - - 116.2335ms
+2021-03-16 18:55:48.781 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44343/ - -
+2021-03-16 18:55:48.781 -04:00 [INF] Executing endpoint 'StoreMVC.Controllers.HomeController.Index (StoreMVC)'
+2021-03-16 18:55:48.782 -04:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller StoreMVC.Controllers.HomeController (StoreMVC).
+2021-03-16 18:55:48.782 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:55:48.830 -04:00 [INF] Executed DbCommand (48ms) [Parameters=[@__fk_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT t."ID", t."AppUserFK", t."FName", t."LName", t."Username", t0."ID", t0."CustomerID", t0."LocationID", t0."CartID", t0."ProductID", t0."ID0", t0."ProductCount", t1."ID", t1."CustomerID", t1."LocationID", t1."OrderDate", t1."TotalCost", t1."OrderID", t1."ProductID", t1."ID0", t1."OrderItemsQuantity"
+FROM (
+    SELECT c."ID", c."AppUserFK", c."FName", c."LName", c."Username"
+    FROM "Customers" AS c
+    WHERE c."AppUserFK" = @__fk_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT c0."ID", c0."CustomerID", c0."LocationID", c1."CartID", c1."ProductID", c1."ID" AS "ID0", c1."ProductCount"
+    FROM "Carts" AS c0
+    LEFT JOIN "CartProducts" AS c1 ON c0."ID" = c1."CartID"
+) AS t0 ON t."ID" = t0."CustomerID"
+LEFT JOIN (
+    SELECT o."ID", o."CustomerID", o."LocationID", o."OrderDate", o."TotalCost", o0."OrderID", o0."ProductID", o0."ID" AS "ID0", o0."OrderItemsQuantity"
+    FROM "Orders" AS o
+    LEFT JOIN "OrderProducts" AS o0 ON o."ID" = o0."OrderID"
+) AS t1 ON t."ID" = t1."CustomerID"
+ORDER BY t."ID", t0."ID", t0."CartID", t0."ProductID", t1."ID", t1."OrderID", t1."ProductID"
+2021-03-16 18:55:48.830 -04:00 [INF] Executing ViewResult, running view Index.
+2021-03-16 18:55:48.830 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:55:48.873 -04:00 [INF] Executed DbCommand (41ms) [Parameters=[@__p_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."FirstName", a."LastName", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__p_0
+LIMIT 1
+2021-03-16 18:55:48.881 -04:00 [INF] Executed DbCommand (48ms) [Parameters=[@__fk_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT t."ID", t."AppUserFK", t."FName", t."LName", t."Username", t0."ID", t0."CustomerID", t0."LocationID", t0."CartID", t0."ProductID", t0."ID0", t0."ProductCount", t1."ID", t1."CustomerID", t1."LocationID", t1."OrderDate", t1."TotalCost", t1."OrderID", t1."ProductID", t1."ID0", t1."OrderItemsQuantity"
+FROM (
+    SELECT c."ID", c."AppUserFK", c."FName", c."LName", c."Username"
+    FROM "Customers" AS c
+    WHERE c."AppUserFK" = @__fk_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT c0."ID", c0."CustomerID", c0."LocationID", c1."CartID", c1."ProductID", c1."ID" AS "ID0", c1."ProductCount"
+    FROM "Carts" AS c0
+    LEFT JOIN "CartProducts" AS c1 ON c0."ID" = c1."CartID"
+) AS t0 ON t."ID" = t0."CustomerID"
+LEFT JOIN (
+    SELECT o."ID", o."CustomerID", o."LocationID", o."OrderDate", o."TotalCost", o0."OrderID", o0."ProductID", o0."ID" AS "ID0", o0."OrderItemsQuantity"
+    FROM "Orders" AS o
+    LEFT JOIN "OrderProducts" AS o0 ON o."ID" = o0."OrderID"
+) AS t1 ON t."ID" = t1."CustomerID"
+ORDER BY t."ID", t0."ID", t0."CartID", t0."ProductID", t1."ID", t1."OrderID", t1."ProductID"
+2021-03-16 18:55:48.882 -04:00 [INF] Executed ViewResult - view Index executed in 51.6949ms.
+2021-03-16 18:55:48.882 -04:00 [INF] Executed action StoreMVC.Controllers.HomeController.Index (StoreMVC) in 100.2082ms
+2021-03-16 18:55:48.882 -04:00 [INF] Executed endpoint 'StoreMVC.Controllers.HomeController.Index (StoreMVC)'
+2021-03-16 18:55:48.882 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44343/ - - - 200 - text/html;+charset=utf-8 100.8449ms
+2021-03-16 18:55:51.948 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44343/Cart/Cart/Index/eb391084-46fe-4a04-8edf-8196971eded6 - -
+2021-03-16 18:55:51.948 -04:00 [INF] Executing endpoint 'StoreMVC.Areas.Cart.Controllers.CartController.Index (StoreMVC)'
+2021-03-16 18:55:51.948 -04:00 [INF] Route matched with {area = "Cart", action = "Index", controller = "Cart", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult Index(System.String) on controller StoreMVC.Areas.Cart.Controllers.CartController (StoreMVC).
+2021-03-16 18:55:51.949 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:55:51.995 -04:00 [INF] Executed DbCommand (46ms) [Parameters=[@__fk_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT t."ID", t."AppUserFK", t."FName", t."LName", t."Username", t0."ID", t0."CustomerID", t0."LocationID", t0."CartID", t0."ProductID", t0."ID0", t0."ProductCount", t1."ID", t1."CustomerID", t1."LocationID", t1."OrderDate", t1."TotalCost", t1."OrderID", t1."ProductID", t1."ID0", t1."OrderItemsQuantity"
+FROM (
+    SELECT c."ID", c."AppUserFK", c."FName", c."LName", c."Username"
+    FROM "Customers" AS c
+    WHERE c."AppUserFK" = @__fk_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT c0."ID", c0."CustomerID", c0."LocationID", c1."CartID", c1."ProductID", c1."ID" AS "ID0", c1."ProductCount"
+    FROM "Carts" AS c0
+    LEFT JOIN "CartProducts" AS c1 ON c0."ID" = c1."CartID"
+) AS t0 ON t."ID" = t0."CustomerID"
+LEFT JOIN (
+    SELECT o."ID", o."CustomerID", o."LocationID", o."OrderDate", o."TotalCost", o0."OrderID", o0."ProductID", o0."ID" AS "ID0", o0."OrderItemsQuantity"
+    FROM "Orders" AS o
+    LEFT JOIN "OrderProducts" AS o0 ON o."ID" = o0."OrderID"
+) AS t1 ON t."ID" = t1."CustomerID"
+ORDER BY t."ID", t0."ID", t0."CartID", t0."ProductID", t1."ID", t1."OrderID", t1."ProductID"
+2021-03-16 18:55:51.995 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:55:52.047 -04:00 [INF] Executed DbCommand (52ms) [Parameters=[@__cartID_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT c."CartID", c."ProductID", c."ID", c."ProductCount", p."ID", p."Manufacturer", p."ProductDescription", p."ProductName", p."ProductPrice"
+FROM "CartProducts" AS c
+INNER JOIN "Products" AS p ON c."ProductID" = p."ID"
+WHERE c."CartID" = @__cartID_0
+2021-03-16 18:55:52.048 -04:00 [INF] Executing ViewResult, running view Index.
+2021-03-16 18:55:52.051 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:55:52.091 -04:00 [INF] Executed DbCommand (39ms) [Parameters=[@__p_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."FirstName", a."LastName", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__p_0
+LIMIT 1
+2021-03-16 18:55:52.103 -04:00 [INF] Executed DbCommand (50ms) [Parameters=[@__fk_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT t."ID", t."AppUserFK", t."FName", t."LName", t."Username", t0."ID", t0."CustomerID", t0."LocationID", t0."CartID", t0."ProductID", t0."ID0", t0."ProductCount", t1."ID", t1."CustomerID", t1."LocationID", t1."OrderDate", t1."TotalCost", t1."OrderID", t1."ProductID", t1."ID0", t1."OrderItemsQuantity"
+FROM (
+    SELECT c."ID", c."AppUserFK", c."FName", c."LName", c."Username"
+    FROM "Customers" AS c
+    WHERE c."AppUserFK" = @__fk_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT c0."ID", c0."CustomerID", c0."LocationID", c1."CartID", c1."ProductID", c1."ID" AS "ID0", c1."ProductCount"
+    FROM "Carts" AS c0
+    LEFT JOIN "CartProducts" AS c1 ON c0."ID" = c1."CartID"
+) AS t0 ON t."ID" = t0."CustomerID"
+LEFT JOIN (
+    SELECT o."ID", o."CustomerID", o."LocationID", o."OrderDate", o."TotalCost", o0."OrderID", o0."ProductID", o0."ID" AS "ID0", o0."OrderItemsQuantity"
+    FROM "Orders" AS o
+    LEFT JOIN "OrderProducts" AS o0 ON o."ID" = o0."OrderID"
+) AS t1 ON t."ID" = t1."CustomerID"
+ORDER BY t."ID", t0."ID", t0."CartID", t0."ProductID", t1."ID", t1."OrderID", t1."ProductID"
+2021-03-16 18:55:52.104 -04:00 [INF] Executed ViewResult - view Index executed in 56.5218ms.
+2021-03-16 18:55:52.104 -04:00 [INF] Executed action StoreMVC.Areas.Cart.Controllers.CartController.Index (StoreMVC) in 155.7454ms
+2021-03-16 18:55:52.104 -04:00 [INF] Executed endpoint 'StoreMVC.Areas.Cart.Controllers.CartController.Index (StoreMVC)'
+2021-03-16 18:55:52.104 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44343/Cart/Cart/Index/eb391084-46fe-4a04-8edf-8196971eded6 - - - 200 - text/html;+charset=utf-8 156.6329ms
+2021-03-16 18:56:43.279 -04:00 [INF] Request starting HTTP/2 POST https://localhost:44343/Identity/Account/Logout?returnUrl=%2FHome%2FIndex application/x-www-form-urlencoded 225
+2021-03-16 18:56:43.280 -04:00 [INF] Executing endpoint '/Account/Logout'
+2021-03-16 18:56:43.283 -04:00 [INF] Route matched with {page = "/Account/Logout", area = "Identity", action = "", controller = ""}. Executing page /Account/Logout
+2021-03-16 18:56:43.283 -04:00 [INF] Executing handler method StoreMVC.Areas.Identity.Pages.Account.LogoutModel.OnPost - ModelState is "Valid"
+2021-03-16 18:56:43.284 -04:00 [INF] AuthenticationScheme: Identity.Application signed out.
+2021-03-16 18:56:43.284 -04:00 [INF] AuthenticationScheme: Identity.External signed out.
+2021-03-16 18:56:43.284 -04:00 [INF] AuthenticationScheme: Identity.TwoFactorUserId signed out.
+2021-03-16 18:56:43.284 -04:00 [INF] User logged out.
+2021-03-16 18:56:43.284 -04:00 [INF] Executed handler method OnPost, returned result Microsoft.AspNetCore.Mvc.LocalRedirectResult.
+2021-03-16 18:56:43.284 -04:00 [INF] Executing LocalRedirectResult, redirecting to /Home/Index.
+2021-03-16 18:56:43.284 -04:00 [INF] Executed page /Account/Logout in 0.6901ms
+2021-03-16 18:56:43.284 -04:00 [INF] Executed endpoint '/Account/Logout'
+2021-03-16 18:56:43.285 -04:00 [INF] Request finished HTTP/2 POST https://localhost:44343/Identity/Account/Logout?returnUrl=%2FHome%2FIndex application/x-www-form-urlencoded 225 - 302 - - 5.2839ms
+2021-03-16 18:56:43.291 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44343/Home/Index - -
+2021-03-16 18:56:43.291 -04:00 [INF] Executing endpoint 'StoreMVC.Controllers.HomeController.Index (StoreMVC)'
+2021-03-16 18:56:43.291 -04:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller StoreMVC.Controllers.HomeController (StoreMVC).
+2021-03-16 18:56:43.292 -04:00 [INF] Executing ViewResult, running view Index.
+2021-03-16 18:56:43.294 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:56:43.294 -04:00 [INF] Executed ViewResult - view Index executed in 2.4582ms.
+2021-03-16 18:56:43.294 -04:00 [INF] Executed action StoreMVC.Controllers.HomeController.Index (StoreMVC) in 3.5294ms
+2021-03-16 18:56:43.295 -04:00 [INF] Executed endpoint 'StoreMVC.Controllers.HomeController.Index (StoreMVC)'
+2021-03-16 18:56:43.295 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44343/Home/Index - - - 200 - text/html;+charset=utf-8 4.1780ms
+2021-03-16 18:56:44.835 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44343/Identity/Account/Login - -
+2021-03-16 18:56:44.835 -04:00 [INF] Executing endpoint '/Account/Login'
+2021-03-16 18:56:44.835 -04:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2021-03-16 18:56:44.836 -04:00 [INF] Executing handler method StoreMVC.Areas.Identity.Pages.Account.LoginModel.OnGetAsync - ModelState is "Valid"
+2021-03-16 18:56:44.836 -04:00 [INF] AuthenticationScheme: Identity.External signed out.
+2021-03-16 18:56:44.836 -04:00 [INF] Executed handler method OnGetAsync, returned result .
+2021-03-16 18:56:44.836 -04:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2021-03-16 18:56:44.836 -04:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2021-03-16 18:56:44.836 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:56:44.837 -04:00 [INF] Executed page /Account/Login in 1.5184ms
+2021-03-16 18:56:44.837 -04:00 [INF] Executed endpoint '/Account/Login'
+2021-03-16 18:56:44.837 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44343/Identity/Account/Login - - - 200 - text/html;+charset=utf-8 2.1682ms
+2021-03-16 18:56:52.244 -04:00 [INF] Request starting HTTP/2 POST https://localhost:44343/Identity/Account/Login application/x-www-form-urlencoded 265
+2021-03-16 18:56:52.244 -04:00 [INF] Executing endpoint '/Account/Login'
+2021-03-16 18:56:52.244 -04:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2021-03-16 18:56:52.245 -04:00 [INF] Executing handler method StoreMVC.Areas.Identity.Pages.Account.LoginModel.OnPostAsync - ModelState is "Valid"
+2021-03-16 18:56:52.245 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:56:52.291 -04:00 [INF] Executed DbCommand (45ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."FirstName", a."LastName", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+2021-03-16 18:56:52.297 -04:00 [WRN] Invalid password for user.
+2021-03-16 18:56:52.297 -04:00 [WRN] User failed to provide the correct password.
+2021-03-16 18:56:52.297 -04:00 [INF] Executed handler method OnPostAsync, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2021-03-16 18:56:52.298 -04:00 [INF] Executed page /Account/Login in 53.89ms
+2021-03-16 18:56:52.298 -04:00 [INF] Executed endpoint '/Account/Login'
+2021-03-16 18:56:52.298 -04:00 [INF] Request finished HTTP/2 POST https://localhost:44343/Identity/Account/Login application/x-www-form-urlencoded 265 - 200 - text/html;+charset=utf-8 54.3381ms
+2021-03-16 18:56:58.907 -04:00 [INF] Request starting HTTP/2 POST https://localhost:44343/Identity/Account/Login application/x-www-form-urlencoded 268
+2021-03-16 18:56:58.907 -04:00 [INF] Executing endpoint '/Account/Login'
+2021-03-16 18:56:58.907 -04:00 [INF] Route matched with {page = "/Account/Login", area = "Identity", action = "", controller = ""}. Executing page /Account/Login
+2021-03-16 18:56:58.907 -04:00 [INF] Executing handler method StoreMVC.Areas.Identity.Pages.Account.LoginModel.OnPostAsync - ModelState is "Valid"
+2021-03-16 18:56:58.907 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:56:58.957 -04:00 [INF] Executed DbCommand (49ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."FirstName", a."LastName", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+2021-03-16 18:56:59.011 -04:00 [INF] Executed DbCommand (48ms) [Parameters=[@__user_Id_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ClaimType", a."ClaimValue", a."UserId"
+FROM "AspNetUserClaims" AS a
+WHERE a."UserId" = @__user_Id_0
+2021-03-16 18:56:59.011 -04:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2021-03-16 18:56:59.011 -04:00 [INF] User logged in.
+2021-03-16 18:56:59.011 -04:00 [INF] Executed handler method OnPostAsync, returned result Microsoft.AspNetCore.Mvc.LocalRedirectResult.
+2021-03-16 18:56:59.012 -04:00 [INF] Executing LocalRedirectResult, redirecting to /.
+2021-03-16 18:56:59.012 -04:00 [INF] Executed page /Account/Login in 104.8312ms
+2021-03-16 18:56:59.012 -04:00 [INF] Executed endpoint '/Account/Login'
+2021-03-16 18:56:59.012 -04:00 [INF] Request finished HTTP/2 POST https://localhost:44343/Identity/Account/Login application/x-www-form-urlencoded 268 - 302 - - 105.4102ms
+2021-03-16 18:56:59.015 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44343/ - -
+2021-03-16 18:56:59.015 -04:00 [INF] Executing endpoint 'StoreMVC.Controllers.HomeController.Index (StoreMVC)'
+2021-03-16 18:56:59.015 -04:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller StoreMVC.Controllers.HomeController (StoreMVC).
+2021-03-16 18:56:59.015 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:56:59.067 -04:00 [INF] Executed DbCommand (52ms) [Parameters=[@__fk_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT t."ID", t."AppUserFK", t."FName", t."LName", t."Username", t0."ID", t0."CustomerID", t0."LocationID", t0."CartID", t0."ProductID", t0."ID0", t0."ProductCount", t1."ID", t1."CustomerID", t1."LocationID", t1."OrderDate", t1."TotalCost", t1."OrderID", t1."ProductID", t1."ID0", t1."OrderItemsQuantity"
+FROM (
+    SELECT c."ID", c."AppUserFK", c."FName", c."LName", c."Username"
+    FROM "Customers" AS c
+    WHERE c."AppUserFK" = @__fk_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT c0."ID", c0."CustomerID", c0."LocationID", c1."CartID", c1."ProductID", c1."ID" AS "ID0", c1."ProductCount"
+    FROM "Carts" AS c0
+    LEFT JOIN "CartProducts" AS c1 ON c0."ID" = c1."CartID"
+) AS t0 ON t."ID" = t0."CustomerID"
+LEFT JOIN (
+    SELECT o."ID", o."CustomerID", o."LocationID", o."OrderDate", o."TotalCost", o0."OrderID", o0."ProductID", o0."ID" AS "ID0", o0."OrderItemsQuantity"
+    FROM "Orders" AS o
+    LEFT JOIN "OrderProducts" AS o0 ON o."ID" = o0."OrderID"
+) AS t1 ON t."ID" = t1."CustomerID"
+ORDER BY t."ID", t0."ID", t0."CartID", t0."ProductID", t1."ID", t1."OrderID", t1."ProductID"
+2021-03-16 18:56:59.070 -04:00 [INF] Executing ViewResult, running view Index.
+2021-03-16 18:56:59.070 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:56:59.117 -04:00 [INF] Executed DbCommand (46ms) [Parameters=[@__p_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."FirstName", a."LastName", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__p_0
+LIMIT 1
+2021-03-16 18:56:59.119 -04:00 [INF] Executed DbCommand (47ms) [Parameters=[@__fk_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT t."ID", t."AppUserFK", t."FName", t."LName", t."Username", t0."ID", t0."CustomerID", t0."LocationID", t0."CartID", t0."ProductID", t0."ID0", t0."ProductCount", t1."ID", t1."CustomerID", t1."LocationID", t1."OrderDate", t1."TotalCost", t1."OrderID", t1."ProductID", t1."ID0", t1."OrderItemsQuantity"
+FROM (
+    SELECT c."ID", c."AppUserFK", c."FName", c."LName", c."Username"
+    FROM "Customers" AS c
+    WHERE c."AppUserFK" = @__fk_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT c0."ID", c0."CustomerID", c0."LocationID", c1."CartID", c1."ProductID", c1."ID" AS "ID0", c1."ProductCount"
+    FROM "Carts" AS c0
+    LEFT JOIN "CartProducts" AS c1 ON c0."ID" = c1."CartID"
+) AS t0 ON t."ID" = t0."CustomerID"
+LEFT JOIN (
+    SELECT o."ID", o."CustomerID", o."LocationID", o."OrderDate", o."TotalCost", o0."OrderID", o0."ProductID", o0."ID" AS "ID0", o0."OrderItemsQuantity"
+    FROM "Orders" AS o
+    LEFT JOIN "OrderProducts" AS o0 ON o."ID" = o0."OrderID"
+) AS t1 ON t."ID" = t1."CustomerID"
+ORDER BY t."ID", t0."ID", t0."CartID", t0."ProductID", t1."ID", t1."OrderID", t1."ProductID"
+2021-03-16 18:56:59.120 -04:00 [INF] Executed ViewResult - view Index executed in 50.168ms.
+2021-03-16 18:56:59.120 -04:00 [INF] Executed action StoreMVC.Controllers.HomeController.Index (StoreMVC) in 104.6695ms
+2021-03-16 18:56:59.120 -04:00 [INF] Executed endpoint 'StoreMVC.Controllers.HomeController.Index (StoreMVC)'
+2021-03-16 18:56:59.120 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44343/ - - - 200 - text/html;+charset=utf-8 105.5132ms
+2021-03-16 18:57:04.215 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44343/Cart/Cart/Index/eb391084-46fe-4a04-8edf-8196971eded6 - -
+2021-03-16 18:57:04.215 -04:00 [INF] Executing endpoint 'StoreMVC.Areas.Cart.Controllers.CartController.Index (StoreMVC)'
+2021-03-16 18:57:04.215 -04:00 [INF] Route matched with {area = "Cart", action = "Index", controller = "Cart", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult Index(System.String) on controller StoreMVC.Areas.Cart.Controllers.CartController (StoreMVC).
+2021-03-16 18:57:04.215 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:57:04.264 -04:00 [INF] Executed DbCommand (49ms) [Parameters=[@__fk_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT t."ID", t."AppUserFK", t."FName", t."LName", t."Username", t0."ID", t0."CustomerID", t0."LocationID", t0."CartID", t0."ProductID", t0."ID0", t0."ProductCount", t1."ID", t1."CustomerID", t1."LocationID", t1."OrderDate", t1."TotalCost", t1."OrderID", t1."ProductID", t1."ID0", t1."OrderItemsQuantity"
+FROM (
+    SELECT c."ID", c."AppUserFK", c."FName", c."LName", c."Username"
+    FROM "Customers" AS c
+    WHERE c."AppUserFK" = @__fk_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT c0."ID", c0."CustomerID", c0."LocationID", c1."CartID", c1."ProductID", c1."ID" AS "ID0", c1."ProductCount"
+    FROM "Carts" AS c0
+    LEFT JOIN "CartProducts" AS c1 ON c0."ID" = c1."CartID"
+) AS t0 ON t."ID" = t0."CustomerID"
+LEFT JOIN (
+    SELECT o."ID", o."CustomerID", o."LocationID", o."OrderDate", o."TotalCost", o0."OrderID", o0."ProductID", o0."ID" AS "ID0", o0."OrderItemsQuantity"
+    FROM "Orders" AS o
+    LEFT JOIN "OrderProducts" AS o0 ON o."ID" = o0."OrderID"
+) AS t1 ON t."ID" = t1."CustomerID"
+ORDER BY t."ID", t0."ID", t0."CartID", t0."ProductID", t1."ID", t1."OrderID", t1."ProductID"
+2021-03-16 18:57:04.265 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:57:04.312 -04:00 [INF] Executed DbCommand (47ms) [Parameters=[@__cartID_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT c."CartID", c."ProductID", c."ID", c."ProductCount", p."ID", p."Manufacturer", p."ProductDescription", p."ProductName", p."ProductPrice"
+FROM "CartProducts" AS c
+INNER JOIN "Products" AS p ON c."ProductID" = p."ID"
+WHERE c."CartID" = @__cartID_0
+2021-03-16 18:57:04.312 -04:00 [INF] Executing ViewResult, running view Index.
+2021-03-16 18:57:04.316 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:57:04.383 -04:00 [INF] Executed DbCommand (66ms) [Parameters=[@__fk_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT t."ID", t."AppUserFK", t."FName", t."LName", t."Username", t0."ID", t0."CustomerID", t0."LocationID", t0."CartID", t0."ProductID", t0."ID0", t0."ProductCount", t1."ID", t1."CustomerID", t1."LocationID", t1."OrderDate", t1."TotalCost", t1."OrderID", t1."ProductID", t1."ID0", t1."OrderItemsQuantity"
+FROM (
+    SELECT c."ID", c."AppUserFK", c."FName", c."LName", c."Username"
+    FROM "Customers" AS c
+    WHERE c."AppUserFK" = @__fk_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT c0."ID", c0."CustomerID", c0."LocationID", c1."CartID", c1."ProductID", c1."ID" AS "ID0", c1."ProductCount"
+    FROM "Carts" AS c0
+    LEFT JOIN "CartProducts" AS c1 ON c0."ID" = c1."CartID"
+) AS t0 ON t."ID" = t0."CustomerID"
+LEFT JOIN (
+    SELECT o."ID", o."CustomerID", o."LocationID", o."OrderDate", o."TotalCost", o0."OrderID", o0."ProductID", o0."ID" AS "ID0", o0."OrderItemsQuantity"
+    FROM "Orders" AS o
+    LEFT JOIN "OrderProducts" AS o0 ON o."ID" = o0."OrderID"
+) AS t1 ON t."ID" = t1."CustomerID"
+ORDER BY t."ID", t0."ID", t0."CartID", t0."ProductID", t1."ID", t1."OrderID", t1."ProductID"
+2021-03-16 18:57:04.383 -04:00 [INF] Executed DbCommand (67ms) [Parameters=[@__p_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."FirstName", a."LastName", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__p_0
+LIMIT 1
+2021-03-16 18:57:04.384 -04:00 [INF] Executed ViewResult - view Index executed in 71.6495ms.
+2021-03-16 18:57:04.384 -04:00 [INF] Executed action StoreMVC.Areas.Cart.Controllers.CartController.Index (StoreMVC) in 168.852ms
+2021-03-16 18:57:04.384 -04:00 [INF] Executed endpoint 'StoreMVC.Areas.Cart.Controllers.CartController.Index (StoreMVC)'
+2021-03-16 18:57:04.384 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44343/Cart/Cart/Index/eb391084-46fe-4a04-8edf-8196971eded6 - - - 200 - text/html;+charset=utf-8 169.6501ms
+2021-03-16 18:57:24.707 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44343/Cart/Cart/DeleteCartProduct - -
+2021-03-16 18:57:24.708 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44343/Cart/Cart/DeleteCartProduct - - - 404 - - 1.6159ms
+2021-03-16 18:57:25.667 -04:00 [INF] Request starting HTTP/2 GET https://localhost:44343/Cart/Cart/Index/eb391084-46fe-4a04-8edf-8196971eded6 - -
+2021-03-16 18:57:25.668 -04:00 [INF] Executing endpoint 'StoreMVC.Areas.Cart.Controllers.CartController.Index (StoreMVC)'
+2021-03-16 18:57:25.668 -04:00 [INF] Route matched with {area = "Cart", action = "Index", controller = "Cart", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult Index(System.String) on controller StoreMVC.Areas.Cart.Controllers.CartController (StoreMVC).
+2021-03-16 18:57:25.668 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:57:25.715 -04:00 [INF] Executed DbCommand (46ms) [Parameters=[@__fk_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT t."ID", t."AppUserFK", t."FName", t."LName", t."Username", t0."ID", t0."CustomerID", t0."LocationID", t0."CartID", t0."ProductID", t0."ID0", t0."ProductCount", t1."ID", t1."CustomerID", t1."LocationID", t1."OrderDate", t1."TotalCost", t1."OrderID", t1."ProductID", t1."ID0", t1."OrderItemsQuantity"
+FROM (
+    SELECT c."ID", c."AppUserFK", c."FName", c."LName", c."Username"
+    FROM "Customers" AS c
+    WHERE c."AppUserFK" = @__fk_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT c0."ID", c0."CustomerID", c0."LocationID", c1."CartID", c1."ProductID", c1."ID" AS "ID0", c1."ProductCount"
+    FROM "Carts" AS c0
+    LEFT JOIN "CartProducts" AS c1 ON c0."ID" = c1."CartID"
+) AS t0 ON t."ID" = t0."CustomerID"
+LEFT JOIN (
+    SELECT o."ID", o."CustomerID", o."LocationID", o."OrderDate", o."TotalCost", o0."OrderID", o0."ProductID", o0."ID" AS "ID0", o0."OrderItemsQuantity"
+    FROM "Orders" AS o
+    LEFT JOIN "OrderProducts" AS o0 ON o."ID" = o0."OrderID"
+) AS t1 ON t."ID" = t1."CustomerID"
+ORDER BY t."ID", t0."ID", t0."CartID", t0."ProductID", t1."ID", t1."OrderID", t1."ProductID"
+2021-03-16 18:57:25.717 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:57:25.763 -04:00 [INF] Executed DbCommand (46ms) [Parameters=[@__cartID_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT c."CartID", c."ProductID", c."ID", c."ProductCount", p."ID", p."Manufacturer", p."ProductDescription", p."ProductName", p."ProductPrice"
+FROM "CartProducts" AS c
+INNER JOIN "Products" AS p ON c."ProductID" = p."ID"
+WHERE c."CartID" = @__cartID_0
+2021-03-16 18:57:25.763 -04:00 [INF] Executing ViewResult, running view Index.
+2021-03-16 18:57:25.766 -04:00 [INF] Entity Framework Core 5.0.4 initialized 'StoreDBContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2021-03-16 18:57:25.816 -04:00 [INF] Executed DbCommand (49ms) [Parameters=[@__p_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."FirstName", a."LastName", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."Id" = @__p_0
+LIMIT 1
+2021-03-16 18:57:25.817 -04:00 [INF] Executed DbCommand (49ms) [Parameters=[@__fk_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT t."ID", t."AppUserFK", t."FName", t."LName", t."Username", t0."ID", t0."CustomerID", t0."LocationID", t0."CartID", t0."ProductID", t0."ID0", t0."ProductCount", t1."ID", t1."CustomerID", t1."LocationID", t1."OrderDate", t1."TotalCost", t1."OrderID", t1."ProductID", t1."ID0", t1."OrderItemsQuantity"
+FROM (
+    SELECT c."ID", c."AppUserFK", c."FName", c."LName", c."Username"
+    FROM "Customers" AS c
+    WHERE c."AppUserFK" = @__fk_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT c0."ID", c0."CustomerID", c0."LocationID", c1."CartID", c1."ProductID", c1."ID" AS "ID0", c1."ProductCount"
+    FROM "Carts" AS c0
+    LEFT JOIN "CartProducts" AS c1 ON c0."ID" = c1."CartID"
+) AS t0 ON t."ID" = t0."CustomerID"
+LEFT JOIN (
+    SELECT o."ID", o."CustomerID", o."LocationID", o."OrderDate", o."TotalCost", o0."OrderID", o0."ProductID", o0."ID" AS "ID0", o0."OrderItemsQuantity"
+    FROM "Orders" AS o
+    LEFT JOIN "OrderProducts" AS o0 ON o."ID" = o0."OrderID"
+) AS t1 ON t."ID" = t1."CustomerID"
+ORDER BY t."ID", t0."ID", t0."CartID", t0."ProductID", t1."ID", t1."OrderID", t1."ProductID"
+2021-03-16 18:57:25.818 -04:00 [INF] Executed ViewResult - view Index executed in 54.7877ms.
+2021-03-16 18:57:25.818 -04:00 [INF] Executed action StoreMVC.Areas.Cart.Controllers.CartController.Index (StoreMVC) in 149.8716ms
+2021-03-16 18:57:25.818 -04:00 [INF] Executed endpoint 'StoreMVC.Areas.Cart.Controllers.CartController.Index (StoreMVC)'
+2021-03-16 18:57:25.818 -04:00 [INF] Request finished HTTP/2 GET https://localhost:44343/Cart/Cart/Index/eb391084-46fe-4a04-8edf-8196971eded6 - - - 200 - text/html;+charset=utf-8 150.7529ms

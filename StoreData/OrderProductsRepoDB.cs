@@ -25,7 +25,7 @@ namespace StoreData
 
         public List<OrderProducts> GetOrderProducts(int orderID)
         {
-            throw new NotImplementedException();
+            return _context.OrderProducts.Where(op => op.OrderID == orderID).ToList();
         }
 
         public List<OrderProducts> ProcessProducts(int cartId, int orderID)
