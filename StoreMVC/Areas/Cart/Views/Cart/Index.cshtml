@@ -45,9 +45,6 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.ProductCount)
                     </td>
-                    <td>
-                        @Html.ActionLink("Remove from Cart", "DeleteCartProduct", new { /* id=item.PrimaryKey */ })
-                    </td>
                 </tr>
                 orderTotal += (item.Product.ProductPrice * Convert.ToDecimal(item.ProductCount));
             }

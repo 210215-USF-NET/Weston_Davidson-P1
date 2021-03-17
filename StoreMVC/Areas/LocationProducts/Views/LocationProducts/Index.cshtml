@@ -18,6 +18,9 @@
             <th>
                 Details
             </th>
+            <th>
+                Product Price
+            </th>
             <th>Add to Cart &nbsp; &nbsp; &nbsp; &nbsp; Quantity to Add</th>
         </tr>
     </thead>
@@ -30,6 +33,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ProductQuantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.ProductPrice)
                 </td>
                 <td>
                     <form asp-area="LocationProducts" asp-controller="LocationProducts" asp-action="Details" class="form-inline">

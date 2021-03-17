@@ -208,5 +208,33 @@ namespace StoreMVC.Areas.LocationProducts.Controllers
             return View("ManagerOrdering", lp);
 
         }
+
+        [Area("LocationProducts")]
+        [HttpPost]
+        public ActionResult AddToCartManager(int customerID, int productID, int locationID, int inputValue)
+        {
+            //find customer making purchase
+            //Customer c = _customerBL.GetCustomerByID(customerID);
+            //retrieve customer cart
+            //subtract the product with quantity from the locationproduct quantity
+            int reversedInput = (inputValue * -1);
+            _locationProductBL.UpdateLocationProduct(productID, locationID, reversedInput);
+
+            StoreModel.Cart cart = _cartBL.FindCart(customerID, locationID);
+            //add the product with quantity to cartproduct list
+            _cartProductsBL.AddCartProduct(productID, cart.ID, inputValue);
+
+            Log.Information($"Product ID {productID} added to cart by user ID {customerID}");
+            //find location based on location ID
+            List<LocationProduct> l = _locationProductBL.GetLocationProducts(locationID);
+            Location location = _locationBL.GetSpecifiedLocation(locationID);
+            //return back to the same view
+            ViewBag.locationID = locationID;
+            ViewBag.customerID = customerID;
+            ViewBag.location = location.LocationName;
+            ViewBag.cartID = cart.ID;
+            return View("ManagerOrdering", l);
+        }
+
     }
 }
