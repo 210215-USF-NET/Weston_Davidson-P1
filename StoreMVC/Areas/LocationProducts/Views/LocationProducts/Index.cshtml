@@ -10,23 +10,15 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ID)
+                Product
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Product)
+                Product Quantity In Stock
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Location)
+                Details
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LocationProductName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductQuantity)
-            </th>
-            <th>Details</th>
-            <th>Add to Cart</th>
-            <th>Quanity to Add</th>
+            <th>Add to Cart &nbsp; &nbsp; &nbsp; &nbsp; Quantity to Add</th>
         </tr>
     </thead>
     <tbody>
@@ -34,23 +26,19 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Product.ID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Location.ID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LocationProductName)
+                    @Html.DisplayFor(modelItem => item.Product.ProductName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ProductQuantity)
                 </td>
                 <td>
-                <td>
-                    <a href='@Url.Action("Details", "Product", new { name = item.ProductID })' class="btn btn-info">Details</a>
+                    <form asp-area="LocationProducts" asp-controller="LocationProducts" asp-action="Details" class="form-inline">
+                        <input type="submit" class="btn btn-info" value="Details" />
+                        <input type="hidden" value="@item.Product.ID" name="id" />
+                        <input type="hidden" value="@ViewBag.customerID" name="customerID" />
+                        <input type="hidden" value="@ViewBag.locationID" name="locationID" />
+                    </form>
+
                 </td>
 
                 <td>
@@ -62,14 +50,12 @@
                                 <input type="hidden" value="@item.Product.ID" name="productID" />
                                 <input type="hidden" value="@ViewBag.locationID" name="locationID" />
                             </div>
-                            <div class="col-sm-1">
+                            <div class="col">
                                 <input type="number" value="1" name="inputValue" />
 
                             </div>
                         </div>
                     </form>
-                </td>
-                <td>
                 </td>
 
             </tr>

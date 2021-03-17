@@ -1,4 +1,4 @@
-﻿@model StoreMVC.Models.ProductVM
+﻿@model StoreModel.Product
 
 @{
     ViewData["Title"] = "Details";
@@ -36,5 +36,5 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" asp-route-locationID="@ViewBag.locationID" asp-route-customerID="@ViewBag.customerID">Back to Product Listing</a>
 </div>

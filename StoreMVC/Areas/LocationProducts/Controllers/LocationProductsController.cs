@@ -20,8 +20,9 @@ namespace StoreMVC.Areas.LocationProducts.Controllers
         private readonly ICustomerBL _customerBL;
         private readonly ICartBL _cartBL;
         private readonly ICartProductsBL _cartProductsBL;
+        private readonly IProductBL _productBL;
 
-        public LocationProductsController(ILocationBL locationBL, IMapper mapper, ILocationProductBL locationProductBL, ICustomerBL customerBL, ICartBL cartBL, ICartProductsBL cartProductsBL)
+        public LocationProductsController(ILocationBL locationBL, IMapper mapper, ILocationProductBL locationProductBL, ICustomerBL customerBL, ICartBL cartBL, ICartProductsBL cartProductsBL, IProductBL productBL)
         {
             _locationBL = locationBL;
             _locationProductBL = locationProductBL;
@@ -29,6 +30,7 @@ namespace StoreMVC.Areas.LocationProducts.Controllers
             _customerBL = customerBL;
             _cartBL = cartBL;
             _cartProductsBL = cartProductsBL;
+            _productBL = productBL;
         }
         [Area("LocationProducts")]
         // GET: LocationProductController/locationID
@@ -92,10 +94,24 @@ namespace StoreMVC.Areas.LocationProducts.Controllers
             return View("Index", l);
         }
 
+        [Area("LocationProducts")]
+        [HttpPost]
         // GET: LocationProductController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int id, int locationID, int customerID)
         {
-            return View();
+            Product product = _productBL.GetProductByID(id);
+
+            Location location = _locationBL.GetSpecifiedLocation(locationID);
+
+            Customer customer = _customerBL.GetCustomerByID(customerID);
+            StoreModel.Cart cart = customer.Carts.First();
+            ViewBag.location = location.LocationName;
+            ViewBag.locationID = location.ID;
+            ViewBag.customerID = customerID;
+            ViewBag.cartID = cart.ID;
+            ViewBag.prodCount = 1;
+
+            return View("Details", product);
         }
 
         // GET: LocationProductController/Create

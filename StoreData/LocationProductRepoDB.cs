@@ -35,6 +35,7 @@ namespace StoreData
         {
             return _context.LocationProducts
                 .Include(lp => lp.Product)
+                .Include(lp => lp.Location)
                 .AsNoTracking()
                 .Where(lp => lp.LocationID == locationID)
                 .ToList();
