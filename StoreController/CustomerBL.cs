@@ -5,6 +5,9 @@ using StoreData;
 
 namespace StoreController
 {
+    /// <summary>
+    /// Customer BL tracks customer business logic changes
+    /// </summary>
     public class CustomerBL : ICustomerBL
     {
         //private Random rand = new Random();

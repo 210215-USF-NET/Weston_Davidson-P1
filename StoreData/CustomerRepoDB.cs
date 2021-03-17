@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace StoreData
 {
+    /// <summary>
+    /// CustomerRepo tracks customer data layer access for changes/requests
+    /// </summary>
     public class CustomerRepoDB : ICustomerRepoDB
     {
         private readonly StoreDBContext _context;

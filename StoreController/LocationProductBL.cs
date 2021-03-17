@@ -5,6 +5,10 @@ using StoreData;
 
 namespace StoreController
 {
+    /// <summary>
+    /// Location BL tracks locationproduct business logic changes/requests
+    /// LocationProducts are the same thing as a store inventory. These are products which belong to locations
+    /// </summary>
     public class LocationProductBL : ILocationProductBL
     {
 

@@ -11,6 +11,9 @@ using Microsoft.AspNetCore.Http;
 
 namespace StoreData
 {
+    /// <summary>
+    /// The DB context used to access the database
+    /// </summary>
     public class StoreDBContext : IdentityDbContext<ApplicationUser>
     {
         private readonly IHttpContextAccessor _httpContextAccessor;

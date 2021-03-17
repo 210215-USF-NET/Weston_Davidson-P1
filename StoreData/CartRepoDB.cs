@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace StoreData
 {
+    /// <summary>
+    /// CartRepo tracks cart data layer access for changes/requests
+    /// </summary>
     public class CartRepoDB : ICartRepoDB
     {
 

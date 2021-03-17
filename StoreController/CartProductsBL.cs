@@ -5,6 +5,9 @@ using StoreData;
 
 namespace StoreController
 {
+    /// <summary>
+    /// BL relating to CartProducts, AKA the products which are currently stored in a user's cart
+    /// </summary>
     public class CartProductsBL : ICartProductsBL
     {
         private ICartProductsRepoDB _repo;

@@ -5,6 +5,10 @@ using StoreData;
 
 namespace StoreController
 {
+
+    /// <summary>
+    /// Interface Cart BL tracks Cart business logic changes
+    /// </summary>
     public interface ICartBL
     {
         void AddCart(Cart newCart);

@@ -12,6 +12,9 @@ using System.Threading.Tasks;
 
 namespace StoreMVC.Controllers
 {
+    /// <summary>
+    /// the home controller is a simple landing page for users/managers to access on visiting the app
+    /// </summary>
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

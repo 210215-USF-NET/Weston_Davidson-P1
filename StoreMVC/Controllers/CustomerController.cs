@@ -8,9 +8,13 @@ using StoreController;
 using StoreMVC.Models;
 using Microsoft.AspNetCore.Identity;
 using StoreModel;
+using Serilog;
 
 namespace StoreMVC.Controllers
 {
+    /// <summary>
+    /// The customer controller is used by managers to create new accounts and view existing user accounts
+    /// </summary>
     public class CustomerController : Controller
     {
         private readonly ICustomerBL _customerBL;
@@ -79,7 +83,7 @@ namespace StoreMVC.Controllers
 
 
                     _customerBL.AddCustomer(customertoAdd);
-
+                    Log.Information($"Customer with user ID {appUser.Id} created");
                     //we also want to create a cart for that customer in our system
                     //we'll need to retrieve our customer we just created to guarantee we have the correct ID
                     //and our location based on the selection in the form

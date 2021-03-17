@@ -8,10 +8,14 @@ using StoreController;
 using StoreMVC.Models;
 using Microsoft.AspNetCore.Identity;
 using StoreModel;
+using Serilog;
 
 
 namespace StoreMVC.Areas.Cart.Controllers
 {
+    /// <summary>
+    /// The cart controller maintains information regarding a user's cart and the cartproducts within
+    /// </summary>
     public class CartController : Controller
     {
 
@@ -108,7 +112,7 @@ namespace StoreMVC.Areas.Cart.Controllers
             //retrieve cart to return to customer
             //StoreModel.Cart returnedCart = _cartBL.FindCart(customerForOrder.ID, locationID);
             //List<CartProducts> cartProducts = _cartProductsBL.FindCartProducts(returnedCart.ID);
-
+            Log.Information($"Customer {customerForOrder.ID} placed order {orderToPass.ID}");
             return View("OrderReview", orderToPass);
         }
 

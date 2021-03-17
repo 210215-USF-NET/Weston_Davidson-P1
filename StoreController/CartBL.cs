@@ -5,6 +5,9 @@ using StoreData;
 
 namespace StoreController
 {
+    /// <summary>
+    /// Cart BL relating to user cart manipulation
+    /// </summary>
     public class CartBL : ICartBL
     {
         private ICartRepoDB _repo;

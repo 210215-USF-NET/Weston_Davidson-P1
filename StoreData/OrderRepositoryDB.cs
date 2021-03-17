@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace StoreData
 {
+    /// <summary>
+    /// Order repo tracks order data layer access for changes/requests
+    /// </summary>
     public class OrderRepositoryDB : IOrderRepository
     {
 

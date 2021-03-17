@@ -6,6 +6,9 @@ using StoreData;
 
 namespace StoreController
 {
+    /// <summary>
+    /// Product BL tracks product business logic changes/requests
+    /// </summary>
     public class ProductBL : IProductBL
     {
 

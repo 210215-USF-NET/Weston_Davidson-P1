@@ -5,6 +5,10 @@ using StoreData;
 
 namespace StoreController
 {
+    /// <summary>
+    /// OrderProduct BL tracks location business logic changes/requests
+    /// These are the products that are stored in an order area
+    /// </summary>
     public class OrderProductsBL : IOrderProductsBL
     {
         private IOrderProductsRepoDB _repo;

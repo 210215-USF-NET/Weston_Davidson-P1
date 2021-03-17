@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace StoreData
 {
+    /// <summary>
+    /// Product Repo tracks product data layer access for changes/requests
+    /// </summary>
     public class ProductRepository : IProductRepository
     {
 

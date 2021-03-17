@@ -5,6 +5,9 @@ using StoreData;
 
 namespace StoreController
 {
+    /// <summary>
+    /// Location BL tracks location business logic changes/requests
+    /// </summary>
     public class LocationBL : ILocationBL
     {
 

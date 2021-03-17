@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace StoreData
 {
+    /// <summary>
+    /// CartProducts tracks product data layer access for changes/requests
+    /// </summary>
     public class CartProductsRepoDB : ICartProductsRepoDB
     {
         private readonly StoreDBContext _context;

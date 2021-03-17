@@ -9,6 +9,9 @@ using StoreMVC.Models;
 
 namespace StoreMVC.Areas.Products.Controllers
 {
+    /// <summary>
+    /// The products controller maintains a catalog of all products, even those not currently in stock at a store
+    /// </summary>
     [Area("Products")]
     public class ProductController : Controller
     {

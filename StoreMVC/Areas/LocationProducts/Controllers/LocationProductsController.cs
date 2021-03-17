@@ -11,6 +11,10 @@ using Serilog;
 
 namespace StoreMVC.Areas.LocationProducts.Controllers
 {
+    /// <summary>
+    /// Controller handling all locationproducts/inventory requests
+    /// this controller also handles user product purchasing from a location
+    /// </summary>
     public class LocationProductsController : Controller
     {
 

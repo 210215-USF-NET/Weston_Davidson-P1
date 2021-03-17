@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace StoreData
 {
+    /// <summary>
+    /// LocationRepo tracks Location data layer access for changes/requests
+    /// </summary>
     public class LocationRepoDB : ILocationRepository
     {
         private readonly StoreDBContext _context;

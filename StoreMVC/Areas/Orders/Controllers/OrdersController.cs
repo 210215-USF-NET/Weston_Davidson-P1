@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 
 namespace StoreMVC.Areas.Orders.Controllers
 {
+    /// <summary>
+    /// The orders controller manages order history of customers
+    /// </summary>
     public class OrdersController : Controller
     {
         private readonly IMapper _mapper;

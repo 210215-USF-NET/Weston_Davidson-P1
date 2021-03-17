@@ -5,6 +5,9 @@ using StoreData;
 
 namespace StoreController
 {
+    /// <summary>
+    /// Order BL tracks Order logic changes/requests
+    /// </summary>
     public class OrderBL : IOrderBL
     {
         private IOrderRepository _repo;
