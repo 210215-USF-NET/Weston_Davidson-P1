@@ -27,7 +27,7 @@
 
 ### Additional Requirements
 - [X] Exception Handling
-- [ ] Input validation
+- [X] Input validation
 - [X] Logging (useful ones)
 - [X] At least 20 unit tests:
   - [X] DB methods should be tested
@@ -39,4 +39,4 @@
 - [x] Use ASP.NET MVC for the UI
 - [x] DB structure should be 3NF
   - [X] Should have an ER Diagram
-- [ ] Code should have xml documentation
+- [X] Code should have xml documentation
