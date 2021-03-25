@@ -34,4 +34,4 @@ SineShop is a store application developed in mind for a chain of stores that sel
 - Once the program is running, feel free to explore the UI as desired. As a customer, you will need to create an account first to access the system. Once your account has been created and you have logged in, the expected functionalities of most web-based shopping sites should be available to you.
 
 ## License
-This project is licensed under the MIT License.
+This project is licensed under the [MIT License.](https://github.com/210215-USF-NET/Weston_Davidson-P1/blob/main/LICENSE)
